@@ -3,42 +3,42 @@ import java.sql. *;
 
 public class Modele {
 	
-	//Déclarer les différents attributs
+	//Declarer les differents attributs
 	private static Connection connexion;
 	private	static Statement st;
 	private static ResultSet rs;
 	private static PreparedStatement pst;
 	
 	/**
-	* Procèdure qui permet de se connecter a la bdd
+	* Procedure qui permet de se connecter a la bdd
 	*/
 	public static void connexionBdd() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connexion = DriverManager.getConnection("jdbc:mysql://172.16.203.212/fripouilles?zeroDateTimeBehavior=CO" + 
-			"NVERT_TO_NULL&serverTimezone=UTC", "sio", "Azerty123!");
+			connexion = DriverManager.getConnection("jdbc:mysql://localhost/fripouilles?zeroDateTimeBehavior=CO" + 
+			"NVERT_TO_NULL&serverTimezone=UTC", "root", "");
 			
 			st = connexion.createStatement();
 		}
 		catch (ClassNotFoundException erreur){
-			System.out.println("Le chargeur n'as pas été chargé " + erreur);
+			System.out.println("Le chargeur n'as pas ete charge " + erreur);
 		}
 		catch(SQLException erreur) {
-			System.out.println("Erreur lors de la connexion à la base de données : " + erreur);
+			System.out.println("Erreur lors de la connexion ï¿½ la base de donnï¿½es : " + erreur);
 		}
 	}
 	
 	
 	/**
-	* Procèdure qui permet de fermer la connexion a la bdd
+	* Procedure qui permet de fermer la connexion a la bdd
 	*/
 	public static void fermetureBdd() {
-		//Vérifier que connexion n'est pas null avant de fermer
+		//Verifier que connexion n'est pas null avant de fermer
 		if (connexion != null) {
 			try {
 				connexion.close();
 			}catch(SQLException erreur) {
-				System.out.println("Echec de la fermeture de la base de données : " + erreur);
+				System.out.println("Echec de la fermeture de la base de donnï¿½es : " + erreur);
 			}
 		}
 	}
@@ -46,17 +46,34 @@ public class Modele {
 	/**
 	* Fonction qui permet de fermer la connexion a la bdd
 	*/
-	public static void connexionUtilisateur(String nom, String motdePasse) {
+	public static boolean connexionUtilisateur(String nom, String motdePasse) {
+		//NomUser : eMusk mdpUser : Azerty123
+		boolean rep = false;
+		int count = 0;
+		
 		try {
-			String sql = "SELECT COUNT(*) FROM utilisateur WHERE nomUser = ? AND mdpUser = ?";
+			String sql = "SELECT COUNT(*) AS nbCo FROM utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
 			pst.setString(1, nom);
 			//Remplacer le ? par motdePasse
 			pst.setString(2, motdePasse);
+			
+			rs = pst.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt("nbCo"); // RÃ©cupÃ¨re la colonne nbCo du rÃ©sultat
+	        }
+			
+			if (count == 1) {
+				rep = true;
+			}
+			
 		}catch(SQLException erreur) {
-			System.out.println("Echec de la connexion a la base de données : " + erreur);
+			System.out.println("Echec de la connexion a la base de donnees : " + erreur);
 		}
+		
+		return rep;
 	}
 	
 }
