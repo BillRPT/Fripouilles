@@ -24,7 +24,7 @@ public class Modele {
 			System.out.println("Le chargeur n'as pas ete charge " + erreur);
 		}
 		catch(SQLException erreur) {
-			System.out.println("Erreur lors de la connexion � la base de donn�es : " + erreur);
+			System.out.println("Erreur lors de la connexion � la base de donnees : " + erreur);
 		}
 	}
 	
@@ -38,13 +38,16 @@ public class Modele {
 			try {
 				connexion.close();
 			}catch(SQLException erreur) {
-				System.out.println("Echec de la fermeture de la base de donn�es : " + erreur);
+				System.out.println("Echec de la fermeture de la base de donnees : " + erreur);
 			}
 		}
 	}
 	
 	/**
 	* Fonction qui permet de fermer la connexion a la bdd
+	* @param nom
+	* @param motdePasse
+	* @return true ou false
 	*/
 	public static boolean connexionUtilisateur(String nom, String motdePasse) {
 		//NomUser : eMusk mdpUser : Azerty123
