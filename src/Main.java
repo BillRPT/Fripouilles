@@ -5,7 +5,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Modele.connexionBdd();
-		//je modifie le main si t'arrives pas à pull je pense que je pète mon crâneeqeqzezqe
+		//je modifie le main si t'arrives pas à pull je pense que je pète mon crâneeqeqzez
 		
 		if (Modele.connexionUtilisateur("eMusk", Fonction.hashMD5("Azerty123")) == true) {
 			System.out.println("Correcte");
