@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javax.swing.ImageIcon;
-
+//jetest
 public class Fonction {
 	
 	/**
@@ -35,17 +35,17 @@ public class Fonction {
 	
 	
 	/**
-	 * Méthode pour redimensionner le logo
+	 * Mï¿½thode pour redimensionner le logo
 	 * @param icon
 	 * @param width
 	 * @param height
 	 * @return
 	 */
-	// Méthode pour redimensionner l'ImageIcon
+	// Mï¿½thode pour redimensionner l'ImageIcon
 	public static ImageIcon resizeImageIcon(ImageIcon icon, int width, int height) {
-	    Image img = icon.getImage();  // Obtenir l'image à partir de l'ImageIcon
+	    Image img = icon.getImage();  // Obtenir l'image ï¿½ partir de l'ImageIcon
 	    Image resizedImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH); // Redimensionner l'image
-	    return new ImageIcon(resizedImg);  // Retourner une nouvelle ImageIcon avec l'image redimensionnée
+	    return new ImageIcon(resizedImg);  // Retourner une nouvelle ImageIcon avec l'image redimensionnï¿½e
 	}
 	
 }
