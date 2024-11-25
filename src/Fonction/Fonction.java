@@ -1,7 +1,9 @@
 package Fonction;
-
+import java.awt.Image;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import javax.swing.ImageIcon;
 
 public class Fonction {
 	
@@ -30,4 +32,20 @@ public class Fonction {
 		
 		return hexString.toString();
 	}
+	
+	
+	/**
+	 * Méthode pour redimensionner le logo
+	 * @param icon
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	// Méthode pour redimensionner l'ImageIcon
+	public static ImageIcon resizeImageIcon(ImageIcon icon, int width, int height) {
+	    Image img = icon.getImage();  // Obtenir l'image à partir de l'ImageIcon
+	    Image resizedImg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH); // Redimensionner l'image
+	    return new ImageIcon(resizedImg);  // Retourner une nouvelle ImageIcon avec l'image redimensionnée
+	}
+	
 }
