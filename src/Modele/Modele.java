@@ -9,14 +9,19 @@ public class Modele {
 	private static ResultSet rs;
 	private static PreparedStatement pst;
 	
+	//Constante a modifier en fonction de l'école ou la maison
+	private static String host = "172.16.203.212";
+	private static String user = "sio";
+	private static String mdp = "Azerty123!";
+	
 	/**
 	* Procedure qui permet de se connecter a la bdd
 	*/
 	public static void connexionBdd() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connexion = DriverManager.getConnection("jdbc:mysql://localhost/fripouilles?zeroDateTimeBehavior=CO" + 
-			"NVERT_TO_NULL&serverTimezone=UTC", "root", "");
+			connexion = DriverManager.getConnection("jdbc:mysql://" + host + "/fripouilles?zeroDateTimeBehavior=CO" + 
+			"NVERT_TO_NULL&serverTimezone=UTC", user, mdp);
 			
 			st = connexion.createStatement();
 		}
@@ -55,7 +60,7 @@ public class Modele {
 		int count = 0;
 		
 		try {
-			String sql = "SELECT COUNT(*) AS nbCo FROM utilisateur WHERE loginUser = ? AND mdpUser = ?";
+			String sql = "SELECT COUNT(*) AS nbCo FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
 			pst.setString(1, nom);
