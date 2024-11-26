@@ -9,10 +9,10 @@ public class Modele {
 	private static ResultSet rs;
 	private static PreparedStatement pst;
 	
-	//Constante a modifier en fonction de l'école ou la maison
-	private static String host = "172.16.203.212";
-	private static String user = "sio";
-	private static String mdp = "Azerty123!";
+	//Constante a modifier en fonction de l'ï¿½cole ou la maison
+	private static String host = "localhost";
+	private static String user = "root";
+	private static String mdp = "";
 	
 	/**
 	* Procedure qui permet de se connecter a la bdd
