@@ -1,5 +1,8 @@
 package Modele;
 import java.sql. *;
+import java.util.ArrayList;
+
+import Class.*;
 
 public class Modele {
 	
@@ -87,4 +90,48 @@ public class Modele {
 		return rep;
 	}
 	
+	//---------------------METHODES POUR BENEVOLE---------------------
+	/**
+	 * Méthode pour le rôle Bénévole,
+	 * Ajouter un article
+	 */
+	
+	public static boolean ajouterArticle(/*a completer*/) {
+		boolean rep = false;
+		//a completer
+		return rep;
+	}
+	
+	/**
+	 * Méthode pour le rôle Bénévole,
+	 * Supprimer un article
+	 */
+	
+	public static boolean supprimerArticle(/*a completer*/) {
+		boolean rep = false;
+		//a completer
+		return rep;
+	}
+	
+	/**
+	 * Méthode pour le rôle Bénévole;
+	 * Afficher l'historique des catalogues (peu importe son état)
+	 */
+	
+	public static ArrayList<Catalogue> historiqueCatalogue(){
+		ArrayList<Catalogue> historiqueCat = new ArrayList<>();
+		//a completer
+		return historiqueCat;
+	}
+	//---------------------METHODES POUR MAIRE---------------------
+	/**
+	 * Méthode pour le rôle Maire
+	 * Consulter les catalogues (état en vente)
+	 */
+	
+	public static ArrayList<Catalogue> lesCatalogues(){
+		ArrayList<Catalogue> lesCat = new ArrayList<>();
+		
+		return lesCat;
+	}
 }
