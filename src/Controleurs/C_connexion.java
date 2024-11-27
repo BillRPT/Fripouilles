@@ -30,14 +30,14 @@ public class C_connexion {
 	//------------------------------autres méthodes------------------------------
 	public boolean verifierConnexion(String pseudo, char[] password) {
         boolean rep = false;
+        Modele.connexionBdd();
         if (Modele.connexionUtilisateur(pseudo, Fonction.hashMD5(password))) {
-            JOptionPane.showMessageDialog(vConnex, "Connexion réussie !");
-            vConnex.setVisible(false);  // Masquer la fenêtre de connexion
+        	Modele.fermetureBdd();
+        	//Erreur a fix ici
+            /*vConnex.setVisible(false);  // Masquer la fenêtre de connexion
             cPrincipal = new C_principal(); // Initialise le contrôleur principal
-            cPrincipal.afficherMain();  // Affiche la page principale
+            cPrincipal.afficherMain();*/  // Affiche la page principale
             rep = true;
-        } else {
-            JOptionPane.showMessageDialog(vConnex, "Erreur : Pseudo ou mot de passe incorrect.", "Erreur de connexion", JOptionPane.ERROR_MESSAGE);
         }
         return rep;
     }

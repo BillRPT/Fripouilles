@@ -75,31 +75,16 @@ public class V_connexion extends JFrame {
     
     class AfficherPgPrincipale implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            if(cConnex.verifierConnexion(fieldPseudo.getText(), fieldMdp.getPassword()) == true) {
-            	
-            }
+        	if (e.getSource() == btnValider) {
+        		if(cConnex.verifierConnexion(fieldPseudo.getText(), fieldMdp.getPassword()) == true) {
+        			JOptionPane.showMessageDialog(null, "Bienvenue !");
+                }
+        		else {
+        			JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou mot de passe incorrect !");
+        		}
+        	}
         }
     }
-    
-    //------------------------accesseurs------------------------------
-    
-    // Accesseurs pour les champs
-    public JTextField getFieldPseudo() {
-        return fieldPseudo;
-    }
-
-    public JPasswordField getFieldMdp() {
-        return fieldMdp;
-    }
-    
-    //------------------------méthodes------------------------------
-
-    // Méthode pour ajouter un écouteur au bouton de validation
-    public void addBtnListener(ActionListener listener) {
-        btnValider.addActionListener(listener);
-    }
-    
-    
     
 }
     
