@@ -70,7 +70,7 @@ public class Modele {
 			rs = pst.executeQuery();
 			
 			if (rs.next()) {
-				count = rs.getInt("nbCo"); // Récupère la colonne nbCo du résultat
+				count = rs.getInt("nbCo"); // recupere la colonne nbCo du résultat
 	        }
 			
 			if (count == 1) {
