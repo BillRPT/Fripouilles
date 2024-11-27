@@ -70,7 +70,7 @@ public class V_connexion extends JFrame {
         contentPanel.add(btnValider);
         btnValider.addActionListener(new AfficherPgPrincipale());
 
-        setVisible(false);
+        setVisible(true);
     }
     
     class AfficherPgPrincipale implements ActionListener{

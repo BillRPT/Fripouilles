@@ -13,8 +13,7 @@ public class Fonction {
 	* @return une chaine de caractere hasher en md5
 	*/
 	public static String hashMD5(char[] password) {
-		String tg = "";
-		/*StringBuilder hexString = new StringBuilder();
+		StringBuilder hexString = new StringBuilder();
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 	        byte[] messageDigest = md.digest(password.getBytes());
@@ -29,9 +28,9 @@ public class Fonction {
 	        
 		}catch(NoSuchAlgorithmException erreur) {
 			System.out.println("Erreur hashage md5 " + erreur);
-		}*/
+		}
 		
-		return tg;//hexString.toString();
+		return hexString.toString();
 	}
 	
 	

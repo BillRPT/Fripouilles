@@ -14,7 +14,6 @@ public class C_connexion {
 	
 	//------------------------------constructeur------------------------------
 	public C_connexion() {
-		this.vConnex.setVisible(true);
 		
 		
 	}
