@@ -10,9 +10,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "172.16.203.212";
+	private static String host = "172.16.203.206";
 	private static String user = "sio";
-	private static String mdp = "Azerty123!";
+	private static String mdp = "Vanille2010";
 	
 	/**
 	* Procedure qui permet de se connecter a la bdd
@@ -56,6 +56,10 @@ public class Modele {
 	*/
 	public static boolean connexionUtilisateur(String nom, String motdePasse) {
 		//NomUser : eMusk mdpUser : Azerty123
+		
+		//maire : eMusk - Azerty123
+		//secretaire : AEmmy - e
+		//benevole : ahmad - a
 		boolean rep = false;
 		int count = 0;
 		
@@ -70,7 +74,7 @@ public class Modele {
 			rs = pst.executeQuery();
 			
 			if (rs.next()) {
-				count = rs.getInt("nbCo"); // recupere la colonne nbCo du résultat
+				count = rs.getInt("nbCo"); // recupere la colonne nbCo du resultat
 	        }
 			
 			if (count == 1) {

@@ -11,6 +11,8 @@ import org.junit. *;
 import Modele.Modele;
 
 class ModeleTest {
+	char[] tableau = {'A', 'z', 'e', 'r', 't', 'y', '1', '2', '3'};
+
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -24,7 +26,7 @@ class ModeleTest {
 
 	@Test
 	public void testconnexionUtilisateur() {
-		Assert.assertEquals("La connexion utilisateur n'a pas fonctionner", true, Modele.connexionUtilisateur("eMusk", Fonction.hashMD5("Azerty123")));
+		Assert.assertEquals("La connexion utilisateur n'a pas fonctionner", true, Modele.connexionUtilisateur("eMusk", Fonction.hashMD5(tableau)));
 	}
 
 }
