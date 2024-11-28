@@ -21,7 +21,7 @@ public class Main {
 		else {
 			System.out.println("Incorrecte");
 		}*/
-		Modele.fermetureBdd();
+		
 
 	}
 
