@@ -91,25 +91,101 @@ public class Modele {
 	}
 	
 	//---------------------METHODES POUR BENEVOLE---------------------
+	
+	/**
+	 * Méthode pour le rôle Bénévole,
+	 * Rechercher un article pour voir si il existe
+	 * @return true ou false
+	 */
+	public static boolean rechercherArticle(String unArticle) {
+		int chiffre = 0;
+		boolean rep = false;
+		try {
+			
+			String sql = "SELECT COUNT(*) AS NB FROM Article WHERE libelleArt = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			//Remplacer le ? par unLibelle
+			pst.setString(1, unArticle);
+
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	chiffre = rs.getInt("nb");
+	         }
+	        
+	        if (chiffre == 1) {
+	        	rep = true;
+	        }
+			
+		}catch(Exception erreur) {
+			System.out.println("Erreur de recherche article " + erreur);
+		}
+		
+		return rep;
+	}
+	
+	
 	/**
 	 * Méthode pour le rôle Bénévole,
 	 * Ajouter un article
+	 * @return true ou false
 	 */
-	
-	public static boolean ajouterArticle(/*a completer*/) {
+	public static boolean ajouterArticle(String unLibelle, String untypeArt, int unetatArt, String uncateArt) {
 		boolean rep = false;
-		//a completer
+		
+		try {
+			String sql = "INSERT INTO Article (libelleArt, typeArt, etatArt, cateArt) VALUES (?, ?, ?, ?)";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			//Remplacer le ? par unLibelle
+			pst.setString(1, unLibelle);
+			//Remplacer le ? par untypeArt
+			pst.setString(2, untypeArt);
+			//Remplacer le ? par untypeArt
+			pst.setInt(3, unetatArt);
+			//Remplacer le ? par untypeArt
+			pst.setString(4, uncateArt);
+			// Exécute la requête d'insertion
+			pst.executeUpdate();
+			
+			rep = true;
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de ajout de Article" + erreur);
+		}
+		
+		
 		return rep;
 	}
+	
 	
 	/**
 	 * Méthode pour le rôle Bénévole,
 	 * Supprimer un article
 	 */
-	
-	public static boolean supprimerArticle(/*a completer*/) {
+	public static boolean supprimerArticle(String unArticle) {
 		boolean rep = false;
-		//a completer
+		
+		if (rechercherArticle(unArticle) == true) {
+			try {
+				String sql = "DELETE FROM Article WHERE libelleArt = ?";
+				
+				pst = connexion.prepareStatement(sql);
+				
+				//Remplacer le ? par unArticle
+				pst.setString(1, unArticle);
+				
+				pst.executeUpdate();
+				
+				rep = true;
+				
+			}catch(Exception erreur) {
+				System.out.println("Erreur de suppresion de article " + erreur);
+			}
+		}
+		
 		return rep;
 	}
 	
