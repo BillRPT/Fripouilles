@@ -200,11 +200,17 @@ public class Modele {
 		try {
 			String sql = "SELECT idCat, idVenteEph, libelleCat, dateCat, etatCat FROM Catalogue WHERE etatCat = nonDisponible";
 			
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				Catalogue unCatalogue = new Catalogue();
+				
+			}
+			
 		}catch(Exception erreur) {
 			System.out.println("Erreur de récupération historique Catalogue" + erreur);
 		}
-		
-		
+
 		return historiqueCat;
 	}
 }
