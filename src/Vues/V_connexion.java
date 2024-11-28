@@ -80,7 +80,7 @@ public class V_connexion extends JFrame {
         			JOptionPane.showMessageDialog(null, "Bienvenue !");
                 }
         		else {
-        			JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou mot de passe incorrect !");
+        			JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou mot de passe incorrect.");
         		}
         	}
         }
