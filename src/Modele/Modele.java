@@ -199,15 +199,6 @@ public class Modele {
 		//a completer
 		return historiqueCat;
 	}
-	//---------------------METHODES POUR MAIRE---------------------
-	/**
-	 * Méthode pour le rôle Maire
-	 * Consulter les catalogues (état en vente)
-	 */
-	
-	public static ArrayList<Catalogue> lesCatalogues(){
-		ArrayList<Catalogue> lesCat = new ArrayList<>();
-		
-		return lesCat;
-	}
 }
+	//---------------------METHODES POUR MAIRE---------------------
+	//a completer...

@@ -11,11 +11,14 @@ import Vues.*;
 public class C_connexion {
 	private V_connexion vConnex;
 	private C_principal cPrincipal;
+	private V_principal vPrincipal;
 	
 	//------------------------------constructeur------------------------------
 	public C_connexion() {
-		
-		
+		vConnex = new V_connexion(this);
+		this.vConnex.setVisible(true);
+		cPrincipal = new C_principal();
+		vPrincipal = new V_principal();
 	}
 	
 	//------------------------------accesseurs------------------------------
@@ -30,13 +33,10 @@ public class C_connexion {
 	//------------------------------autres méthodes------------------------------
 	public boolean verifierConnexion(String pseudo, char[] password) {
         boolean rep = false;
-        Modele.connexionBdd();
         if (Modele.connexionUtilisateur(pseudo, Fonction.hashMD5(password))) {
-        	Modele.fermetureBdd();
-        	//Erreur a fix ici
-            /*vConnex.setVisible(false);  // Masquer la fenêtre de connexion
+            this.vConnex.setVisible(false);  // Masquer la fenêtre de connexion
             cPrincipal = new C_principal(); // Initialise le contrôleur principal
-            cPrincipal.afficherMain();*/  // Affiche la page principale
+            cPrincipal.afficherMain();  // Affiche la page principale
             rep = true;
         }
         return rep;
