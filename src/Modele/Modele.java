@@ -131,7 +131,7 @@ public class Modele {
 	 * Ajouter un article
 	 * @return true ou false
 	 */
-	public static boolean ajouterArticle(String unLibelle, String untypeArt, int unetatArt, String uncateArt) {
+	public static boolean ajouterArticle(String unLibelle, String untypeArt, String unetatArt, String uncateArt) {
 		boolean rep = false;
 		
 		try {
@@ -144,7 +144,7 @@ public class Modele {
 			//Remplacer le ? par untypeArt
 			pst.setString(2, untypeArt);
 			//Remplacer le ? par untypeArt
-			pst.setInt(3, unetatArt);
+			pst.setString(3, unetatArt);
 			//Remplacer le ? par untypeArt
 			pst.setString(4, uncateArt);
 			// Exécute la requête d'insertion
