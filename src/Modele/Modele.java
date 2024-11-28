@@ -163,7 +163,7 @@ public class Modele {
 	
 	/**
 	 * Méthode pour le rôle Bénévole,
-	 * Supprimer un article
+	 * Supprimer un article.
 	 */
 	public static boolean supprimerArticle(String unArticle) {
 		boolean rep = false;
