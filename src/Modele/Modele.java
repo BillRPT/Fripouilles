@@ -196,7 +196,15 @@ public class Modele {
 	
 	public static ArrayList<Catalogue> historiqueCatalogue(){
 		ArrayList<Catalogue> historiqueCat = new ArrayList<>();
-		//a completer
+		
+		try {
+			String sql = "SELECT idCat, idVenteEph, libelleCat, dateCat, etatCat FROM Catalogue WHERE etatCat = nonDisponible";
+			
+		}catch(Exception erreur) {
+			System.out.println("Erreur de récupération historique Catalogue" + erreur);
+		}
+		
+		
 		return historiqueCat;
 	}
 }
