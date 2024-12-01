@@ -13,9 +13,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'ï¿½cole ou la maison
-	private static String host = "172.16.203.206";
-	private static String user = "sio";
-	private static String mdp = "Vanille2010";
+	private static String host = "localhost";
+	private static String user = "root";
+	private static String mdp = "";
 	
 	/**
 	* Procedure qui permet de se connecter a la bdd
@@ -93,7 +93,7 @@ public class Modele {
 	//---------------------METHODES POUR BENEVOLE---------------------
 	
 	/**
-	 * Méthode pour le rôle Bénévole,
+	 * Mï¿½thode pour le rï¿½le Bï¿½nï¿½vole,
 	 * Rechercher un article pour voir si il existe
 	 * @return true ou false
 	 */
@@ -127,7 +127,7 @@ public class Modele {
 	
 	
 	/**
-	 * Méthode pour le rôle Bénévole,
+	 * Mï¿½thode pour le rï¿½le Bï¿½nï¿½vole,
 	 * Ajouter un article
 	 * @return true ou false
 	 */
@@ -147,7 +147,7 @@ public class Modele {
 			pst.setString(3, unetatArt);
 			//Remplacer le ? par untypeArt
 			pst.setString(4, uncateArt);
-			// Exécute la requête d'insertion
+			// Exï¿½cute la requï¿½te d'insertion
 			pst.executeUpdate();
 			
 			rep = true;
@@ -162,7 +162,7 @@ public class Modele {
 	
 	
 	/**
-	 * Méthode pour le rôle Bénévole,
+	 * Mï¿½thode pour le rï¿½le Bï¿½nï¿½vole,
 	 * Supprimer un article.
 	 */
 	public static boolean supprimerArticle(String unArticle) {
@@ -190,8 +190,8 @@ public class Modele {
 	}
 	
 	/**
-	 * Méthode pour le rôle Bénévole;
-	 * Afficher l'historique des catalogues (peu importe son état)
+	 * Mï¿½thode pour le rï¿½le Bï¿½nï¿½vole;
+	 * Afficher l'historique des catalogues (peu importe son ï¿½tat)
 	 */
 	
 	public static ArrayList<Catalogue> historiqueCatalogue(){
@@ -208,7 +208,7 @@ public class Modele {
 			}
 			
 		}catch(Exception erreur) {
-			System.out.println("Erreur de récupération historique Catalogue" + erreur);
+			System.out.println("Erreur de rï¿½cupï¿½ration historique Catalogue" + erreur);
 		}
 
 		return historiqueCat;
