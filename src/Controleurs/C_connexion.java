@@ -15,10 +15,9 @@ public class C_connexion {
 	
 	//------------------------------constructeur------------------------------
 	public C_connexion() {
-		vConnex = new V_connexion(this);
-		this.vConnex.setVisible(true);
 		cPrincipal = new C_principal();
-		vPrincipal = new V_principal();
+		vConnex = new V_connexion(this, cPrincipal);
+		this.vConnex.setVisible(true);
 	}
 	
 	//------------------------------accesseurs------------------------------
@@ -30,16 +29,17 @@ public class C_connexion {
 		this.vConnex = connexion;
 	}
 
-	//------------------------------autres méthodes------------------------------
+	//------------------------------autres mï¿½thodes------------------------------
 	public boolean verifierConnexion(String pseudo, char[] password) {
         boolean rep = false;
         if (Modele.connexionUtilisateur(pseudo, Fonction.hashMD5(password))) {
-            this.vConnex.setVisible(false);  // Masquer la fenêtre de connexion
-            cPrincipal = new C_principal(); // Initialise le contrôleur principal
-            cPrincipal.afficherMain();  // Affiche la page principale
             rep = true;
         }
         return rep;
     }
+	
+	public void fermervConnexion() {
+		this.vConnex.setVisible(false);
+	}
 	
 }

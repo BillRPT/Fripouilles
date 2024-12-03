@@ -13,6 +13,7 @@ public class V_connexion extends JFrame {
 
     // ATTRIBUTS
 	private C_connexion cConnex;
+	private C_principal cPrincip;
 	
     private JPanel contentPanel;
     private JLabel labelLogo;
@@ -23,26 +24,27 @@ public class V_connexion extends JFrame {
     private JButton btnValider;
 
     //------------------------constructeur------------------------------
-    public V_connexion(C_connexion cConnexion) {
+    public V_connexion(C_connexion cConnexion, C_principal cPrincipal) {
     	this.cConnex = cConnexion;
+    	this.cPrincip = cPrincipal;
     	
-        // Paramètres de la fenêtre
+        // Paramï¿½tres de la fenï¿½tre
         setTitle("Fripouilles - Connexion");
         setSize(400, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        // Création du panneau principal
+        // Crï¿½ation du panneau principal
         contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         contentPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         add(contentPanel);
 
         // Logo
-        labelLogo = new JLabel(Fonction.resizeImageIcon(new ImageIcon("images/fripouilles_logo.png"), 325,170)); // Redimensionne l'image grâce à ma méthode dans le modèle
+        labelLogo = new JLabel(Fonction.resizeImageIcon(new ImageIcon("images/fripouilles_logo.png"), 325,170)); // Redimensionne l'image grï¿½ce ï¿½ ma mï¿½thode dans le modï¿½le
         labelLogo.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPanel.add(labelLogo);
-        contentPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espace entre les éléments
+        contentPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espace entre les ï¿½lï¿½ments
 
         // Label et champ de texte pour le pseudonyme
         labelPseudo = new JLabel("Login :");
@@ -52,7 +54,7 @@ public class V_connexion extends JFrame {
         fieldPseudo = new JTextField(15);
         fieldPseudo.setMaximumSize(new Dimension(200, 30));
         contentPanel.add(fieldPseudo);
-        contentPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espace entre les éléments
+        contentPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espace entre les ï¿½lï¿½ments
 
         // Label et champ de texte pour le mot de passe
         labelMdp = new JLabel("Mot de passe :");
@@ -62,7 +64,7 @@ public class V_connexion extends JFrame {
         fieldMdp = new JPasswordField(15);
         fieldMdp.setMaximumSize(new Dimension(200, 30));
         contentPanel.add(fieldMdp);
-        contentPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espace entre les éléments
+        contentPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espace entre les ï¿½lï¿½ments
 
         // Bouton de validation
         btnValider = new JButton("Connexion");
@@ -78,6 +80,9 @@ public class V_connexion extends JFrame {
         	if (e.getSource() == btnValider) {
         		if(cConnex.verifierConnexion(fieldPseudo.getText(), fieldMdp.getPassword()) == true) {
         			JOptionPane.showMessageDialog(null, "Bienvenue !");
+        			//Fermer la vue et afficher la vue du menu
+        			cConnex.fermervConnexion();
+        			cPrincip.affichervPrincipal();
                 }
         		else {
         			JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou mot de passe incorrect.");

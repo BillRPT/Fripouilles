@@ -13,16 +13,6 @@ public class Main {
 		Modele.connexionBdd();
 		
 		cConnex = new C_connexion();
-		vConnex = new V_connexion(cConnex);
-		
-		/*if (Modele.connexionUtilisateur("eMusk", Fonction.hashMD5("Azerty123")) == true) {
-			System.out.println("Correcte");
-		}
-		else {
-			System.out.println("Incorrecte");
-		}*/
-		
-
 	}
 
 }
