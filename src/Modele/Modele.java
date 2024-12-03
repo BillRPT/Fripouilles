@@ -189,9 +189,25 @@ public class Modele {
 		return rep;
 	}
 	
+	//---------------------METHODES POUR MAIRE---------------------
+		//a completer...
+	
+	public static ArrayList<Catalogue> consulterCatalogue() {
+		ArrayList<Catalogue> catalogue = new ArrayList<>();
+		try {
+			String sql = "SELECT ";
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de récupération catalogue " + erreur);
+		}
+		
+		return catalogue;
+	}
+	
+	
 	/**
-	 * Mï¿½thode pour le rï¿½le Bï¿½nï¿½vole;
-	 * Afficher l'historique des catalogues (peu importe son ï¿½tat)
+	 * Methode pour le role Benevole;
+	 * Afficher l'historique des catalogues (peu importe son etat)
 	 */
 	
 	public static ArrayList<Catalogue> historiqueCatalogue(){
@@ -214,5 +230,5 @@ public class Modele {
 		return historiqueCat;
 	}
 }
-	//---------------------METHODES POUR MAIRE---------------------
-	//a completer...
+
+	
