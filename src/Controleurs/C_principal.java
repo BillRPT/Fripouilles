@@ -23,7 +23,7 @@ public class C_principal {
 	}
 	
 	/**
-	* Procèdure qui permet de fermer la vue principal
+	* Procèdure qui permet de fermer la vue principal.
 	*/
 	public void fermervPrincipal() {
 		this.vPrincipal.setVisible(false);
