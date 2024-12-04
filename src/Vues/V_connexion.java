@@ -86,18 +86,25 @@ public class V_connexion extends JFrame {
         			//Fermer la vue et afficher la vue du menu
         			cConnex.fermervConnexion();
         			roleUser = cConnex.verifierRole(fieldPseudo.getText(), fieldMdp.getPassword());
-        			System.out.println(roleUser);
-        			if(roleUser.equals("benevole")){
-        				cPBenevole = new C_pbenevole();
+        			
+        			if (roleUser.equals("benevole")) {
         				cPBenevole.affichervPrincipal();
-        			}else if(roleUser.equals("secretaire")) {
-        				//a completer
-        			}else if(roleUser.equals("maire")) {
-        				//a completer
-        			}else {
-        				JOptionPane.showMessageDialog(null, "L'utilisateur n'a aucun rôle d'attribué.");
-        				System.out.println(cConnex.verifierRole(fieldPseudo.getText(), fieldMdp.getPassword()));
         			}
+        			else {
+        				if (roleUser.equals("secretaire")) {
+        					System.out.println("secretaire");
+        				}
+        				else {
+        					if (roleUser.equals("maire")) {
+        						System.out.println("maire");
+        					}
+        					else {
+        						JOptionPane.showMessageDialog(null, "L'utilisateur n'a aucun r le d'attribu .");
+                				System.out.println(cConnex.verifierRole(fieldPseudo.getText(), fieldMdp.getPassword()));
+        					}
+        				}
+        			}
+        			
                 }else {
         			JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou mot de passe incorrect.");
         		}

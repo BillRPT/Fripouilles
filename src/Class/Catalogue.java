@@ -28,17 +28,17 @@ public class Catalogue {
 	 * @return une chaine sous format JSON
 	 */
 	public String toJSON() {
-		String JSON = "{\"libelle\":" + this.libelleCat + ", \"date\":" + this.Date + "}";
+		String JSON = "{\"libelle\": \"" + this.libelleCat + "\", \"date\": \"" + this.Date + "\"}";
 		
 		return JSON;
 	}
 	
 	/**
 	 * Fonction qui retourne une chaine sous format json
-	 * @return une chaine sous format JSON
+	 * @return une chaine sous format CSV
 	 */
 	public String toCSV() {
-		String CSV = "";
+		String CSV = this.libelleCat + "," + this.Date;
 		
 		return CSV;
 	}

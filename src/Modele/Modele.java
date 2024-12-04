@@ -13,9 +13,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'ï¿½cole ou la maison
-	private static String host = "172.16.203.212";
-	private static String user = "sio";
-	private static String mdp = "Azerty123!";
+	private static String host = "localhost";
+	private static String user = "root";
+	private static String mdp = "";
 
 	
 	/**
@@ -53,7 +53,7 @@ public class Modele {
 	}
 	
 	/**
-	* Fonction qui permet de vérifier la connexion de l'utilisateur
+	* Fonction qui permet de vï¿½rifier la connexion de l'utilisateur
 	* @param login
 	* @param motdePasse
 	* @return true ou false
@@ -92,7 +92,7 @@ public class Modele {
 	}
 	
 	/**
-	 * Fonction qui permet de vérifier quel est le rôle de l'utilisateur connecté (pour le rediriger vers le bon controleur)
+	 * Fonction qui permet de vï¿½rifier quel est le rï¿½le de l'utilisateur connectï¿½ (pour le rediriger vers le bon controleur)
 	 * @param login
 	 * @param motdepasse
 	 * @return le role de l'utilisateur
@@ -124,6 +124,7 @@ public class Modele {
 	/**
 	 * Methode pour rechercher un article
 	 * Rechercher un article pour voir si il existe
+	 * @param unArticle
 	 * @return true ou false
 	 */
 	public static boolean rechercherArticle(String unArticle) {
@@ -158,6 +159,10 @@ public class Modele {
 	/**
 	 * Fonction pour ajouter un article,
 	 * Ajouter des articles dans une collection
+	 * @param unLibelle
+	 * @param untypeArt
+	 * @param unetatArt
+	 * @param uncateArt
 	 * @return true ou false
 	 */
 	public static boolean ajouterArticle(String unLibelle, String untypeArt, String unetatArt, String uncateArt) {
@@ -193,6 +198,8 @@ public class Modele {
 	/**
 	 * Methode pour supprimer un article,
 	 * Supprimer un article.
+	 * @param unArticle
+	 * @eturn true ou false
 	 */
 	public static boolean supprimerArticle(String unArticle) {
 		boolean rep = false;
@@ -219,7 +226,6 @@ public class Modele {
 	}
 	
 	//---------------------METHODES POUR MAIRE---------------------
-		//a completer...
 	/**
 	 * Methode pour le role Benevole;
 	 * Consulter les catalogues
@@ -233,7 +239,7 @@ public class Modele {
 			rs = st.executeQuery(sql);
 		}
 		catch(Exception erreur) {
-			System.out.println("Erreur de récupération catalogue " + erreur);
+			System.out.println("Erreur de rï¿½cupï¿½ration catalogue " + erreur);
 		}
 		
 		return catalogue;
