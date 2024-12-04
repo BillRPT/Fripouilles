@@ -13,7 +13,8 @@ public class V_connexion extends JFrame {
 
     // ATTRIBUTS
 	private C_connexion cConnex;
-	private C_principal cPrincip;
+    private C_pbenevole cPBenevole;
+    private String roleUser;
 	
     private JPanel contentPanel;
     private JLabel labelLogo;
@@ -24,9 +25,9 @@ public class V_connexion extends JFrame {
     private JButton btnValider;
 
     //------------------------constructeur------------------------------
-    public V_connexion(C_connexion cConnexion, C_principal cPrincipal) {
+    public V_connexion(C_connexion cConnexion, C_pbenevole cPBenevole) {
     	this.cConnex = cConnexion;
-    	this.cPrincip = cPrincipal;
+    	this.cPBenevole = cPBenevole;
     	
         // Paramï¿½tres de la fenï¿½tre
         setTitle("Fripouilles - Connexion");
@@ -76,17 +77,30 @@ public class V_connexion extends JFrame {
     }
     
     class AfficherPgPrincipale implements ActionListener{
+    	
         public void actionPerformed(ActionEvent e) {
+        	//verification connexion + ouvrir les vues celon le role
         	if (e.getSource() == btnValider) {
         		if(cConnex.verifierConnexion(fieldPseudo.getText(), fieldMdp.getPassword()) == true) {
         			JOptionPane.showMessageDialog(null, "Bienvenue !");
         			//Fermer la vue et afficher la vue du menu
         			cConnex.fermervConnexion();
-        			cPrincip.affichervPrincipal();
-                }
-        		else {
+        			roleUser = cConnex.verifierRole(fieldPseudo.getText(), fieldMdp.getPassword());
+        			if(roleUser.equals("benevole")){
+        				cPBenevole = new C_pbenevole();
+        				cPBenevole.affichervPrincipal();
+        			}else if(roleUser.equals("secretaire")) {
+        				//a completer
+        			}else if(roleUser.equals("maire")) {
+        				//a completer
+        			}else {
+        				JOptionPane.showMessageDialog(null, "L'utilisateur n'a aucun rôle d'attribué.");
+        				System.out.println(cConnex.verifierRole(fieldPseudo.getText(), fieldMdp.getPassword()));
+        			}
+                }else {
         			JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou mot de passe incorrect.");
         		}
+        		
         	}
         }
     }
