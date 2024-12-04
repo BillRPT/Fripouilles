@@ -4,37 +4,42 @@ import java.util.ArrayList;
 
 public class V_menubenevole extends JMenuBar {
     private JMenu menuArticle;
-    private JMenu menuCatalogue;
     private JMenuItem itemAjouterArticle;
     private JMenuItem itemSupprimerArticle;
-    private JMenu menuSupprimer;
-    private JMenuItem itemSupprimerJeu;
-    private JMenuItem itemSupprimerCategorie;
-    private JMenuItem itemSupprimerEditeur;
-    private JMenuItem itemSupprimerPlateforme;
+    private JMenuItem itemConsulterArticle;
+    private JMenu menuCatalogue;
+    private JMenuItem itemAjouterCatalogue;
+    private JMenuItem itemConsulterCatalogues;
+    private JMenuItem itemSupprimerCatalogue;
+    private JMenuItem itemAjArtCat;
+    private JMenuItem itemSupArtCat;
+
 
     public V_menubenevole() {
         menuCatalogue = new JMenu("Catalogue");
 
         menuArticle = new JMenu("Article");
+        itemConsulterArticle = new JMenuItem("Consulter les articles");
         itemAjouterArticle = new JMenuItem("Ajouter nouvel article");
         itemSupprimerArticle = new JMenuItem("Supprimer un article");
         menuArticle.add(itemAjouterArticle);
         menuArticle.add(itemSupprimerArticle);
 
-        menuSupprimer = new JMenu("Supprimer");
-        itemSupprimerJeu = new JMenuItem("un jeu");
-        itemSupprimerCategorie = new JMenuItem("une catégorie");
-        itemSupprimerEditeur = new JMenuItem("un éditeur");
-        itemSupprimerPlateforme = new JMenuItem("une plateforme");
+        menuCatalogue = new JMenu("Catalogue");
+        itemConsulterCatalogues = new JMenuItem("Consulter les catalogues");
+        itemAjouterCatalogue = new JMenuItem("Créer un catalogue");
+        itemSupprimerCatalogue = new JMenuItem("Supprimer un catalogue");
+        itemAjArtCat = new JMenuItem("Ajouter un article à un catalogue");
+        itemSupArtCat = new JMenuItem("Supprimer un article d'un catalogue");
         
-        menuSupprimer.add(itemSupprimerJeu);
-        menuSupprimer.add(itemSupprimerCategorie);
-        menuSupprimer.add(itemSupprimerEditeur);
-        menuSupprimer.add(itemSupprimerPlateforme);
+        menuCatalogue.add(itemConsulterCatalogues);
+        menuCatalogue.add(itemAjouterCatalogue);
+        menuCatalogue.add(itemSupprimerCatalogue);
+        menuCatalogue.add(itemAjArtCat);
+        menuCatalogue.add(itemSupArtCat);
 
         this.add(menuArticle);
-        this.add(menuSupprimer);
+        this.add(menuCatalogue);
     }
 
 }
