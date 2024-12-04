@@ -1,5 +1,9 @@
 import Modele.Modele;
 import Vues.*;
+
+import java.util.ArrayList;
+
+import Class.Catalogue;
 import Controleurs.*;
 import Fonction.Fonction;
 
@@ -12,7 +16,12 @@ public class Main {
 		//---
 		Modele.connexionBdd();
 		
-		cConnex = new C_connexion();
+		//cConnex = new C_connexion();
+		
+		
+		for(Catalogue unCatalogue : Modele.historiqueCatalogue()) {
+			System.out.println(unCatalogue);
+		}
 	}
 
 }

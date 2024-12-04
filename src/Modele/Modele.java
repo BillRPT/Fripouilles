@@ -13,9 +13,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'ï¿½cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.212";
+	private static String user = "sio";
+	private static String mdp = "Azerty123!";
 	
 	/**
 	* Procedure qui permet de se connecter a la bdd
@@ -93,7 +93,7 @@ public class Modele {
 	//---------------------METHODES POUR BENEVOLE---------------------
 	
 	/**
-	 * Mï¿½thode pour le rï¿½le Bï¿½nï¿½vole,
+	 * Methode pour rechercher un article
 	 * Rechercher un article pour voir si il existe
 	 * @return true ou false
 	 */
@@ -127,8 +127,8 @@ public class Modele {
 	
 	
 	/**
-	 * Mï¿½thode pour le rï¿½le Bï¿½nï¿½vole,
-	 * Ajouter un article
+	 * Fonction pour ajouter un article,
+	 * Ajouter des articles dans une collection
 	 * @return true ou false
 	 */
 	public static boolean ajouterArticle(String unLibelle, String untypeArt, String unetatArt, String uncateArt) {
@@ -162,7 +162,7 @@ public class Modele {
 	
 	
 	/**
-	 * Mï¿½thode pour le rï¿½le Bï¿½nï¿½vole,
+	 * Methode pour supprimer un article,
 	 * Supprimer un article.
 	 */
 	public static boolean supprimerArticle(String unArticle) {
@@ -191,11 +191,17 @@ public class Modele {
 	
 	//---------------------METHODES POUR MAIRE---------------------
 		//a completer...
-	
+	/**
+	 * Methode pour le role Benevole;
+	 * Consulter les catalogues
+	 * @return historiqueCat collection de historiqueCatalogue
+	 */
 	public static ArrayList<Catalogue> consulterCatalogue() {
 		ArrayList<Catalogue> catalogue = new ArrayList<>();
 		try {
-			String sql = "SELECT ";
+			String sql = "SELECT libelleCat, dateCat, etat FROM Catalogue WHERE etatCat = Disponible";
+			
+			rs = st.executeQuery(sql);
 		}
 		catch(Exception erreur) {
 			System.out.println("Erreur de récupération catalogue " + erreur);
@@ -207,24 +213,31 @@ public class Modele {
 	
 	/**
 	 * Methode pour le role Benevole;
-	 * Afficher l'historique des catalogues (peu importe son etat)
+	 * Consulter les historiques des catalogues (peu importe son etat)
+	 * @return historiqueCat collection de historiqueCatalogue
 	 */
-	
 	public static ArrayList<Catalogue> historiqueCatalogue(){
 		ArrayList<Catalogue> historiqueCat = new ArrayList<>();
+		String libelleCategorie;
+		String dateCat;
 		
 		try {
-			String sql = "SELECT idCat, idVenteEph, libelleCat, dateCat, etatCat FROM Catalogue WHERE etatCat = nonDisponible";
+			String sql = "SELECT idCat, idVenteEph, libelleCat, dateCat, etatCat FROM Catalogue WHERE etatCat = 'nonDisponible'";
 			
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()) {
-				Catalogue unCatalogue = new Catalogue();
+				libelleCategorie = rs.getString("libelleCat");
+				dateCat = rs.getString("dateCat");
 				
+				Catalogue unCatalogue = new Catalogue(libelleCategorie, dateCat);
+				
+				//Ajouter un catalogue non disponible a l'historique des catalogues
+				historiqueCat.add(unCatalogue);
 			}
 			
 		}catch(Exception erreur) {
-			System.out.println("Erreur de rï¿½cupï¿½ration historique Catalogue" + erreur);
+			System.out.println("Erreur de recuperation historique Catalogue" + erreur);
 		}
 
 		return historiqueCat;
