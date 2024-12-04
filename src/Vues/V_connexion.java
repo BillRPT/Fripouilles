@@ -86,6 +86,7 @@ public class V_connexion extends JFrame {
         			//Fermer la vue et afficher la vue du menu
         			cConnex.fermervConnexion();
         			roleUser = cConnex.verifierRole(fieldPseudo.getText(), fieldMdp.getPassword());
+        			System.out.println(roleUser);
         			if(roleUser.equals("benevole")){
         				cPBenevole = new C_pbenevole();
         				cPBenevole.affichervPrincipal();
