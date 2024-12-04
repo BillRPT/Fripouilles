@@ -16,12 +16,7 @@ public class Main {
 		//---
 		Modele.connexionBdd();
 		
-		//cConnex = new C_connexion();
-		
-		
-		for(Catalogue unCatalogue : Modele.historiqueCatalogue()) {
-			System.out.println(unCatalogue);
-		}
+		cConnex = new C_connexion();
 	}
 
 }
