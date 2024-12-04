@@ -13,9 +13,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'ï¿½cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.206";
+	private static String user = "sio";
+	private static String mdp = "Vanille2010";
 	
 	/**
 	* Procedure qui permet de se connecter a la bdd
@@ -52,17 +52,17 @@ public class Modele {
 	}
 	
 	/**
-	* Fonction qui permet de fermer la connexion a la bdd
-	* @param nom
+	* Fonction qui permet de vérifier la connexion de l'utilisateur
+	* @param login
 	* @param motdePasse
 	* @return true ou false
 	*/
-	public static boolean connexionUtilisateur(String nom, String motdePasse) {
+	public static boolean connexionUtilisateur(String login, String motdePasse) {
 		//NomUser : eMusk mdpUser : Azerty123
 		
 		//maire : eMusk - Azerty123
 		//secretaire : AEmmy - e
-		//benevole : ahmad - a
+		//benevole : JAhmad - a
 		boolean rep = false;
 		int count = 0;
 		
@@ -70,7 +70,7 @@ public class Modele {
 			String sql = "SELECT COUNT(*) AS nbCo FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
-			pst.setString(1, nom);
+			pst.setString(1, login);
 			//Remplacer le ? par motdePasse
 			pst.setString(2, motdePasse);
 			
@@ -88,6 +88,34 @@ public class Modele {
 		}
 		
 		return rep;
+	}
+	
+	/**
+	 * Fonction qui permet de vérifier quel est le rôle de l'utilisateur connecté (pour le rediriger vers le bon controleur)
+	 * @param login
+	 * @param motdepasse
+	 * @return le role de l'utilisateur
+	 */
+	public static String roleUtilisateur(String login, String motdepasse) {
+		String sonRole = "";
+		int count = 0;
+		
+		try {
+			String sql = "SELECT roleUser FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
+			pst = connexion.prepareStatement(sql);
+			//Remplacer le ? par nom
+			pst.setString(1, login);
+			//Remplacer le ? par le mdp
+			pst.setString(2, motdepasse);
+			
+			rs = pst.executeQuery();
+			
+			rs.next();
+			sonRole = rs.getString("roleUser");
+		}catch(SQLException erreur) {
+			System.out.println("Echec connexion bdd" + erreur);
+		}
+		return sonRole;
 	}
 	
 	//---------------------METHODES POUR BENEVOLE---------------------

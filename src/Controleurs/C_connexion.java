@@ -10,13 +10,13 @@ import Vues.*;
 
 public class C_connexion {
 	private V_connexion vConnex;
-	private C_principal cPrincipal;
+	private C_pbenevole cPBenevole;
 	private V_principal vPrincipal;
 	
 	//------------------------------constructeur------------------------------
 	public C_connexion() {
-		cPrincipal = new C_principal();
-		vConnex = new V_connexion(this, cPrincipal);
+		cPBenevole = new C_pbenevole();
+		vConnex = new V_connexion(this, cPBenevole);
 		this.vConnex.setVisible(true);
 	}
 	
@@ -37,6 +37,14 @@ public class C_connexion {
         }
         return rep;
     }
+	
+	public String verifierRole(String pseudo, char[] password) {
+		String roleUser ="";
+		if (Modele.connexionUtilisateur(pseudo, Fonction.hashMD5(password))) {
+            roleUser = Modele.roleUtilisateur(pseudo, Fonction.hashMD5(password));
+        }
+		return roleUser;
+	}
 	
 	public void fermervConnexion() {
 		this.vConnex.setVisible(false);

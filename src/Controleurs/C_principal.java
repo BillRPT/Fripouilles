@@ -5,18 +5,21 @@ import Controleurs.*;
 
 public class C_principal {
 	//attributs
-	V_principal vPrincipal;
-	V_menu vMenu;
-	//constructeur
+	private V_principal vPrincipal;
+	private V_menubenevole vMenuBenevole;
+	
+	//Constructeur
 	/**
 	* Constructeur du controleur principal
 	*/
 	public C_principal() {
 		vPrincipal = new V_principal();
+		
 	}
 	
+	//M�thodes utilitaires
 	/**
-	* Procèdure qui permet de afficher la vue principal
+	* Procèdure qui permet d'afficher la vue principal
 	*/
 	public void affichervPrincipal() {
 		this.vPrincipal.setVisible(true);

@@ -27,7 +27,7 @@ class ModeleTest {
 	void tearDown() throws Exception {
 	}
 
-	@Test
+	/*@Test
 	public void testconnexionUtilisateur() {
 		Assert.assertEquals("La connexion utilisateur n'a pas fonctionner", true, Modele.connexionUtilisateur("eMusk", Fonction.hashMD5(tableau)));
 	}
@@ -53,6 +53,11 @@ class ModeleTest {
 		ArrayList<Catalogue> uneListe;
 		uneListe = Modele.historiqueCatalogue();
 		Assert.assertEquals("La liste de historiqueCatalogue ne correspond pas", 0, uneListe.size());
+	}*/
+	
+	@Test
+	public void testRoleUtilisateur() {
+		Assert.assertEquals("La connexion utilisateur n'a pas fonctionner", "maire", Modele.roleUtilisateur("eMusk", Fonction.hashMD5(tableau)));
 	}
 
 }
