@@ -77,7 +77,9 @@ public class V_connexion extends JFrame {
     }
     
     class AfficherPgPrincipale implements ActionListener{
+    	
         public void actionPerformed(ActionEvent e) {
+        	//verification connexion + ouvrir les vues celon le role
         	if (e.getSource() == btnValider) {
         		if(cConnex.verifierConnexion(fieldPseudo.getText(), fieldMdp.getPassword()) == true) {
         			JOptionPane.showMessageDialog(null, "Bienvenue !");
@@ -98,6 +100,7 @@ public class V_connexion extends JFrame {
                 }else {
         			JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou mot de passe incorrect.");
         		}
+        		
         	}
         }
     }
