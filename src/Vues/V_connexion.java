@@ -64,6 +64,7 @@ public class V_connexion extends JFrame {
         labelMdp.setAlignmentX(Component.CENTER_ALIGNMENT);
         contentPanel.add(labelMdp);
 
+        //Un JPasswordField pour plus de sécurité au niveau des mots de passe, c'est-à-dire que le mot de passe ne sera pas stocké en clair en mémoire.
         fieldMdp = new JPasswordField(15);
         fieldMdp.setMaximumSize(new Dimension(200, 30));
         contentPanel.add(fieldMdp);
@@ -82,7 +83,7 @@ public class V_connexion extends JFrame {
     	
         public void actionPerformed(ActionEvent e) {
         	//verification connexion + ouvrir les vues celon le role
-        	if (e.getSource() == btnValider) {
+        	if (e.getSource() == btnValider && !fieldPseudo.getText().isEmpty() && fieldMdp.getPassword().length != 0) {
         		if(cConnex.verifierConnexion(fieldPseudo.getText(), fieldMdp.getPassword()) == true) {
         			JOptionPane.showMessageDialog(null, "Bienvenue !");
         			//Fermer la vue et afficher la vue du menu
@@ -112,7 +113,11 @@ public class V_connexion extends JFrame {
         		}
         		
         	}
+        	else {
+        		JOptionPane.showMessageDialog(null, "Des champs sont vides.");
+        	}
         }
+
     }
     
 }

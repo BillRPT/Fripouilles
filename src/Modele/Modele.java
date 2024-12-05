@@ -13,9 +13,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "172.16.203.212";
-	private static String user = "sio";
-	private static String mdp = "Azerty123!";
+	private static String host = "localhost";
+	private static String user = "root";
+	private static String mdp = "";
 
 	
 	/**
@@ -229,14 +229,26 @@ public class Modele {
 	/**
 	 * Methode pour le role Benevole;
 	 * Consulter les catalogues
-	 * @return historiqueCat collection de historiqueCatalogue
+	 * @return les catalogues qui sont disponible a la vente
 	 */
 	public static ArrayList<Catalogue> consulterCatalogue() {
+		String libelleCatalogue;
+		String dateCatalogue;
 		ArrayList<Catalogue> catalogue = new ArrayList<>();
 		try {
-			String sql = "SELECT libelleCat, dateCat, etat FROM Catalogue WHERE etatCat = Disponible";
+			String sql = "SELECT libelleCat, dateCat FROM Catalogue WHERE etatCat = 'Disponible'";
 			
 			rs = st.executeQuery(sql);
+			
+			while (rs.next()) {
+				libelleCatalogue = rs.getString("libelleCat");
+				dateCatalogue = rs.getString("dateCat");
+				
+				//Instancier un nouveau catalogue et l'ajouter.
+				Catalogue unCatalogue = new Catalogue(libelleCatalogue, dateCatalogue);
+				
+				catalogue.add(unCatalogue);
+			}
 		}
 		catch(Exception erreur) {
 			System.out.println("Erreur de r�cup�ration catalogue " + erreur);

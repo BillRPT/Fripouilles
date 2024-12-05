@@ -11,6 +11,17 @@ public class Catalogue {
 		this.libelleCat = unlibelleCat;
 		this.Date = uneDate;
 	}
+	
+	//Les ascenseur
+	
+	public String getunLibelle() {
+		return this.libelleCat;
+	}
+	
+	public String getuneDate() {
+		return this.Date;
+	}
+	
 
 	/**
 	 * Fonction qui retourne une chaine sous format XML
