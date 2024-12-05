@@ -11,12 +11,14 @@ import Vues.*;
 public class C_connexion {
 	private V_connexion vConnex;
 	private C_pbenevole cPBenevole;
+	private C_psecretaire cPSecretaire;
 	private V_principal vPrincipal;
 	
 	//------------------------------constructeur------------------------------
 	public C_connexion() {
 		cPBenevole = new C_pbenevole();
-		vConnex = new V_connexion(this, cPBenevole);
+		cPSecretaire = new C_psecretaire();
+		vConnex = new V_connexion(this, cPBenevole, cPSecretaire);
 		this.vConnex.setVisible(true);
 	}
 	

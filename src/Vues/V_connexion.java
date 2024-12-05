@@ -14,6 +14,7 @@ public class V_connexion extends JFrame {
     // ATTRIBUTS
 	private C_connexion cConnex;
     private C_pbenevole cPBenevole;
+    private C_psecretaire cPSecretaire;
     private String roleUser;
 	
     private JPanel contentPanel;
@@ -25,9 +26,10 @@ public class V_connexion extends JFrame {
     private JButton btnValider;
 
     //------------------------constructeur------------------------------
-    public V_connexion(C_connexion cConnexion, C_pbenevole cPBenevole) {
+    public V_connexion(C_connexion cConnexion, C_pbenevole cPBenevole, C_psecretaire cPSecretaire) {
     	this.cConnex = cConnexion;
     	this.cPBenevole = cPBenevole;
+    	this.cPSecretaire = cPSecretaire;
     	
         // Param�tres de la fen�tre
         setTitle("Fripouilles - Connexion");
@@ -92,7 +94,7 @@ public class V_connexion extends JFrame {
         			}
         			else {
         				if (roleUser.equals("secretaire")) {
-        					System.out.println("secretaire");
+        					cPSecretaire.affichervPrincipal();
         				}
         				else {
         					if (roleUser.equals("maire")) {
