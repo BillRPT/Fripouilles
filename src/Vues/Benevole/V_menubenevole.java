@@ -1,11 +1,14 @@
 package Vues.Benevole;
 import javax.swing.*;
+import Controleurs.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class V_menubenevole extends JMenuBar {
+	private C_pbenevole cpBenevole;
+	
     private JMenu menuArticle;
     private JMenuItem itemAjouterArticle;
     private JMenuItem itemRechercherArticle;
@@ -21,7 +24,8 @@ public class V_menubenevole extends JMenuBar {
     private JMenuItem itemReArtCat;
 
 
-    public V_menubenevole() {
+    public V_menubenevole(C_pbenevole cpBenevole) {
+    	cpBenevole = new C_pbenevole();
         menuCatalogue = new JMenu("Catalogue");
 
         menuArticle = new JMenu("Article");
@@ -30,6 +34,7 @@ public class V_menubenevole extends JMenuBar {
         itemRechercherArticle = new JMenuItem("Rechercher un article");
         itemSupprimerArticle = new JMenuItem("Supprimer un article");
 
+        menuArticle.add(itemConsulterArticle);
         menuArticle.add(itemAjouterArticle);
         menuArticle.add(itemRechercherArticle);
         menuArticle.add(itemSupprimerArticle);
@@ -50,8 +55,29 @@ public class V_menubenevole extends JMenuBar {
         menuCatalogue.add(itemAjArtCat);
         menuCatalogue.add(itemReArtCat);
         menuCatalogue.add(itemSupArtCat);
+        
+        
 
         this.add(menuArticle);
         this.add(menuCatalogue);
     }
+    
+    //accesseurs
+    
+    public JMenuItem getItemAjouterArticle(){
+    	return this.itemAjouterArticle;
+    }
+    
+    public JMenuItem getItemConsulterArticle() {
+    	return this.itemConsulterArticle;
+    }
+    
+    public JMenuItem getItemRechercherArticle() {
+    	return this.itemRechercherArticle;
+    }
+    
+    public JMenuItem getItemSupprimerArticle() {
+    	return this.itemSupprimerArticle;
+    }
+    
 }
