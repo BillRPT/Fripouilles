@@ -70,9 +70,8 @@ public class V_menusecretaire extends JMenuBar{
 			if (e.getSource() == nouvelleVente) {
 				unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
 
-	            // Ajoute le panel de vente
+	            // Ajoute le panel de ventee
 	            unevuePrincipal.add(afficherpanelajoutVente);  
-
 
 	            unevuePrincipal.revalidate();
 	            unevuePrincipal.repaint();
