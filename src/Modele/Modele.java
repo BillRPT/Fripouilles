@@ -13,9 +13,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.206";
+	private static String user = "sio";
+	private static String mdp = "Vanille2010";
 
 	
 	/**
@@ -225,7 +225,6 @@ public class Modele {
 		return rep;
 	}
 	
-	//---------------------METHODES POUR MAIRE---------------------
 	/**
 	 * Methode pour le role Benevole;
 	 * Consulter les catalogues
@@ -291,4 +290,5 @@ public class Modele {
 	}
 }
 
-	
+
+//---------------------METHODES POUR LE MAIRE---------------------
