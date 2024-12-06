@@ -49,7 +49,7 @@ public class Catalogue {
 	 * @return une chaine sous format CSV
 	 */
 	public String toCSV() {
-		String CSV = this.libelleCat + "," + this.Date;
+		String CSV = this.libelleCat + ";" + this.Date;
 		
 		return CSV;
 	}

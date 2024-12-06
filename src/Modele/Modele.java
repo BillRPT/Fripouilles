@@ -13,9 +13,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.212";
+	private static String user = "sio";
+	private static String mdp = "Azerty123!";
 
 	
 	/**
@@ -53,7 +53,7 @@ public class Modele {
 	}
 	
 	/**
-	* Fonction qui permet de v�rifier la connexion de l'utilisateur
+	* Fonction qui permet de verifier la connexion de l'utilisateur
 	* @param login
 	* @param motdePasse
 	* @return true ou false
@@ -92,7 +92,7 @@ public class Modele {
 	}
 	
 	/**
-	 * Fonction qui permet de v�rifier quel est le r�le de l'utilisateur connect� (pour le rediriger vers le bon controleur)
+	 * Fonction qui permet de verifier quel est le role de l'utilisateur connect� (pour le rediriger vers le bon controleur)
 	 * @param login
 	 * @param motdepasse
 	 * @return le role de l'utilisateur

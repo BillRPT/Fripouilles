@@ -9,12 +9,13 @@ public class C_psecretaire {
 	private V_logo vLogo;
 	private V_principal vPrincipal;
 	private V_menusecretaire vMenuSecretaire;
+	private V_creervente V_creeruneVente;
 	
 	public C_psecretaire() {
 		vLogo = new V_logo();
 		vPrincipal = new V_principal();
-		vMenuSecretaire = new V_menusecretaire();
-		
+		V_creeruneVente = new V_creervente();
+		vMenuSecretaire = new V_menusecretaire(V_creeruneVente, vPrincipal);
 		
 		vPrincipal.setJMenuBar(vMenuSecretaire);
 		
@@ -30,5 +31,9 @@ public class C_psecretaire {
 	*/
 	public void fermervPrincipal() {
 		this.vPrincipal.setVisible(false);
+	}
+	
+	public void affichermenuSecretaire() {
+		this.vMenuSecretaire.setVisible(true);
 	}
 }

@@ -7,48 +7,60 @@ import javax.swing. *;
 
 public class V_menusecretaire extends JMenuBar{
 	
+	private V_creervente afficherpanelajoutVente;
+	private V_principal unevuePrincipal;
+	
 	//Menu avec les items pour les ventes
-	private JMenu menuVente;
+	private JMenu menuAjouter;
 	private JMenuItem nouvelleVente;
+	private JMenuItem nouveauBenevole;
 	
-	
-	//Menu avec les items pour les catalogues
-	private JMenu menuCatalogue;
+	//Menu avec les items pour les consultations
+	private JMenu menuConsultere;
 	private JMenuItem consulterCatalogue;
 	
 	
-	//Menu avec les items pour les créations de bénévole
-	private JMenu menuBenevole;
-	private JMenuItem nouveauBenevole;
+	//Menu avec les items pour les consultations
+	private JMenu menuSupprimer;
+	private JMenuItem supprimerVente;
+	private JMenuItem supprimerBenevole;
 	
 	
-	public V_menusecretaire() {
+	public V_menusecretaire(V_creervente unpanelajoutVente, V_principal lavuePrincipal) {
 		
-		//Section des ventes
-		menuVente = new JMenu("Vente");
-		nouvelleVente = new JMenuItem("Créer une Vente");
-		//Ecouter les différents boutton
+		this.afficherpanelajoutVente = unpanelajoutVente;
+		this.unevuePrincipal = lavuePrincipal;
+		
+		//Section des Ajouts
+		menuAjouter = new JMenu("Ajouter");
+		nouvelleVente = new JMenuItem("Ajouter une Vente");
+		nouveauBenevole = new JMenuItem("Ajouter un Benevole");
+		//Ecouter les diff�rents boutton
 		nouvelleVente.addActionListener(new choixSection());
-		menuVente.add(nouvelleVente);
+		nouveauBenevole.addActionListener(new choixSection());
+		menuAjouter.add(nouvelleVente);
+		menuAjouter.add(nouveauBenevole);
 		
 		
-		//Section des catalogues
-		menuCatalogue = new JMenu("Catalogue");
+		//Section des Consultations
+		menuConsultere = new JMenu("Consulter");
 		consulterCatalogue = new JMenuItem("Consulter les Catalogues");
 		consulterCatalogue.addActionListener(new choixSection());
-		menuCatalogue.add(consulterCatalogue);
-		
-		//Section des benevoles
-		menuBenevole = new JMenu("Benevole");
-		nouveauBenevole = new JMenuItem("Créer un Bénévole");
-		nouveauBenevole.addActionListener(new choixSection());
-		menuBenevole.add(nouveauBenevole);
+		menuConsultere.add(consulterCatalogue);
 		
 		
+		menuSupprimer = new JMenu("Supprimer");
+		supprimerVente = new JMenuItem("Supprimer une vente");
+		supprimerBenevole = new JMenuItem("Supprimer un benevole");
+		supprimerVente.addActionListener(new choixSection());
+		supprimerBenevole.addActionListener(new choixSection());
+		menuSupprimer.add(supprimerVente);
+		menuSupprimer.add(supprimerBenevole);
 		
-		this.add(menuVente);
-		this.add(menuCatalogue);
-		this.add(menuBenevole);
+		
+		this.add(menuAjouter);
+		this.add(menuConsultere);
+		this.add(menuSupprimer);
 		
 	}
 	
@@ -56,7 +68,14 @@ public class V_menusecretaire extends JMenuBar{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == nouvelleVente) {
-				System.out.println("salut");
+				unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+	            // Ajoute le panel de vente
+	            unevuePrincipal.add(afficherpanelajoutVente);  
+
+
+	            unevuePrincipal.revalidate();
+	            unevuePrincipal.repaint();
 			}
 		}
 		

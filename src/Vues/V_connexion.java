@@ -32,8 +32,8 @@ public class V_connexion extends JFrame {
     	this.cPSecretaire = cPSecretaire;
     	
         // Param�tres de la fen�tre
-        setTitle("Fripouilles - Connexion");
-        setSize(400, 500);
+        this.setTitle("Fripouilles - Connexion");
+        this.setSize(400, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
