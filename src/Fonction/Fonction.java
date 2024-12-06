@@ -36,6 +36,7 @@ public class Fonction {
 	}
 
 	
+    
 	
 	/**
 	 * M�thode pour redimensionner le logo

@@ -17,6 +17,7 @@ public class Modele {
 	private static String user = "sio";
 	private static String mdp = "Azerty123!";
 
+
 	
 	/**
 	* Procedure qui permet de se connecter a la bdd
@@ -225,7 +226,6 @@ public class Modele {
 		return rep;
 	}
 	
-	//---------------------METHODES POUR MAIRE---------------------
 	/**
 	 * Methode pour le role Benevole;
 	 * Consulter les catalogues
@@ -291,4 +291,5 @@ public class Modele {
 	}
 }
 
-	
+
+//---------------------METHODES POUR LE MAIRE---------------------

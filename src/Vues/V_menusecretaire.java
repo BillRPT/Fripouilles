@@ -64,6 +64,7 @@ public class V_menusecretaire extends JMenuBar{
 		
 	}
 	
+	//Action perfomed
 	class choixSection implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
