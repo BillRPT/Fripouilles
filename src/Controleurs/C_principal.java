@@ -1,6 +1,7 @@
 package Controleurs;
 
 import Vues.*;
+import Vues.Benevole.V_menubenevole;
 import Controleurs.*;
 
 public class C_principal {

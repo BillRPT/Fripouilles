@@ -1,5 +1,8 @@
-package Vues;
+package Vues.Benevole;
 import javax.swing.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class V_menubenevole extends JMenuBar {
@@ -51,5 +54,4 @@ public class V_menubenevole extends JMenuBar {
         this.add(menuArticle);
         this.add(menuCatalogue);
     }
-
 }

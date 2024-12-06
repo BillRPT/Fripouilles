@@ -1,6 +1,7 @@
 package Controleurs;
 
 import Vues.*;
+import Vues.Benevole.V_menubenevole;
 
 import java.awt.*;
 
@@ -33,18 +34,26 @@ public class C_pbenevole {
 			vPrincipal.getContentPane().add(vLogo, BorderLayout.NORTH);
 		}
 		
-		//MÈthodes utilitaires
+	    //------------------------------mÈthodes------------------------------
 		/**
-		* Proc√®dure qui permet d'afficher la vue principal
+		* Procedure affichant la vue principale
 		*/
 		public void affichervPrincipal() {
 			this.vPrincipal.setVisible(true);
 		}
 		
 		/**
-		* Proc√®dure qui permet de fermer la vue principal.
+		* Procedure fermant la vue principale
 		*/
 		public void fermervPrincipal() {
 			this.vPrincipal.setVisible(false);
+		}
+		
+		/**
+		 * Listener du menu du benevole
+		 */
+		
+		private void addMenuListener() {
+			
 		}
 }
