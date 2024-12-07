@@ -93,6 +93,8 @@ public class V_connexion extends JFrame {
         			roleUser = cConnex.verifierRole(fieldPseudo.getText(), fieldMdp.getPassword());
         			
         			if (roleUser.equals("benevole")) {
+        				cPBenevole.affichervBenevole();
+        				
         				uncPrincipal.affichervPrincipal();
         			}
         			else {

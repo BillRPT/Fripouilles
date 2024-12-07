@@ -17,7 +17,7 @@ public class C_connexion {
 	//------------------------------constructeur------------------------------
 	public C_connexion(C_principal uncPrincipal) {
 		this.cPrincipal = uncPrincipal;
-		cPBenevole = new C_pbenevole();
+		cPBenevole = new C_pbenevole(cPrincipal);
 		cPSecretaire = new C_psecretaire(cPrincipal);
 		vConnex = new V_connexion(this, cPBenevole, cPSecretaire, cPrincipal);
 		this.vConnex.setVisible(true);

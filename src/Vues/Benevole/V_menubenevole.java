@@ -25,7 +25,6 @@ public class V_menubenevole extends JMenuBar {
 
 
     public V_menubenevole(C_pbenevole cpBenevole) {
-    	cpBenevole = new C_pbenevole();
         menuCatalogue = new JMenu("Catalogue");
 
         menuArticle = new JMenu("Article");

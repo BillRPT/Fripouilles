@@ -22,6 +22,8 @@ public class C_pbenevole {
 		
 		private CardLayout cardLayout;
 	    private JPanel cardPanel;
+	    
+	    private C_principal uncPrincipal;
 		
 	    
 	    
@@ -29,24 +31,28 @@ public class C_pbenevole {
 		/**
 		* Constructeur du controleur principal
 		*/
-		public C_pbenevole() {
-			vPrincipal = new V_principal();
+		public C_pbenevole(C_principal lecPrincipal) {
+			this.uncPrincipal = lecPrincipal;
+		}
+		
+		public void affichervBenevole() {
 			vLogo = new V_logo();
+			vMenuBenevole = new V_menubenevole(this);
 			
-		//ajouter les cartes (vues) dans le cardPanel
+			//ajouter les cartes (vues) dans le cardPanel
 			cardLayout = new CardLayout();
 			cardPanel = new JPanel(cardLayout);
-			
-			/*cardPanel.add(vAjouterArticle, "vAjouterArticle");
-			cardPanel.add(vRechercherArticle, "vRechercherArticle");
-			cardPanel.add(vSupprimerArticle, "vSupprimerArticle");*/
-			
-		//Ajouter le menu � la vue principale
-			vPrincipal.setJMenuBar(vMenuBenevole);
-			
-		//Ajouter le logo � la vue principale
-			vPrincipal.getContentPane().add(vLogo, BorderLayout.NORTH);
-			vPrincipal.getContentPane().add(cardPanel, BorderLayout.CENTER);
+				
+				/*cardPanel.add(vAjouterArticle, "vAjouterArticle");
+				cardPanel.add(vRechercherArticle, "vRechercherArticle");
+				cardPanel.add(vSupprimerArticle, "vSupprimerArticle");*/
+				
+			//Ajouter le menu � la vue principale
+			uncPrincipal.getvPrincipal().setJMenuBar(vMenuBenevole);
+				
+			//Ajouter le logo � la vue principale
+			uncPrincipal.getvPrincipal().getContentPane().add(vLogo, BorderLayout.NORTH);
+			uncPrincipal.getvPrincipal().getContentPane().add(cardPanel, BorderLayout.CENTER);
 		}
 		
 		
