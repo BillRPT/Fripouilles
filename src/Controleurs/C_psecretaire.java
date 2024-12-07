@@ -14,6 +14,9 @@ public class C_psecretaire {
 	
 	public C_psecretaire(C_principal lecPrincipal) {
 		this.uncPrincipal = lecPrincipal;
+	}
+	
+	public void affichagevSecretaire() {
 		vLogo = new V_logo();
 		V_creeruneVente = new V_creervente();
 		vMenuSecretaire = new V_menusecretaire(V_creeruneVente, uncPrincipal.getvPrincipal());

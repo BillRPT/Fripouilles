@@ -37,21 +37,21 @@ public class C_pbenevole {
 			cardLayout = new CardLayout();
 			cardPanel = new JPanel(cardLayout);
 			
-			cardPanel.add(vAjouterArticle, "vAjouterArticle");
+			/*cardPanel.add(vAjouterArticle, "vAjouterArticle");
 			cardPanel.add(vRechercherArticle, "vRechercherArticle");
-			cardPanel.add(vSupprimerArticle, "vSupprimerArticle");
+			cardPanel.add(vSupprimerArticle, "vSupprimerArticle");*/
 			
-		//Ajouter le menu à la vue principale
+		//Ajouter le menu ï¿½ la vue principale
 			vPrincipal.setJMenuBar(vMenuBenevole);
 			
-		//Ajouter le logo à la vue principale
+		//Ajouter le logo ï¿½ la vue principale
 			vPrincipal.getContentPane().add(vLogo, BorderLayout.NORTH);
 			vPrincipal.getContentPane().add(cardPanel, BorderLayout.CENTER);
 		}
 		
 		
 		
-	    //------------------------------méthodes------------------------------
+	    //------------------------------mï¿½thodes------------------------------
 		
 		public void afficherCarte(String nomCarte) {
 			this.cardLayout.show(cardPanel, nomCarte);

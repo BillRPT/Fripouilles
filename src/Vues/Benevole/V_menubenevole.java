@@ -41,10 +41,10 @@ public class V_menubenevole extends JMenuBar {
 
         menuCatalogue = new JMenu("Catalogue");
         itemConsulterCatalogues = new JMenuItem("Consulter les catalogues");
-        itemAjouterCatalogue = new JMenuItem("Créer un catalogue");
+        itemAjouterCatalogue = new JMenuItem("Crï¿½er un catalogue");
         itemRechercherCatalogue = new JMenuItem("Rechercher un catalogue");
         itemSupprimerCatalogue = new JMenuItem("Supprimer un catalogue");
-        itemAjArtCat = new JMenuItem("Ajouter un article à un catalogue");
+        itemAjArtCat = new JMenuItem("Ajouter un article ï¿½ un catalogue");
         itemReArtCat = new JMenuItem("Rechercher un article dans un catalogue");
         itemSupArtCat = new JMenuItem("Supprimer un article d'un catalogue");
         

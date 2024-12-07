@@ -93,10 +93,13 @@ public class V_connexion extends JFrame {
         			roleUser = cConnex.verifierRole(fieldPseudo.getText(), fieldMdp.getPassword());
         			
         			if (roleUser.equals("benevole")) {
-        				cPBenevole.affichervPrincipal();
+        				uncPrincipal.affichervPrincipal();
         			}
         			else {
         				if (roleUser.equals("secretaire")) {
+        					//Paramètrer la vuePrincipal pour afficher la vueSecretaire
+        					cPSecretaire.affichagevSecretaire();
+        					//Appeler la vue pour l'afficher ici
         					uncPrincipal.affichervPrincipal();
         				}
         				else {
