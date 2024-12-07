@@ -15,6 +15,7 @@ public class V_connexion extends JFrame {
 	private C_connexion cConnex;
     private C_pbenevole cPBenevole;
     private C_psecretaire cPSecretaire;
+    private C_principal uncPrincipal;
     private String roleUser;
 	
     private JPanel contentPanel;
@@ -26,7 +27,8 @@ public class V_connexion extends JFrame {
     private JButton btnValider;
 
     //------------------------constructeur------------------------------
-    public V_connexion(C_connexion cConnexion, C_pbenevole cPBenevole, C_psecretaire cPSecretaire) {
+    public V_connexion(C_connexion cConnexion, C_pbenevole cPBenevole, C_psecretaire cPSecretaire, C_principal lecPrincipal) {
+    	this.uncPrincipal = lecPrincipal;
     	this.cConnex = cConnexion;
     	this.cPBenevole = cPBenevole;
     	this.cPSecretaire = cPSecretaire;
@@ -95,7 +97,7 @@ public class V_connexion extends JFrame {
         			}
         			else {
         				if (roleUser.equals("secretaire")) {
-        					cPSecretaire.affichervPrincipal();
+        					uncPrincipal.affichervPrincipal();
         				}
         				else {
         					if (roleUser.equals("maire")) {

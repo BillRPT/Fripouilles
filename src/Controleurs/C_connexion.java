@@ -12,13 +12,14 @@ public class C_connexion {
 	private V_connexion vConnex;
 	private C_pbenevole cPBenevole;
 	private C_psecretaire cPSecretaire;
-	private V_principal vPrincipal;
+	private C_principal cPrincipal;
 	
 	//------------------------------constructeur------------------------------
-	public C_connexion() {
-		cPBenevole = new C_pbenevole();
-		cPSecretaire = new C_psecretaire();
-		vConnex = new V_connexion(this, cPBenevole, cPSecretaire);
+	public C_connexion(C_principal uncPrincipal) {
+		this.cPrincipal = uncPrincipal;
+		//cPBenevole = new C_pbenevole();
+		cPSecretaire = new C_psecretaire(cPrincipal);
+		vConnex = new V_connexion(this, cPBenevole, cPSecretaire, cPrincipal);
 		this.vConnex.setVisible(true);
 	}
 	

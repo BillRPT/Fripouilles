@@ -10,13 +10,15 @@ import Fonction.Fonction;
 public class Main {
 	public static void main(String[] args) {
 		//attributs
-		V_connexion vConnex;
 		C_connexion cConnex;
+		C_principal cPrincipal;
 		
 		//---
 		Modele.connexionBdd();
 		
-		cConnex = new C_connexion();
+		
+		cPrincipal = new C_principal();
+		cConnex = new C_connexion(cPrincipal);
 	}
 
 }

@@ -2,6 +2,9 @@ package Controleurs;
 
 import Vues.*;
 import Vues.Benevole.V_menubenevole;
+
+import javax.swing.JFrame;
+
 import Controleurs.*;
 
 public class C_principal {
@@ -18,7 +21,11 @@ public class C_principal {
 		
 	}
 	
-	//Méthodes utilitaires
+	public V_principal getvPrincipal() {
+		return this.vPrincipal;
+	}
+	
+	//Mï¿½thodes utilitaires
 	/**
 	* ProcÃ¨dure qui permet d'afficher la vue principal
 	*/

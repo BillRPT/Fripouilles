@@ -35,7 +35,7 @@ public class V_menusecretaire extends JMenuBar{
 		menuAjouter = new JMenu("Ajouter");
 		nouvelleVente = new JMenuItem("Ajouter une Vente");
 		nouveauBenevole = new JMenuItem("Ajouter un Benevole");
-		//Ecouter les différents boutton
+		//Ecouter les diffï¿½rents boutton
 		nouvelleVente.addActionListener(new choixSection());
 		nouveauBenevole.addActionListener(new choixSection());
 		menuAjouter.add(nouvelleVente);
