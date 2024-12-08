@@ -4,11 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class C_menuBenevole implements ActionListener {
-    private C_pbenevole cpBenevole;
+import Vues.Benevole.V_menubenevole;
 
-    public C_menuBenevole(C_pbenevole cpBenevole) {
+public class C_menuBenevole implements ActionListener {
+	private C_principal uncPrincipal;
+    private C_pbenevole cpBenevole;
+    private V_menubenevole vMenuBenevole;
+
+    public C_menuBenevole(C_pbenevole cpBenevole, C_principal uncPrincipal) {
+    	this.uncPrincipal = new C_principal();
         this.cpBenevole = cpBenevole;
+		vMenuBenevole = new V_menubenevole(cpBenevole, this);
+		//Ajouter le menu � la vue principale
+		uncPrincipal.getvPrincipal().setJMenuBar(vMenuBenevole);
     }
 
     @Override

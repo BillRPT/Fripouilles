@@ -37,7 +37,6 @@ public class C_connexion implements ActionListener {
 
                 switch (roleUser) {
                     case "benevole":
-                        cPBenevole = new C_pbenevole(cPrincipal);
                         cPrincipal.affichervPrincipal();
                         break;
                     case "secretaire":
