@@ -289,7 +289,60 @@ public class Modele {
 
 		return historiqueCat;
 	}
+	
+	//---------------------METHODES POUR LE SECRETAIRE---------------------
+	
+	
+	/**
+	 * Methode pour ajouter une vente
+	 * @param unnomVente, unedateVente, untypeVente
+	 */
+	public static void ajouterVente(String unnomVente, String unedateVente, String untypeVente) {
+		try {
+			String sql = "INSERT INTO Vente (nomVente, dateEph, typeVente) VALUES (?, ?, ?)";
+			
+			//Convertir la date type string en type date pour l'insertion
+			
+			Date sqlDate = Date.valueOf(unedateVente);
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, unnomVente);
+			
+			pst.setDate(2, sqlDate);
+			
+			pst.setString(3, untypeVente);
+			
+			pst.executeUpdate();
+		}
+		catch(Exception erreur) {
+			System.out.println("erreur de insertion de vente " + erreur);
+		}
+	}
+	
+	public static boolean supprimerVente(String unnomVente) {
+		boolean rep = false;
+		try {
+			String sql = "Delete FROM vente WHERE nomVente = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, unnomVente);
+			
+			int ligne = pst.executeUpdate();
+			
+			if (ligne > 0) {
+			    rep = true;
+			}
+		}
+		catch (Exception erreur) {
+			System.out.println("Erreur de suppresion vente" + erreur);
+		}
+		
+		return rep;
+	}
 }
 
 
-//---------------------METHODES POUR LE MAIRE---------------------
+
+

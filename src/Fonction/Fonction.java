@@ -15,12 +15,12 @@ public class Fonction {
 	public static String hashMD5(char[] password) {
 	    StringBuilder hexString = new StringBuilder();
 	    try {
-	        // Convertir le tableau de caractères en chaîne
+	        // Convertir le tableau de caractï¿½res en chaï¿½ne
 	        String passwordString = new String(password);
 	        MessageDigest md = MessageDigest.getInstance("MD5");
 	        byte[] messageDigest = md.digest(passwordString.getBytes());
 
-	        // Conversion des octets en représentation hexadécimale
+	        // Conversion des octets en reprï¿½sentation hexadï¿½cimale
 	        for (byte b : messageDigest) {
 	            String hex = Integer.toHexString(0xff & b);
 	            if (hex.length() == 1) {
@@ -33,6 +33,26 @@ public class Fonction {
 	    }
 
 	    return hexString.toString();
+	}
+	
+	
+	/**
+	* Fonction qui verifie le format de la date
+	* @param uneDate 
+	* @return true ou false
+	*/
+	public static boolean verifDate(String uneDate) {
+		boolean rep = false;
+		
+		try {
+			java.sql.Date.valueOf(uneDate);
+			rep = true;
+		}
+		catch(Exception erreur) {
+			
+		}
+		
+		return rep;
 	}
 
 	
