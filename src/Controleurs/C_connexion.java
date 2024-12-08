@@ -11,7 +11,6 @@ import Vues.*;
 public class C_connexion implements ActionListener {
 
     private V_connexion vConnex;
-    private C_menuBenevole menuBenevole;
     private C_pbenevole cPBenevole;
     private C_psecretaire cPSecretaire;
     private C_principal cPrincipal;
@@ -19,7 +18,7 @@ public class C_connexion implements ActionListener {
     // ------------------------------ Constructeur ------------------------------
     public C_connexion(C_principal uncPrincipal) {
         this.cPrincipal = uncPrincipal;
-        this.cPBenevole = new C_pbenevole(cPrincipal, menuBenevole);
+        this.cPBenevole = new C_pbenevole(cPrincipal);
         this.cPSecretaire = new C_psecretaire(cPrincipal);
         this.vConnex = new V_connexion(this, cPBenevole, cPSecretaire, cPrincipal);
         this.vConnex.setVisible(true);
@@ -38,7 +37,7 @@ public class C_connexion implements ActionListener {
 
                 switch (roleUser) {
                     case "benevole":
-                        cPBenevole = new C_pbenevole(cPrincipal, menuBenevole);
+                        cPBenevole = new C_pbenevole(cPrincipal);
                         cPrincipal.affichervPrincipal();
                         break;
                     case "secretaire":

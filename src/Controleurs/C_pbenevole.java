@@ -35,13 +35,13 @@ public class C_pbenevole {
 		/**
 		* Constructeur du controleur principal
 		*/
-		public C_pbenevole(C_principal lecPrincipal, C_menuBenevole menuBenevole) {
+		public C_pbenevole(C_principal lecPrincipal) {
 			this.uncPrincipal = lecPrincipal;
-			this.menuBenevole = menuBenevole;
+		    this.menuBenevole = new C_menuBenevole(this);
 			this.mainPanel = new JPanel(new BorderLayout());
 			
 			vLogo = new V_logo();
-			vMenuBenevole = new V_menubenevole(this);
+			vMenuBenevole = new V_menubenevole(this, menuBenevole);
 				
 			//Ajouter le menu � la vue principale
 			uncPrincipal.getvPrincipal().setJMenuBar(vMenuBenevole);

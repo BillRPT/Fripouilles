@@ -30,8 +30,9 @@ public class V_menubenevole extends JMenuBar {
     private JMenuItem itemSupprimerArtCat;
 
 
-    public V_menubenevole(C_pbenevole cpBenevole) {
-    	menuConsulter = new JMenu("Consulter");
+public V_menubenevole(C_pbenevole cpBenevole, C_menuBenevole menuBenevole) {
+        this.cpBenevole = cpBenevole;
+        this.menuBenevole = menuBenevole;
 
         menuConsulter = new JMenu("Consulter");
         itemConsulterArticle = new JMenuItem("Consulter les articles");
