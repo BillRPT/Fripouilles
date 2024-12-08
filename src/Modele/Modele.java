@@ -15,7 +15,7 @@ public class Modele {
 	//Constante a modifier en fonction de l'�cole ou la maison
 	private static String host = "localhost";
 	private static String user = "root";
-	private static String mdp = "";
+	private static String mdp = "root";
 
 
 	
