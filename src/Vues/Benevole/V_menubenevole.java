@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class V_menubenevole extends JMenuBar {
 	private C_pbenevole cpBenevole;
+	private C_menuBenevole menuBenevole;
 	
     private JMenu menuConsulter;
     private JMenuItem itemConsulterArticle;
@@ -65,13 +66,89 @@ public class V_menubenevole extends JMenuBar {
         menuSupprimer.add(itemSupprimerArticle);
         menuSupprimer.add(itemSupprimerCatalogue);
         menuSupprimer.add(itemSupprimerArtCat);
-        
-        
 
         this.add(menuConsulter);
         this.add(menuCreer);
         this.add(menuRechercher);
         this.add(menuSupprimer);
+        
+        itemConsulterArticle.addActionListener(menuBenevole);
+        itemConsulterCatalogues.addActionListener(menuBenevole);
+        itemConsulterArtCatalogues.addActionListener(menuBenevole);
+
+        itemCreerArticle.addActionListener(menuBenevole);
+        itemCreerCatalogue.addActionListener(menuBenevole);
+
+        itemRechercherArticle.addActionListener(menuBenevole);
+        itemRechercherCatalogue.addActionListener(menuBenevole);
+        itemRechercharArtCat.addActionListener(menuBenevole);
+
+        itemSupprimerArticle.addActionListener(menuBenevole);
+        itemSupprimerCatalogue.addActionListener(menuBenevole);
+        itemSupprimerArtCat.addActionListener(menuBenevole);
+    }
+    public C_pbenevole getCpBenevole() {
+        return cpBenevole;
+    }
+
+    public JMenu getMenuConsulter() {
+        return menuConsulter;
+    }
+
+    public JMenuItem getItemConsulterArticle() {
+        return itemConsulterArticle;
+    }
+
+    public JMenuItem getItemConsulterCatalogues() {
+        return itemConsulterCatalogues;
+    }
+
+    public JMenuItem getItemConsulterArtCatalogues() {
+        return itemConsulterArtCatalogues;
+    }
+
+    public JMenu getMenuCreer() {
+        return menuCreer;
+    }
+
+    public JMenuItem getItemCreerArticle() {
+        return itemCreerArticle;
+    }
+
+    public JMenuItem getItemCreerCatalogue() {
+        return itemCreerCatalogue;
+    }
+
+    public JMenu getMenuRechercher() {
+        return menuRechercher;
+    }
+
+    public JMenuItem getItemRechercherArticle() {
+        return itemRechercherArticle;
+    }
+
+    public JMenuItem getItemRechercherCatalogue() {
+        return itemRechercherCatalogue;
+    }
+
+    public JMenuItem getItemRechercharArtCat() {
+        return itemRechercharArtCat;
+    }
+
+    public JMenu getMenuSupprimer() {
+        return menuSupprimer;
+    }
+
+    public JMenuItem getItemSupprimerArticle() {
+        return itemSupprimerArticle;
+    }
+
+    public JMenuItem getItemSupprimerCatalogue() {
+        return itemSupprimerCatalogue;
+    }
+
+    public JMenuItem getItemSupprimerArtCat() {
+        return itemSupprimerArtCat;
     }
     
 }

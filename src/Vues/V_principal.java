@@ -11,8 +11,7 @@ public class V_principal extends JFrame {
         this.setSize(1000, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
-        
-        // D�finir un JPanel principal avec BorderLayout
+         
         mainPanel = new JPanel(new BorderLayout());
         this.setContentPane(mainPanel);
     }

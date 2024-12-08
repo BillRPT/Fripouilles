@@ -8,49 +8,64 @@ import Fonction.Fonction;
 import Modele.Modele;
 import Vues.*;
 
-public class C_connexion {
-	private V_connexion vConnex;
-	private C_pbenevole cPBenevole;
-	private C_psecretaire cPSecretaire;
-	private C_principal cPrincipal;
-	
-	//------------------------------constructeur------------------------------
-	public C_connexion(C_principal uncPrincipal) {
-		this.cPrincipal = uncPrincipal;
-		cPBenevole = new C_pbenevole(cPrincipal);
-		cPSecretaire = new C_psecretaire(cPrincipal);
-		vConnex = new V_connexion(this, cPBenevole, cPSecretaire, cPrincipal);
-		this.vConnex.setVisible(true);
-	}
-	
-	//------------------------------accesseurs------------------------------
-	public V_connexion getConnexion() {
-		return vConnex;
-	}
+public class C_connexion implements ActionListener {
 
-	public void setConnexion(V_connexion connexion) {
-		this.vConnex = connexion;
-	}
+    private V_connexion vConnex;
+    private C_menuBenevole menuBenevole;
+    private C_pbenevole cPBenevole;
+    private C_psecretaire cPSecretaire;
+    private C_principal cPrincipal;
 
-	//------------------------------autres m�thodes------------------------------
-	public boolean verifierConnexion(String pseudo, char[] password) {
-        boolean rep = false;
-        if (Modele.connexionUtilisateur(pseudo, Fonction.hashMD5(password))) {
-            rep = true;
-        }
-        return rep;
+    // ------------------------------ Constructeur ------------------------------
+    public C_connexion(C_principal uncPrincipal) {
+        this.cPrincipal = uncPrincipal;
+        this.cPBenevole = new C_pbenevole(cPrincipal, menuBenevole);
+        this.cPSecretaire = new C_psecretaire(cPrincipal);
+        this.vConnex = new V_connexion(this, cPBenevole, cPSecretaire, cPrincipal);
+        this.vConnex.setVisible(true);
     }
-	
-	public String verifierRole(String pseudo, char[] password) {
-		String roleUser ="";
-		if (Modele.connexionUtilisateur(pseudo, Fonction.hashMD5(password))) {
-            roleUser = Modele.roleUtilisateur(pseudo, Fonction.hashMD5(password));
+
+    // ------------------------------ Méthodes d'événement ------------------------------
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String pseudo = vConnex.getPseudo();
+        char[] password = vConnex.getPassword();
+
+        if (!pseudo.isEmpty() && password.length != 0) {
+            if (verifierConnexion(pseudo, password)) {
+                String roleUser = verifierRole(pseudo, password);
+                vConnex.setVisible(false);
+
+                switch (roleUser) {
+                    case "benevole":
+                        cPBenevole = new C_pbenevole(cPrincipal, menuBenevole);
+                        cPrincipal.affichervPrincipal();
+                        break;
+                    case "secretaire":
+                        cPSecretaire.affichagevSecretaire();
+                        cPrincipal.affichervPrincipal();
+                        break;
+                    case "maire":
+                        System.out.println("maire");
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "L'utilisateur n'a aucun rôle attribué.");
+                        break;
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Nom d'utilisateur ou mot de passe incorrect.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Des champs sont vides.");
         }
-		return roleUser;
-	}
-	
-	public void fermervConnexion() {
-		this.vConnex.setVisible(false);
-	}
-	
+    }
+
+    // ------------------------------ Méthodes utilitaires ------------------------------
+    public boolean verifierConnexion(String pseudo, char[] password) {
+        return Modele.connexionUtilisateur(pseudo, Fonction.hashMD5(password));
+    }
+
+    public String verifierRole(String pseudo, char[] password) {
+        return Modele.roleUtilisateur(pseudo, Fonction.hashMD5(password));
+    }
 }
