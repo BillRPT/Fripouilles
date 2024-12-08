@@ -13,9 +13,9 @@ public class C_menuBenevole implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-    	String command = e.getActionCommand();
+    	String action = e.getActionCommand(); //récupère l'item sur lequel on a cliquer grâce au texte que j'ai mis
 	    
-	    switch (command) {
+	    switch (action) {
 	        case "Consulter les articles":
 	            System.out.println("Consulter les articles");
 	            break;
@@ -29,7 +29,7 @@ public class C_menuBenevole implements ActionListener {
 	            break;
 
 	        case "Creer un article":
-	            System.out.println("Créer un article");
+	        	
 	            break;
 
 	        case "Creer un catalogue":
@@ -61,7 +61,7 @@ public class C_menuBenevole implements ActionListener {
 	            break;
 
 	        default:
-	            System.out.println("Action non reconnue : " + command);
+	            System.out.println("Action non reconnue : " + action);
 	}
 }
 }
