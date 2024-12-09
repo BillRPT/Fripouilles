@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing. *;
 
 import Vues.V_principal;
+import Vues.Secretaire.Benevole.V_ajouterunBenevole;
+import Vues.Secretaire.Benevole.V_supprimerBenevole;
 import Vues.Secretaire.Vente.V_ajoutervente;
 import Vues.Secretaire.Vente.V_supprimevente;
 
@@ -16,6 +18,8 @@ public class V_menusecretaire extends JMenuBar{
 	private V_ajoutervente V_ajouteruneVente;
 	private V_supprimevente V_supprimeuneVente;
 	private V_principal unevuePrincipal;
+	private V_ajouterunBenevole V_ajouterBenevole;
+	private V_supprimerBenevole V_supprimerunBenevole;
 	
 	//Menu avec les items pour les ventes
 	private JMenu menuAjouter;
@@ -33,11 +37,13 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenuItem supprimerBenevole;
 	
 	
-	public V_menusecretaire(V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_principal lavuePrincipal) {
+	public V_menusecretaire(V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole,V_principal lavuePrincipal) {
 		
 		this.V_ajouteruneVente = unpanelajoutVente;
 		this.V_supprimeuneVente = unpanelsupprimerVente;
 		this.unevuePrincipal = lavuePrincipal;
+		this.V_ajouterBenevole = unpanelajouterBenevole;
+		this.V_supprimerunBenevole = unpanelsupprimerBenevole;
 		
 		//Section des Ajouts
 		menuAjouter = new JMenu("Ajouter");
@@ -45,7 +51,7 @@ public class V_menusecretaire extends JMenuBar{
 		nouveauBenevole = new JMenuItem("Ajouter un Benevole");
 		//Ecouter les diff�rents boutton
 		nouvelleVente.addActionListener(new ajouterVente());
-		//nouveauBenevole.addActionListener(new ajouterBenevole());
+		nouveauBenevole.addActionListener(new ajouterBenevole());
 		menuAjouter.add(nouvelleVente);
 		menuAjouter.add(nouveauBenevole);
 		
@@ -61,7 +67,7 @@ public class V_menusecretaire extends JMenuBar{
 		supprimerVente = new JMenuItem("Supprimer une vente");
 		supprimerBenevole = new JMenuItem("Supprimer un benevole");
 		supprimerVente.addActionListener(new supprimerVente());
-		//supprimerBenevole.addActionListener(new choixSection());
+		supprimerBenevole.addActionListener(new supprimerBenevole());
 		menuSupprimer.add(supprimerVente);
 		menuSupprimer.add(supprimerBenevole);
 		
@@ -96,6 +102,34 @@ public class V_menusecretaire extends JMenuBar{
 
             // Ajoute le panel de ventee
             unevuePrincipal.add(V_supprimeuneVente);  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+		}
+		
+	}
+	
+	class ajouterBenevole implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(V_ajouterBenevole);  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+		}
+		
+	}
+	
+	class supprimerBenevole implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(V_supprimerunBenevole);  
 
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();

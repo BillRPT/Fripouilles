@@ -3,6 +3,7 @@ import java.sql. *;
 import java.util.ArrayList;
 
 import Class.*;
+import Fonction.Fonction;
 
 public class Modele {
 	
@@ -15,7 +16,7 @@ public class Modele {
 	//Constante a modifier en fonction de l'�cole ou la maison
 	private static String host = "localhost";
 	private static String user = "root";
-	private static String mdp = "root";
+	private static String mdp = "";
 
 
 	
@@ -291,6 +292,30 @@ public class Modele {
 	}
 	
 	//---------------------METHODES POUR LE SECRETAIRE---------------------
+	
+	public static void ajouterBenevole(String nomUser, String prenomUser, String loginUser, char[] mdpUser) {
+		
+		try {
+			String sql = "INSERT INTO utilisateur (nomUser, prenomUser, mdpUser, loginUser, roleUser) VALUES (?, ?, ?, ?, 'benevole')";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, nomUser);
+			
+			pst.setString(2, prenomUser);
+			
+			pst.setString(3, Fonction.hashMD5(mdpUser));
+			
+			//Hash le mdp et le mettre en string
+			pst.setString(4, loginUser);
+			
+			
+			pst.executeUpdate();
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur d'ajout de benevole " + erreur);
+		}
+	}
 	
 	
 	/**

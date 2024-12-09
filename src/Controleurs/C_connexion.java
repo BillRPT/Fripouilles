@@ -58,12 +58,12 @@ public class C_connexion implements ActionListener {
         }
     }
 
-    // ------------------------------ Méthodes utilitaires ------------------------------
-    public boolean verifierConnexion(String pseudo, char[] password) {
+    // ------------------------------ Méthodes utilitaires uniquement pour cette classe ------------------------------
+    private boolean verifierConnexion(String pseudo, char[] password) {
         return Modele.connexionUtilisateur(pseudo, Fonction.hashMD5(password));
     }
 
-    public String verifierRole(String pseudo, char[] password) {
+    private String verifierRole(String pseudo, char[] password) {
         return Modele.roleUtilisateur(pseudo, Fonction.hashMD5(password));
     }
 }

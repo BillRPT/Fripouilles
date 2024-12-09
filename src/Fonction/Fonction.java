@@ -72,4 +72,14 @@ public class Fonction {
 	    return new ImageIcon(resizedImg);  // Retourner une nouvelle ImageIcon avec l'image redimensionn�e
 	}
 	
+	/**
+	 * Methode pour concertir un char en string
+	 * @param chaine
+	 * @return une chaine de caractere
+	 */
+	public static String charTostring(char[] chaine) {
+	    return new String(chaine);
+	}
+
+	
 }
