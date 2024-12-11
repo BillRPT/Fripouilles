@@ -14,9 +14,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.212";
+	private static String user = "sio";
+	private static String mdp = "Azerty123!";
 
 
 	
@@ -70,7 +70,7 @@ public class Modele {
 		int count = 0;
 		
 		try {
-			String sql = "SELECT COUNT(*) AS nbCo FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
+			String sql = "SELECT COUNT(*) AS nbCo FROM utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
 			pst.setString(1, login);
@@ -104,7 +104,7 @@ public class Modele {
 		int count = 0;
 		
 		try {
-			String sql = "SELECT roleUser FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
+			String sql = "SELECT roleUser FROM utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
 			pst.setString(1, login);
@@ -252,7 +252,7 @@ public class Modele {
 			}
 		}
 		catch(Exception erreur) {
-			System.out.println("Erreur de r�cup�ration catalogue " + erreur);
+			System.out.println("Erreur de recuperation0 catalogue " + erreur);
 		}
 		
 		return catalogue;
@@ -366,6 +366,29 @@ public class Modele {
 		
 		return rep;
 	}
+	
+	public static boolean supprimerBenevole(String unBenevole) {
+		boolean rep = false;
+		try {
+			String sql = "DELETE FROM utilisateur WHERE loginUser = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, unBenevole);
+			
+			int ligne = pst.executeUpdate();
+			
+			if (ligne > 0) {
+			    rep = true;
+			}
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur supression benevole " + erreur);
+		}
+		
+		return rep;
+	}
+	
 }
 
 

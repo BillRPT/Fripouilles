@@ -131,6 +131,7 @@ public class V_menusecretaire extends JMenuBar{
             // Ajoute le panel de ventee
             unevuePrincipal.add(V_supprimerunBenevole);  
 
+            //Refresh tout
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();
 		}

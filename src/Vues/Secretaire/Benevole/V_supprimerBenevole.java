@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing. *;
 
+import Modele.Modele;
+
 public class V_supprimerBenevole extends JPanel{
 	
 	private JPanel monPanel;
@@ -35,6 +37,8 @@ public class V_supprimerBenevole extends JPanel{
         // Bouton pour supprimer un bénévole
         this.btnSupprimerBenevole = new JButton("Supprimer le benevole");
         
+        this.btnSupprimerBenevole.addActionListener(new supprimerBenevole());
+        
         // Placement des composants
         
         // Label "Login"
@@ -57,7 +61,17 @@ public class V_supprimerBenevole extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+			if (!textloginUser.getText().isEmpty()) {
+				if (Modele.supprimerBenevole(textloginUser.getText()) == true) {
+					JOptionPane.showMessageDialog(null, "Le benevole a ete supp");
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Le benevole n'existe pas");
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Des champs sont vides");
+			}
 		}
 		
 	}
