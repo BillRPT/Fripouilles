@@ -233,20 +233,24 @@ public class Modele {
 	 * @return les catalogues qui sont disponible a la vente
 	 */
 	public static ArrayList<Catalogue> consulterCatalogue() {
+		String idCat;
+		String idVenteEph;
 		String libelleCatalogue;
 		String dateCatalogue;
 		ArrayList<Catalogue> catalogue = new ArrayList<>();
 		try {
-			String sql = "SELECT libelleCat, dateCat FROM Catalogue WHERE etatCat = 'Disponible'";
+			String sql = "SELECT idCat, idVenteEph , libelleCat, dateCat FROM Catalogue WHERE etatCat = 'Disponible'";
 			
 			rs = st.executeQuery(sql);
 			
 			while (rs.next()) {
+				idCat = rs.getString("idCat");
+				idVenteEph = rs.getString("idVenteEph");
 				libelleCatalogue = rs.getString("libelleCat");
 				dateCatalogue = rs.getString("dateCat");
 				
 				//Instancier un nouveau catalogue et l'ajouter.
-				Catalogue unCatalogue = new Catalogue(libelleCatalogue, dateCatalogue);
+				Catalogue unCatalogue = new Catalogue(libelleCatalogue, dateCatalogue, idCat, idVenteEph);
 				
 				catalogue.add(unCatalogue);
 			}
@@ -266,8 +270,10 @@ public class Modele {
 	 */
 	public static ArrayList<Catalogue> historiqueCatalogue(){
 		ArrayList<Catalogue> historiqueCat = new ArrayList<>();
-		String libelleCategorie;
-		String dateCat;
+		String idCat;
+		String idVenteEph;
+		String libelleCatalogue;
+		String dateCatalogue;
 		
 		try {
 			String sql = "SELECT idCat, idVenteEph, libelleCat, dateCat, etatCat FROM Catalogue WHERE etatCat = 'nonDisponible'";
@@ -275,10 +281,12 @@ public class Modele {
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()) {
-				libelleCategorie = rs.getString("libelleCat");
-				dateCat = rs.getString("dateCat");
+				idCat = rs.getString("idCat");
+				idVenteEph = rs.getString("idVenteEph");
+				libelleCatalogue = rs.getString("libelleCat");
+				dateCatalogue = rs.getString("dateCat");
 				
-				Catalogue unCatalogue = new Catalogue(libelleCategorie, dateCat);
+				Catalogue unCatalogue = new Catalogue(libelleCatalogue, dateCatalogue, idCat, idVenteEph);
 				
 				//Ajouter un catalogue non disponible a l'historique des catalogues
 				historiqueCat.add(unCatalogue);

@@ -4,12 +4,16 @@ public class Catalogue {
 	//private int idCat;
 	private String libelleCat;
 	private String Date;
+	private String idCategorie;
+	private String idVenteEphemere;
 	
 	//Constructeur Catalogue
 	
-	public Catalogue(String unlibelleCat, String uneDate) {
+	public Catalogue(String unlibelleCat, String uneDate, String unidCate, String unidventeEph) {
 		this.libelleCat = unlibelleCat;
 		this.Date = uneDate;
+		this.idCategorie = unidCate;
+		this.idVenteEphemere = unidventeEph;
 	}
 	
 	//Les ascenseur
@@ -20,6 +24,14 @@ public class Catalogue {
 	
 	public String getuneDate() {
 		return this.Date;
+	}
+	
+	public String getunidCategorie() {
+		return this.idCategorie;
+	}
+	
+	public String getunidventeEphemere() {
+		return this.idVenteEphemere;
 	}
 	
 

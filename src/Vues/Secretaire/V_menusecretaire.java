@@ -10,6 +10,7 @@ import javax.swing. *;
 import Vues.V_principal;
 import Vues.Secretaire.Benevole.V_ajouterunBenevole;
 import Vues.Secretaire.Benevole.V_supprimerBenevole;
+import Vues.Secretaire.Consulter.V_consultercatalogue;
 import Vues.Secretaire.Vente.V_ajoutervente;
 import Vues.Secretaire.Vente.V_supprimevente;
 
@@ -20,6 +21,7 @@ public class V_menusecretaire extends JMenuBar{
 	private V_principal unevuePrincipal;
 	private V_ajouterunBenevole V_ajouterBenevole;
 	private V_supprimerBenevole V_supprimerunBenevole;
+	private V_consultercatalogue V_consulterlesCatalogues;
 	
 	//Menu avec les items pour les ventes
 	private JMenu menuAjouter;
@@ -37,13 +39,14 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenuItem supprimerBenevole;
 	
 	
-	public V_menusecretaire(V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole,V_principal lavuePrincipal) {
+	public V_menusecretaire(V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole, V_consultercatalogue V_consulterunCatalogue,V_principal lavuePrincipal) {
 		
 		this.V_ajouteruneVente = unpanelajoutVente;
 		this.V_supprimeuneVente = unpanelsupprimerVente;
 		this.unevuePrincipal = lavuePrincipal;
 		this.V_ajouterBenevole = unpanelajouterBenevole;
 		this.V_supprimerunBenevole = unpanelsupprimerBenevole;
+		this.V_consulterlesCatalogues = V_consulterunCatalogue;
 		
 		//Section des Ajouts
 		menuAjouter = new JMenu("Ajouter");
@@ -59,7 +62,7 @@ public class V_menusecretaire extends JMenuBar{
 		//Section des Consultations
 		menuConsultere = new JMenu("Consulter");
 		consulterCatalogue = new JMenuItem("Consulter les Catalogues");
-		//consulterCatalogue.addActionListener(new choixSection());
+		consulterCatalogue.addActionListener(new consulterCatalogue());
 		menuConsultere.add(consulterCatalogue);
 		
 		
@@ -134,6 +137,21 @@ public class V_menusecretaire extends JMenuBar{
             //Refresh tout
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();
+		}
+		
+	}
+	
+	class consulterCatalogue implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(V_consulterlesCatalogues);  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+			
 		}
 		
 	}

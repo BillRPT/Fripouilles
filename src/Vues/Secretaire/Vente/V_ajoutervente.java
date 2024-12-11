@@ -17,7 +17,6 @@ import Modele.Modele;
 
 public class V_ajoutervente extends JPanel{
 	
-	private JPanel monPanel;
 	private GridBagConstraints gbc;
 	
 	private JTextField nomVente;
