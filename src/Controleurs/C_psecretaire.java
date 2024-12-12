@@ -1,7 +1,9 @@
 package Controleurs;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
+import Class.VenteEphemere;
 import Modele.Modele;
 import Vues. *;
 import Vues.Secretaire.V_menusecretaire;
@@ -42,11 +44,22 @@ public class C_psecretaire {
 		V_consulterlesCatalogues = new V_consultercatalogue(Modele.consulterCatalogue());
 		V_consulterVente = new V_consultervente(Modele.consulterlesVentes());
 		V_rechercheruneVente = new V_recherchervente();
-		vMenuSecretaire = new V_menusecretaire(V_ajouteruneVente, V_supprimeuneVente, V_ajtunBenevole, V_supprimerunBenevole, V_consulterlesCatalogues, V_rechercheruneVente, V_consulterVente, uncPrincipal.getvPrincipal());
+		vMenuSecretaire = new V_menusecretaire(this, V_ajouteruneVente, V_supprimeuneVente, V_ajtunBenevole, V_supprimerunBenevole, V_consulterlesCatalogues, V_rechercheruneVente, V_consulterVente, uncPrincipal.getvPrincipal());
 		
 		uncPrincipal.getvPrincipal().setJMenuBar(vMenuSecretaire);
 		
 		uncPrincipal.getvPrincipal().getContentPane().add(vLogo, BorderLayout.NORTH);
+	}
+	
+	//Pour consultation des Ventes, créer une procèdure ici qui va remplacer le panel car au moment ou j'insert ca ne se met pas a jour donc le faire ici
+	public void refreshtableVente() {
+	    ArrayList<VenteEphemere> lesVentes = Modele.consulterlesVentes();
+	    V_consulterVente = new V_consultervente(lesVentes);
+		
+		uncPrincipal.getvPrincipal().getContentPane().removeAll();
+	    uncPrincipal.getvPrincipal().add(V_consulterVente);
+	    uncPrincipal.getvPrincipal().revalidate();
+	    uncPrincipal.getvPrincipal().repaint();
 	}
 	
 	public void affichermenuSecretaire() {

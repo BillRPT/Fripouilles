@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing. *;
 
+import Controleurs.C_psecretaire;
 import Vues.V_principal;
 import Vues.Secretaire.Benevole.V_ajouterunBenevole;
 import Vues.Secretaire.Benevole.V_supprimerBenevole;
@@ -26,6 +27,9 @@ public class V_menusecretaire extends JMenuBar{
 	private V_consultercatalogue V_consulterlesCatalogues;
 	private V_recherchervente V_rechercheruneVente;
 	private V_consultervente V_consulterlesVentes;
+	
+	//Controleur secretaire
+	private C_psecretaire uncontroleurSecretaire;
 	
 	//Menu avec les items pour les ventes
 	private JMenu menuAjouter;
@@ -48,7 +52,7 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenuItem rechercherBenevole;
 	
 	
-	public V_menusecretaire(V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole, V_consultercatalogue V_consulterunCatalogue, V_recherchervente V_rechercherVente, V_consultervente V_consulterVente,V_principal lavuePrincipal) {
+	public V_menusecretaire(C_psecretaire lecontroleurSecretaire, V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole, V_consultercatalogue V_consulterunCatalogue, V_recherchervente V_rechercherVente, V_consultervente V_consulterVente,V_principal lavuePrincipal) {
 		
 		this.V_ajouteruneVente = unpanelajoutVente;
 		this.V_supprimeuneVente = unpanelsupprimerVente;
@@ -58,6 +62,8 @@ public class V_menusecretaire extends JMenuBar{
 		this.V_consulterlesCatalogues = V_consulterunCatalogue;
 		this.V_rechercheruneVente = V_rechercherVente;
 		this.V_consulterlesVentes = V_consulterVente;
+		this.uncontroleurSecretaire = lecontroleurSecretaire;
+		
 		
 		//Section des Ajouts
 		menuAjouter = new JMenu("Ajouter");
@@ -182,13 +188,8 @@ public class V_menusecretaire extends JMenuBar{
 	class consulterVente implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
-
-            // Ajoute le panel de ventee
-            unevuePrincipal.add(V_consulterlesVentes);  
-
-            unevuePrincipal.revalidate();
-            unevuePrincipal.repaint();
+			
+			uncontroleurSecretaire.refreshtableVente();
 			
 		}
 		
