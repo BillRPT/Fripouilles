@@ -8,7 +8,9 @@ import Vues.Secretaire.V_menusecretaire;
 import Vues.Secretaire.Benevole.V_ajouterunBenevole;
 import Vues.Secretaire.Benevole.V_supprimerBenevole;
 import Vues.Secretaire.Consulter.V_consultercatalogue;
+import Vues.Secretaire.Consulter.V_consultervente;
 import Vues.Secretaire.Vente.V_ajoutervente;
+import Vues.Secretaire.Vente.V_recherchervente;
 import Vues.Secretaire.Vente.V_supprimevente;
 
 public class C_psecretaire {
@@ -23,6 +25,8 @@ public class C_psecretaire {
 	private V_ajouterunBenevole V_ajtunBenevole;
 	private V_supprimerBenevole V_supprimerunBenevole;
 	private V_consultercatalogue V_consulterlesCatalogues;
+	private V_recherchervente V_rechercheruneVente;
+	private V_consultervente V_consulterVente;
 	
 	public C_psecretaire(C_principal lecPrincipal) {
 		this.uncPrincipal = lecPrincipal;
@@ -36,7 +40,9 @@ public class C_psecretaire {
 		V_ajtunBenevole = new V_ajouterunBenevole();
 		V_supprimerunBenevole = new V_supprimerBenevole();
 		V_consulterlesCatalogues = new V_consultercatalogue(Modele.consulterCatalogue());
-		vMenuSecretaire = new V_menusecretaire(V_ajouteruneVente, V_supprimeuneVente, V_ajtunBenevole, V_supprimerunBenevole, V_consulterlesCatalogues, uncPrincipal.getvPrincipal());
+		V_consulterVente = new V_consultervente(Modele.consulterlesVentes());
+		V_rechercheruneVente = new V_recherchervente();
+		vMenuSecretaire = new V_menusecretaire(V_ajouteruneVente, V_supprimeuneVente, V_ajtunBenevole, V_supprimerunBenevole, V_consulterlesCatalogues, V_rechercheruneVente, V_consulterVente, uncPrincipal.getvPrincipal());
 		
 		uncPrincipal.getvPrincipal().setJMenuBar(vMenuSecretaire);
 		

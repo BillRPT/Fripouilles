@@ -57,11 +57,11 @@ public class V_recherchervente extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (!nomVente.getText().isEmpty()) {
-				if (Modele.supprimerVente(nomVente.getText()) == true) {
-					JOptionPane.showMessageDialog(null, "La vente a ete supprimer");
+				if (Modele.rechercherVente(nomVente.getText()) == true) {
+					JOptionPane.showMessageDialog(null, "La vente existe");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "La vente n'a pas etait supprimer");
+					JOptionPane.showMessageDialog(null, "La vente existe pas");
 				}
 			}
 			else {

@@ -11,7 +11,9 @@ import Vues.V_principal;
 import Vues.Secretaire.Benevole.V_ajouterunBenevole;
 import Vues.Secretaire.Benevole.V_supprimerBenevole;
 import Vues.Secretaire.Consulter.V_consultercatalogue;
+import Vues.Secretaire.Consulter.V_consultervente;
 import Vues.Secretaire.Vente.V_ajoutervente;
+import Vues.Secretaire.Vente.V_recherchervente;
 import Vues.Secretaire.Vente.V_supprimevente;
 
 public class V_menusecretaire extends JMenuBar{
@@ -22,6 +24,8 @@ public class V_menusecretaire extends JMenuBar{
 	private V_ajouterunBenevole V_ajouterBenevole;
 	private V_supprimerBenevole V_supprimerunBenevole;
 	private V_consultercatalogue V_consulterlesCatalogues;
+	private V_recherchervente V_rechercheruneVente;
+	private V_consultervente V_consulterlesVentes;
 	
 	//Menu avec les items pour les ventes
 	private JMenu menuAjouter;
@@ -29,8 +33,9 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenuItem nouveauBenevole;
 	
 	//Menu avec les items pour les consultations
-	private JMenu menuConsultere;
+	private JMenu menuConsulter;
 	private JMenuItem consulterCatalogue;
+	private JMenuItem consulterVente;
 	
 	
 	//Menu avec les items pour les consultations
@@ -43,7 +48,7 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenuItem rechercherBenevole;
 	
 	
-	public V_menusecretaire(V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole, V_consultercatalogue V_consulterunCatalogue,V_principal lavuePrincipal) {
+	public V_menusecretaire(V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole, V_consultercatalogue V_consulterunCatalogue, V_recherchervente V_rechercherVente, V_consultervente V_consulterVente,V_principal lavuePrincipal) {
 		
 		this.V_ajouteruneVente = unpanelajoutVente;
 		this.V_supprimeuneVente = unpanelsupprimerVente;
@@ -51,6 +56,8 @@ public class V_menusecretaire extends JMenuBar{
 		this.V_ajouterBenevole = unpanelajouterBenevole;
 		this.V_supprimerunBenevole = unpanelsupprimerBenevole;
 		this.V_consulterlesCatalogues = V_consulterunCatalogue;
+		this.V_rechercheruneVente = V_rechercherVente;
+		this.V_consulterlesVentes = V_consulterVente;
 		
 		//Section des Ajouts
 		menuAjouter = new JMenu("Ajouter");
@@ -64,10 +71,13 @@ public class V_menusecretaire extends JMenuBar{
 		
 		
 		//Section des Consultations
-		menuConsultere = new JMenu("Consulter");
+		menuConsulter = new JMenu("Consulter");
 		consulterCatalogue = new JMenuItem("Consulter les Catalogues");
+		consulterVente = new JMenuItem("Consulter les Ventes");
 		consulterCatalogue.addActionListener(new consulterCatalogue());
-		menuConsultere.add(consulterCatalogue);
+		consulterVente.addActionListener(new consulterVente());
+		menuConsulter.add(consulterCatalogue);
+		menuConsulter.add(consulterVente);
 		
 		
 		//Section des suppresions
@@ -82,12 +92,13 @@ public class V_menusecretaire extends JMenuBar{
 		menuRechercher = new JMenu("Rechercher");
 		rechercherVente = new JMenuItem("Rechercher une vente");
 		rechercherBenevole = new JMenuItem("Rechecher un benevole");
+		rechercherVente.addActionListener(new rechercherVente());
 		menuRechercher.add(rechercherVente);
 		menuRechercher.add(rechercherBenevole);
 		
 		
 		this.add(menuAjouter);
-		this.add(menuConsultere);
+		this.add(menuConsulter);
 		this.add(menuSupprimer);
 		this.add(menuRechercher);
 		
@@ -160,6 +171,36 @@ public class V_menusecretaire extends JMenuBar{
 
             // Ajoute le panel de ventee
             unevuePrincipal.add(V_consulterlesCatalogues);  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+			
+		}
+		
+	}
+	
+	class consulterVente implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(V_consulterlesVentes);  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+			
+		}
+		
+	}
+	
+	class rechercherVente implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(V_rechercheruneVente);  
 
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();

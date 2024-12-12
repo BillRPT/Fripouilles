@@ -232,6 +232,8 @@ public class Modele {
 	 * Consulter les catalogues
 	 * @return les catalogues qui sont disponible a la vente
 	 */
+	
+	//---------------------METHODES POUR LE SECRETAIRE---------------------
 	public static ArrayList<Catalogue> consulterCatalogue() {
 		String idCat;
 		String idVenteEph;
@@ -260,6 +262,42 @@ public class Modele {
 		}
 		
 		return catalogue;
+	}
+	
+	/**
+	 * Methode pour le role Secretaire;
+	 * Consulter les Ventes
+	 * @return une liste de toute les ventes existantes
+	 */
+	
+	public static ArrayList<VenteEphemere> consulterlesVentes() {
+		String idVenteEph;
+		String dateEph;
+		String typeVente;
+		String nomVente;
+		
+		ArrayList<VenteEphemere> lesVentes = new ArrayList<VenteEphemere>();
+		
+		try {
+			String sql = "SELECT idVenteEph, dateEph, typeVente, nomVente FROM Vente";
+			
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				idVenteEph = rs.getString("idVenteEph");
+				dateEph = rs.getString("dateEph");
+				typeVente = rs.getString("typeVente");
+				nomVente = rs.getString("nomVente");
+				
+				VenteEphemere uneVente = new VenteEphemere(idVenteEph, dateEph, typeVente, nomVente);
+				lesVentes.add(uneVente);
+			}
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de consultation des ventes " + erreur);
+		}
+		
+		return lesVentes;
 	}
 	
 	
@@ -299,7 +337,6 @@ public class Modele {
 		return historiqueCat;
 	}
 	
-	//---------------------METHODES POUR LE SECRETAIRE---------------------
 	
 	public static void ajouterBenevole(String nomUser, String prenomUser, String loginUser, char[] mdpUser) {
 		
@@ -419,6 +456,33 @@ public class Modele {
 		}
 		catch(Exception erreur) {
 			System.out.println("Erreur supression benevole " + erreur);
+		}
+		
+		return rep;
+	}
+	
+	public static boolean verifierRole(String user) {
+		boolean rep = false;
+		int chiffre = 0;
+		
+		try {
+			String sql = "SELECT COUNT(idUser) as nb FROM utilisateur WHERE loginUser = ? AND roleUser = 'benevole'";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, user);
+			
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	chiffre = rs.getInt("nb");
+	         }
+	        
+	        if (chiffre == 1) {
+	        	rep = true;
+	        }
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de récupération de role" + erreur);
 		}
 		
 		return rep;

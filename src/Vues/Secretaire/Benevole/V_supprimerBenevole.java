@@ -62,11 +62,12 @@ public class V_supprimerBenevole extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (!textloginUser.getText().isEmpty()) {
-				if (Modele.supprimerBenevole(textloginUser.getText()) == true) {
-					JOptionPane.showMessageDialog(null, "Le benevole a ete supp");
+				if (Modele.verifierRole(textloginUser.getText()) == true) {
+					Modele.supprimerBenevole(textloginUser.getText());
+					JOptionPane.showMessageDialog(null, "Le benevole a ete supprimer");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Le benevole n'existe pas");
+					JOptionPane.showMessageDialog(null, "Le benevole n'existe pas ou il n'est pas un benevole");
 				}
 			}
 			else {
