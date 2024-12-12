@@ -17,8 +17,10 @@ public class Main {
 		Modele.connexionBdd();
 		
 		//Instancier le controleur principal qui controle la JFrame
-		cPrincipal = new C_principal();
-		cConnex = new C_connexion(cPrincipal);
+		/*cPrincipal = new C_principal();
+		cConnex = new C_connexion(cPrincipal);*/
+		
+		System.out.println(Modele.rechercherVente("dd"));
 		
 
 	}

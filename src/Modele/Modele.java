@@ -325,6 +325,33 @@ public class Modele {
 		}
 	}
 	
+	public static boolean rechercherVente(String uneVente) {
+		boolean rep = false;
+		int chiffre = 0;
+		
+		try {
+			String sql = "SELECT COUNT(nomVente) AS nb FROM Vente Where nomVente = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, uneVente);
+			
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	chiffre = rs.getInt("nb");
+	         }
+	        
+	        if (chiffre == 1) {
+	        	rep = true;
+	        }
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur rechercher vente " + erreur);
+		}
+		
+		return rep;
+	}
+	
 	
 	/**
 	 * Methode pour ajouter une vente

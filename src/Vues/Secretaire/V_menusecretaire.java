@@ -38,6 +38,10 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenuItem supprimerVente;
 	private JMenuItem supprimerBenevole;
 	
+	private JMenu menuRechercher;
+	private JMenuItem rechercherVente;
+	private JMenuItem rechercherBenevole;
+	
 	
 	public V_menusecretaire(V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole, V_consultercatalogue V_consulterunCatalogue,V_principal lavuePrincipal) {
 		
@@ -66,6 +70,7 @@ public class V_menusecretaire extends JMenuBar{
 		menuConsultere.add(consulterCatalogue);
 		
 		
+		//Section des suppresions
 		menuSupprimer = new JMenu("Supprimer");
 		supprimerVente = new JMenuItem("Supprimer une vente");
 		supprimerBenevole = new JMenuItem("Supprimer un benevole");
@@ -74,10 +79,17 @@ public class V_menusecretaire extends JMenuBar{
 		menuSupprimer.add(supprimerVente);
 		menuSupprimer.add(supprimerBenevole);
 		
+		menuRechercher = new JMenu("Rechercher");
+		rechercherVente = new JMenuItem("Rechercher une vente");
+		rechercherBenevole = new JMenuItem("Rechecher un benevole");
+		menuRechercher.add(rechercherVente);
+		menuRechercher.add(rechercherBenevole);
+		
 		
 		this.add(menuAjouter);
 		this.add(menuConsultere);
 		this.add(menuSupprimer);
+		this.add(menuRechercher);
 		
 	}
 	
