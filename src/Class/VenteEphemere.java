@@ -28,4 +28,10 @@ public class VenteEphemere {
 	public String getnomVente() {
 		return this.nomVente;
 	}
+	
+	public String toXML() {
+		String XML = "<Vente><idVenteEph>" + this.idVenteEph + "</idVenteEph>"  + "<date>" + this.dateEph + "</date>" + "<typevente>" + this.typeVente + "</typevente>" + "<nomVente>" + this.nomVente + "</nomVente><Vente>";
+		
+		return XML;
+	}
 }

@@ -40,10 +40,13 @@ public class Catalogue {
 	 * @return une chaine sous format XML
 	 */
 	public String toXML() {
-		String XML = "<libelle>" + this.libelleCat + "</libelle>\n" + "<date>" + this.Date + "</date>\n";
-		
-		return XML;
+	    String XML = "<Catalogue>\n"
+	               + "    <libelle>" + this.libelleCat + "</libelle>\n"
+	               + "    <date>" + this.Date + "</date>\n"
+	               + "</Catalogue>\n";
+	    return XML;
 	}
+
 	
 	
 	/**

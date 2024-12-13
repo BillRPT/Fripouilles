@@ -1,4 +1,4 @@
-package Vues.Secretaire.Vente;
+package Vues.Secretaire.Benevole;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 import javax.swing. *;
 
 import Modele.Modele;
-import Vues.Secretaire.Vente.V_supprimevente.supprimerVente;
 
-public class V_recherchervente extends JPanel{
+public class V_rechercherBenevole extends JPanel{
 	
+	private JPanel monPanel;
 	private GridBagConstraints gbc;
 	
 	private JTextField nomVente;
@@ -20,7 +20,7 @@ public class V_recherchervente extends JPanel{
 	
 	private JButton rechercherVente;
 	
-	public V_recherchervente() {
+	public V_rechercherBenevole() {
 		setLayout(new GridBagLayout());
         this.gbc = new GridBagConstraints();
 
@@ -29,11 +29,11 @@ public class V_recherchervente extends JPanel{
 
 
         this.nomVente = new JTextField(20);
-        this.nomdelaVente = new JLabel("Nom de la vente");
+        this.nomdelaVente = new JLabel("Nom du benevole");
 
 
-        this.rechercherVente = new JButton("Rechercher une Vente");
-        this.rechercherVente.addActionListener(new rechercherVente());
+        this.rechercherVente = new JButton("Rechercher un benevole");
+        this.rechercherVente.addActionListener(new rechercherBenevole());
 
         gbc.gridx = 0; 
         gbc.gridy = 0; 
@@ -51,15 +51,15 @@ public class V_recherchervente extends JPanel{
         this.add(rechercherVente, gbc);
 	}
 	
-	class rechercherVente implements ActionListener{
+	class rechercherBenevole implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (!nomVente.getText().isEmpty()) {
-				if (Modele.rechercherVente(nomVente.getText()) == true) {
-					JOptionPane.showMessageDialog(null, "La vente existe");
+				if (Modele.rechercherBenevole(nomVente.getText()) == true) {
+					JOptionPane.showMessageDialog(null, "Le benevole existe");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "La vente existe pas");
+					JOptionPane.showMessageDialog(null, "La benevole existe pas");
 				}
 			}
 			else {

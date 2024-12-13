@@ -14,9 +14,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.212";
+	private static String user = "sio";
+	private static String mdp = "Azerty123!";
 
 
 	
@@ -420,7 +420,7 @@ public class Modele {
 	public static boolean supprimerVente(String unnomVente) {
 		boolean rep = false;
 		try {
-			String sql = "Delete FROM vente WHERE nomVente = ?";
+			String sql = "Delete FROM Vente WHERE nomVente = ?";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -483,6 +483,33 @@ public class Modele {
 		}
 		catch(Exception erreur) {
 			System.out.println("Erreur de r�cup�ration de role" + erreur);
+		}
+		
+		return rep;
+	}
+	
+	public static boolean rechercherBenevole(String user) {
+		boolean rep = false;
+		int chiffre = 0;
+		
+		try {
+			String sql = "SELECT COUNT(idUser) AS nb FROM utilisateur Where loginUser = ? AND roleUser = 'benevole'";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, user);
+			
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	chiffre = rs.getInt("nb");
+	         }
+	        
+	        if (chiffre == 1) {
+	        	rep = true;
+	        }
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur rechercher benevole " + erreur);
 		}
 		
 		return rep;
