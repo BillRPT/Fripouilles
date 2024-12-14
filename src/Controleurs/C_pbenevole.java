@@ -13,7 +13,6 @@ import Controleurs.*;
 
 public class C_pbenevole {
 	//attributs
-		private C_menuBenevole menuBenevole;
 	    private C_principal uncPrincipal;
 	
 		private V_logo vLogo;
@@ -37,12 +36,16 @@ public class C_pbenevole {
 		*/
 		public C_pbenevole(C_principal lecPrincipal) {
 			this.uncPrincipal = lecPrincipal;
-		    this.menuBenevole = new C_menuBenevole(this, uncPrincipal);
+			
 			this.mainPanel = new JPanel(new BorderLayout());
 			
 			vLogo = new V_logo();
+			vMenuBenevole = new V_menubenevole();
 				
 			//Ajouter le logo � la vue principale
 			uncPrincipal.getvPrincipal().getContentPane().add(vLogo, BorderLayout.NORTH);
+			
+			//ajouter le menu
+			uncPrincipal.getvPrincipal().setJMenuBar(vMenuBenevole);
 		}
 }
