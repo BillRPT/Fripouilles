@@ -40,7 +40,7 @@ public class VenteEphemere {
 	}
 	
 	/**
-	 * Fonction qui retourne une chaine sous format json
+	 * Fonction qui retourne une chaine sous format Json
 	 * @return une chaine sous format JSON
 	 */
 	public String toJson() {
