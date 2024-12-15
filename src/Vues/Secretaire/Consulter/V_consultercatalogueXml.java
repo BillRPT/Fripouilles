@@ -12,32 +12,36 @@ import Class.Catalogue;
 public class V_consultercatalogueXml extends JPanel{
 
 	private GridBagConstraints gbc;
-	
-	private JLabel monLabel;
-	
-	private String rep;
+    private JTextArea monTextArea;
+    private String rep;
 	
 	public V_consultercatalogueXml(ArrayList<Catalogue> lesCatalogue) {
-	    rep = "<HTML><pre>";
+		rep = "";
 
 	    setLayout(new GridBagLayout());
 	    this.gbc = new GridBagConstraints();
 
 	    this.gbc.insets = new Insets(5, 5, 5, 5);
 	    this.gbc.fill = GridBagConstraints.HORIZONTAL;
+	    
+	    monTextArea = new JTextArea(10, 90); 
+        monTextArea.setEditable(false);  
+        monTextArea.setLineWrap(true);   
+        monTextArea.setWrapStyleWord(true);
 
 	    for (Catalogue unCatalogue : lesCatalogue) {
-	        rep = rep + unCatalogue.toXML() + "<br>";
+	    	String xml = unCatalogue.toXML();
+
+            rep = rep + xml + "\n";
 	    }
 
-	    rep = rep + "</pre></HTML>";
-
-	    this.monLabel = new JLabel(rep);
+	    monTextArea.setText(rep);
 
 	    gbc.gridx = 0; 
 	    gbc.gridy = 0; 
 	    gbc.gridwidth = 2;
-	    this.add(monLabel, gbc);
+	    JScrollPane scrollPane = new JScrollPane(monTextArea);
+	    this.add(scrollPane, gbc);
 	}
 
 }

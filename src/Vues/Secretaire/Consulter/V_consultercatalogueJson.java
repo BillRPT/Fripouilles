@@ -20,7 +20,7 @@ public class V_consultercatalogueJson extends JPanel{
 	
 	public V_consultercatalogueJson(ArrayList<Catalogue> lesCatalogue) {
 		
-		rep = "<HTML><pre>";
+		rep = "<HTML>";
 		
 		setLayout(new GridBagLayout());
 	    this.gbc = new GridBagConstraints();
@@ -32,7 +32,7 @@ public class V_consultercatalogueJson extends JPanel{
 	        rep = rep + unCatalogue.toJSON() + "<br>";
 	    }
 
-	    rep = rep + "</pre></HTML>";
+	    rep = rep + "</HTML>";
 
 	    this.monLabel = new JLabel(rep);
 
