@@ -7,6 +7,7 @@ import Vues.V_principal;
 import Vues.Benevole.Article.V_ajouterarticle;
 import Vues.Benevole.Article.V_rechercherarticle;
 import Vues.Benevole.Article.V_supprimerarticle;
+import Vues.Benevole.Catalogue.*;
 
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,10 @@ public class V_menubenevole extends JMenuBar {
 	private V_ajouterarticle vAjouterArticle;
 	private V_rechercherarticle vRechercherArticle;
 	private V_supprimerarticle vSupprimerArticle;
+	
+	private V_ajoutercatalogue vAjouterCatalogue;
+	private V_recherchercatalogue vRechercherCatalogue;
+	private V_supprimercatalogue vSupprimerCatalogue;
 	
 	//attributs du menu
     private JMenu menuConsulter;
@@ -41,13 +46,14 @@ public class V_menubenevole extends JMenuBar {
     private JMenuItem itemSupprimerCatalogue;
     private JMenuItem itemSupprimerArtCat;
 
-    public V_menubenevole(C_pbenevole cBenevole,V_principal vPrincipal ,V_ajouterarticle vAjouterArticle, V_rechercherarticle vRechercherArticle, V_supprimerarticle vSupprimerArticle) {
+    public V_menubenevole(C_pbenevole cBenevole,V_principal vPrincipal ,V_ajouterarticle vAjouterArticle, V_rechercherarticle vRechercherArticle, V_supprimerarticle vSupprimerArticle, V_ajoutercatalogue vAjouterCatalogue) {
     	
     	this.cBenevole = cBenevole;
     	this.vPrincipal = vPrincipal;
     	this.vAjouterArticle = vAjouterArticle;
     	this.vRechercherArticle = vRechercherArticle;
     	this.vSupprimerArticle = vSupprimerArticle;
+    	this.vAjouterCatalogue = vAjouterCatalogue;
     	
     	
     	
@@ -151,7 +157,15 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Creer un catalogue");
-        }
+            
+            vPrincipal.getContentPane().removeAll();
+            
+            vAjouterCatalogue = new V_ajoutercatalogue();
+            vPrincipal.add(vAjouterCatalogue);
+            
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+            }
     }
 
     class RechercherArticleListener implements ActionListener {
@@ -173,6 +187,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Rechercher un catalogue");
+            
+            vPrincipal.getContentPane().removeAll();
+
+            vRechercherCatalogue = new V_recherchercatalogue();
+            vPrincipal.add(vRechercherCatalogue);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 
@@ -184,6 +206,7 @@ public class V_menubenevole extends JMenuBar {
     }
 
     class SupprimerArticleListener implements ActionListener {
+    	
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Supprimer un article");
@@ -202,6 +225,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Supprimer un catalogue");
+            
+            vPrincipal.getContentPane().removeAll();
+
+            vSupprimerCatalogue = new V_supprimercatalogue();
+            vPrincipal.add(vSupprimerCatalogue);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 

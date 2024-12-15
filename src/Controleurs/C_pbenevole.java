@@ -3,6 +3,7 @@ package Controleurs;
 import Vues.*;
 import Vues.Benevole.*;
 import Vues.Benevole.Article.*;
+import Vues.Benevole.Catalogue.V_ajoutercatalogue;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,8 @@ public class C_pbenevole {
 		private V_ajouterarticle vAjouterArticle;
 		private V_rechercherarticle vRechercherArticle;
 		private V_supprimerarticle vSupprimerArticle;
+		
+		private V_ajoutercatalogue vAjouterCatalogue;
 
 		
 		private CardLayout cardLayout;
@@ -36,7 +39,7 @@ public class C_pbenevole {
 			this.uncPrincipal = lecPrincipal;
 			
 			vLogo = new V_logo();
-			vMenuBenevole = new V_menubenevole(this, uncPrincipal.getvPrincipal(), vAjouterArticle, vRechercherArticle, vSupprimerArticle);
+			vMenuBenevole = new V_menubenevole(this, uncPrincipal.getvPrincipal(), vAjouterArticle, vRechercherArticle, vSupprimerArticle, vAjouterCatalogue);
 				
 			//Ajouter le logo � la vue principale
 			uncPrincipal.getvPrincipal().getContentPane().add(vLogo, BorderLayout.NORTH);

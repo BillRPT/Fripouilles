@@ -15,23 +15,33 @@ public class V_ajouterarticle extends JPanel {
     private JLabel messageLabel;
 
     public V_ajouterarticle() {
-        setLayout(new GridBagLayout());
+    	setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
-        gbc.fill = GridBagConstraints.HORIZONTAL; // Remplit horizontalement
-
-        //libellé de l'article
-        libelleArt = new JTextField(20);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+ 
+        
+        JLabel titreLabel = new JLabel("Creer un article :");
+        titreLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        titreLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        add(new JLabel("Libellé de l'article : "), gbc);
+        gbc.gridwidth = 2;
+        add(titreLabel, gbc);
+
+        //libelle de l'article
+        libelleArt = new JTextField(20);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1; // Réinitialiser la largeur
+        add(new JLabel("Libelle de l'article : "), gbc);
         gbc.gridx = 1;
         add(libelleArt, gbc);
 
         //type de l'article
         typeArt = new JTextField(20);
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         add(new JLabel("Type de l'article : "), gbc);
         gbc.gridx = 1;
         add(typeArt, gbc);
@@ -39,23 +49,23 @@ public class V_ajouterarticle extends JPanel {
         //etat de l'article
         etatArt = new JTextField(20);
         gbc.gridx = 0;
-        gbc.gridy = 2;
-        add(new JLabel("Etat de l'article"), gbc);
+        gbc.gridy = 3;
+        add(new JLabel("Etat de l'article (En vente, vendu) : "), gbc);
         gbc.gridx = 1;
         add(etatArt, gbc);
 
         //catalogue
         cateArt = new JTextField(20);
         gbc.gridx = 0;
-        gbc.gridy = 3;
-        add(new JLabel("Intégrer l'article dans un catalogue (libellé) : "), gbc);
+        gbc.gridy = 4;
+        add(new JLabel("Integrer l'article dans un catalogue (libelle) : "), gbc);
         gbc.gridx = 1;
         add(cateArt, gbc);
 
         //bouton Valider
         btnValider = new JButton("Ajouter l'article");
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.gridwidth = 2; // Le bouton prend toute la largeur
         add(btnValider, gbc);
 
@@ -64,7 +74,7 @@ public class V_ajouterarticle extends JPanel {
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setForeground(Color.RED);
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.gridwidth = 2;
         add(messageLabel, gbc);
 
