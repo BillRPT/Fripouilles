@@ -158,6 +158,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Rechercher un article");
+            
+            vPrincipal.getContentPane().removeAll();
+
+            vRechercherArticle = new V_rechercherarticle();
+            vPrincipal.add(vRechercherArticle);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 
@@ -179,6 +187,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Supprimer un article");
+            
+            vPrincipal.getContentPane().removeAll();
+
+            vSupprimerArticle = new V_supprimerarticle();
+            vPrincipal.add(vSupprimerArticle);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 
