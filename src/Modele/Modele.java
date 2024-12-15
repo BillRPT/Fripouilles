@@ -217,6 +217,14 @@ public class Modele {
 	    return rep;
 	}
 
+	/**
+	 * Fonction pour ajouter un article sans catalogue
+	 * Ajouter des articles dans une collection
+	 * @param unLibelle
+	 * @param untypeArt
+	 * @param unetatArt
+	 * @return true ou false
+	 */
 	
 	public static boolean ajouterArticle(String unLibelle, String untypeArt, String unetatArt) {
 		boolean rep = false;
@@ -253,27 +261,41 @@ public class Modele {
 	 * @eturn true ou false
 	 */
 	public static boolean supprimerArticle(String unArticle) {
-		boolean rep = false;
-		
-		if (rechercherArticle(unArticle) == true) {
-			try {
-				String sql = "DELETE FROM Article WHERE libelleArt = ?";
-				
-				pst = connexion.prepareStatement(sql);
-				
-				//Remplacer le ? par unArticle
-				pst.setString(1, unArticle);
-				
-				pst.executeUpdate();
-				
-				rep = true;
-				
-			}catch(Exception erreur) {
-				System.out.println("Erreur de suppresion de article " + erreur);
-			}
-		}
-		
-		return rep;
+	    boolean rep = false;
+
+	    if (rechercherArticle(unArticle)) {
+	        try {
+	            //récupérer l'id de l'article à partir de son libellé
+	            String getIdArticleSql = "SELECT idArt FROM article WHERE libelleArt = ?";
+	            pst = connexion.prepareStatement(getIdArticleSql);
+	            pst.setString(1, unArticle);
+	            ResultSet rs = pst.executeQuery();
+
+	            if (rs.next()) {
+	                int idArticle = rs.getInt("idArt");
+
+	                //supprimer l(entrée de la table article_catalogue
+	                String deleteFromArticleCatalogueSql = "DELETE FROM article_catalogue WHERE idArt = ?";
+	                pst = connexion.prepareStatement(deleteFromArticleCatalogueSql);
+	                pst.setInt(1, idArticle);
+	                pst.executeUpdate();
+
+	                //supprimer l'article de la table Article
+	                String deleteArticleSql = "DELETE FROM Article WHERE idArt = ?";
+	                pst = connexion.prepareStatement(deleteArticleSql);
+	                pst.setInt(1, idArticle);
+	                pst.executeUpdate();
+
+	                rep = true;
+	            } else {
+	                System.out.println("Article non trouvé pour le libellé : " + unArticle);
+	            }
+	        } catch (Exception erreur) {
+	            System.out.println("Erreur lors de la suppression de l'article : " + erreur.getMessage());
+	        }
+	    }
+
+	    return rep;
 	}
 	
 	/**
