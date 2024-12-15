@@ -21,8 +21,6 @@ public class C_pbenevole {
 		private V_ajouterarticle vAjouterArticle;
 		private V_rechercherarticle vRechercherArticle;
 		private V_supprimerarticle vSupprimerArticle;
-		
-	    private JPanel mainPanel;
 
 		
 		private CardLayout cardLayout;
@@ -37,10 +35,8 @@ public class C_pbenevole {
 		public C_pbenevole(C_principal lecPrincipal) {
 			this.uncPrincipal = lecPrincipal;
 			
-			this.mainPanel = new JPanel(new BorderLayout());
-			
 			vLogo = new V_logo();
-			vMenuBenevole = new V_menubenevole();
+			vMenuBenevole = new V_menubenevole(this, uncPrincipal.getvPrincipal(), vAjouterArticle, vRechercherArticle, vSupprimerArticle);
 				
 			//Ajouter le logo � la vue principale
 			uncPrincipal.getvPrincipal().getContentPane().add(vLogo, BorderLayout.NORTH);

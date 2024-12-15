@@ -1,11 +1,27 @@
 package Vues.Benevole;
 
 import javax.swing.*;
+
+import Controleurs.C_pbenevole;
+import Vues.V_principal;
+import Vues.Benevole.Article.V_ajouterarticle;
+import Vues.Benevole.Article.V_rechercherarticle;
+import Vues.Benevole.Article.V_supprimerarticle;
+
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class V_menubenevole extends JMenuBar {
-
+	
+	private C_pbenevole cBenevole;
+	//les vues
+	private V_principal vPrincipal;
+	private V_ajouterarticle vAjouterArticle;
+	private V_rechercherarticle vRechercherArticle;
+	private V_supprimerarticle vSupprimerArticle;
+	
+	//attributs du menu
     private JMenu menuConsulter;
     private JMenuItem itemConsulterArticle;
     private JMenuItem itemConsulterCatalogues;
@@ -25,8 +41,17 @@ public class V_menubenevole extends JMenuBar {
     private JMenuItem itemSupprimerCatalogue;
     private JMenuItem itemSupprimerArtCat;
 
-    public V_menubenevole() {
-        // Initialisation des menus et items
+    public V_menubenevole(C_pbenevole cBenevole,V_principal vPrincipal ,V_ajouterarticle vAjouterArticle, V_rechercherarticle vRechercherArticle, V_supprimerarticle vSupprimerArticle) {
+    	
+    	this.cBenevole = cBenevole;
+    	this.vPrincipal = vPrincipal;
+    	this.vAjouterArticle = vAjouterArticle;
+    	this.vRechercherArticle = vRechercherArticle;
+    	this.vSupprimerArticle = vSupprimerArticle;
+    	
+    	
+    	
+        //initialisation des menus et items
         menuConsulter = new JMenu("Consulter");
         itemConsulterArticle = new JMenuItem("Consulter les articles");
         itemConsulterCatalogues = new JMenuItem("Consulter les catalogues");
@@ -46,7 +71,7 @@ public class V_menubenevole extends JMenuBar {
         itemSupprimerCatalogue = new JMenuItem("Supprimer un catalogue");
         itemSupprimerArtCat = new JMenuItem("Supprimer un article d'un catalogue");
 
-        // Ajout des items aux menus
+        //Ajout des items aux menus
         menuConsulter.add(itemConsulterArticle);
         menuConsulter.add(itemConsulterCatalogues);
         menuConsulter.add(itemConsulterArtCatalogues);
@@ -62,13 +87,13 @@ public class V_menubenevole extends JMenuBar {
         menuSupprimer.add(itemSupprimerCatalogue);
         menuSupprimer.add(itemSupprimerArtCat);
 
-        // Ajout des menus à la barre de menu
+        //ajout des menus à la barre de menu
         this.add(menuConsulter);
         this.add(menuCreer);
         this.add(menuRechercher);
         this.add(menuSupprimer);
 
-        // Ajout des ActionListeners avec des classes internes
+        //ajout des ActionListeners avec des classes internes
         itemConsulterArticle.addActionListener(new ConsulterArticleListener());
         itemConsulterCatalogues.addActionListener(new ConsulterCataloguesListener());
         itemConsulterArtCatalogues.addActionListener(new ConsulterArtCataloguesListener());
@@ -85,7 +110,7 @@ public class V_menubenevole extends JMenuBar {
         itemSupprimerArtCat.addActionListener(new SupprimerArtCatListener());
     }
 
-    // Classes internes pour gérer les actions
+    //classes internes pour gérer les actions
     class ConsulterArticleListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -111,6 +136,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Creer un article");
+            
+            vPrincipal.getContentPane().removeAll();
+
+			vAjouterArticle = new V_ajouterarticle();
+            vPrincipal.add(vAjouterArticle);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 

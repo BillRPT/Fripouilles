@@ -168,10 +168,61 @@ public class Modele {
 	 * @return true ou false
 	 */
 	public static boolean ajouterArticle(String unLibelle, String untypeArt, String unetatArt, String uncateArt) {
+	    boolean rep = false;
+	    
+	    try {
+	        //vérif si la catégorie existe
+	        String checkCatSql = "SELECT idCat FROM catalogue WHERE libelleCat = ?";
+	        pst = connexion.prepareStatement(checkCatSql);
+	        pst.setString(1, uncateArt);
+	        ResultSet rs = pst.executeQuery();
+
+	        int idCatalogue;
+	        if (rs.next()) {
+	            //recup l'id de la catégorie existante
+	            idCatalogue = rs.getInt("idCat");
+	        } else {
+	            throw new Exception("La catégorie spécifiée n'existe pas.");
+	        }
+
+	        //aj l'article
+	        String insertArticleSql = "INSERT INTO Article (libelleArt, typeArt, etatArt) VALUES (?, ?, ?)";
+	        pst = connexion.prepareStatement(insertArticleSql, Statement.RETURN_GENERATED_KEYS);
+	        pst.setString(1, unLibelle);
+	        pst.setString(2, untypeArt);
+	        pst.setString(3, unetatArt);
+	        pst.executeUpdate();
+
+	        //recup l'id de l'article
+	        rs = pst.getGeneratedKeys();
+	        int idArticle;
+	        if (rs.next()) {
+	            idArticle = rs.getInt(1);
+	        } else {
+	            throw new Exception("Erreur lors de la récupération de l'id de l'article inséré.");
+	        }
+
+	        //ajouter une liaison dans la table article_catalogue
+	        String insertLinkSql = "INSERT INTO article_catalogue (idArt, idCat) VALUES (?, ?)";
+	        pst = connexion.prepareStatement(insertLinkSql);
+	        pst.setInt(1, idArticle);
+	        pst.setInt(2, idCatalogue);
+	        pst.executeUpdate();
+
+	        rep = true;
+	    } catch (Exception erreur) {
+	        System.out.println("Erreur lors de l'ajout de l'article : " + erreur.getMessage());
+	    }
+
+	    return rep;
+	}
+
+	
+	public static boolean ajouterArticle(String unLibelle, String untypeArt, String unetatArt) {
 		boolean rep = false;
 		
 		try {
-			String sql = "INSERT INTO Article (libelleArt, typeArt, etatArt, cateArt) VALUES (?, ?, ?, ?)";
+			String sql = "INSERT INTO Article (libelleArt, typeArt, etatArt) VALUES (?, ?, ?)";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -181,8 +232,6 @@ public class Modele {
 			pst.setString(2, untypeArt);
 			//Remplacer le ? par untypeArt
 			pst.setString(3, unetatArt);
-			//Remplacer le ? par untypeArt
-			pst.setString(4, uncateArt);
 			// Ex�cute la requ�te d'insertion
 			pst.executeUpdate();
 			

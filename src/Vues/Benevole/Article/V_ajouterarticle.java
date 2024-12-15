@@ -1,7 +1,10 @@
 package Vues.Benevole.Article;
 
 import javax.swing.*;
+import Modele.Modele;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class V_ajouterarticle extends JPanel {
     private JTextField libelleArt;
@@ -9,7 +12,7 @@ public class V_ajouterarticle extends JPanel {
     private JTextField etatArt;
     private JTextField cateArt;
     private JButton btnValider;
-    private GridBagConstraints gbc;
+    private JLabel messageLabel;
 
     public V_ajouterarticle() {
         setLayout(new GridBagLayout());
@@ -17,15 +20,15 @@ public class V_ajouterarticle extends JPanel {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL; // Remplit horizontalement
 
-        //LibellÈ de l'article
+        //libell√© de l'article
         libelleArt = new JTextField(20);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        add(new JLabel("LibellÈ de l'article : "), gbc);
+        add(new JLabel("Libell√© de l'article : "), gbc);
         gbc.gridx = 1;
         add(libelleArt, gbc);
 
-        //Type de l'article
+        //type de l'article
         typeArt = new JTextField(20);
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -33,43 +36,75 @@ public class V_ajouterarticle extends JPanel {
         gbc.gridx = 1;
         add(typeArt, gbc);
 
-        //…tat de l'article
+        //etat de l'article
         etatArt = new JTextField(20);
         gbc.gridx = 0;
         gbc.gridy = 2;
-        add(new JLabel("…tat de l'article : "), gbc);
+        add(new JLabel("Etat de l'article"), gbc);
         gbc.gridx = 1;
         add(etatArt, gbc);
 
-        //Catalogue
+        //catalogue
         cateArt = new JTextField(20);
         gbc.gridx = 0;
         gbc.gridy = 3;
-        add(new JLabel("IntÈgrer l'article dans un catalogue (libellÈ) : "), gbc);
+        add(new JLabel("Int√©grer l'article dans un catalogue (libell√©) : "), gbc);
         gbc.gridx = 1;
         add(cateArt, gbc);
 
-        //Bouton Valider
+        //bouton Valider
         btnValider = new JButton("Ajouter l'article");
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 2; // Le bouton prend toute la largeur
         add(btnValider, gbc);
 
+        //label pour afficher les messages
+        messageLabel = new JLabel();
+        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        messageLabel.setForeground(Color.RED);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        add(messageLabel, gbc);
+
+        //ajouter ActionListener au bouton
+        btnValider.addActionListener(new ajouterArticle());
+
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        
-        JFrame frame = new JFrame("Test de V_ajouterarticle");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600); // Taille de la fenÍtre
+    class ajouterArticle implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            //r√©initialiser le texte du message
+            messageLabel.setText("");
 
-        
-        V_ajouterarticle panel = new V_ajouterarticle();
-        frame.add(panel);
+            //v√©rifier que les champs requis sont remplis
+            if (!libelleArt.getText().isEmpty() && !typeArt.getText().isEmpty() && !etatArt.getText().isEmpty()) {
+                if (cateArt.getText().isEmpty()) {
+                    //ajouter l'article sans catalogue
+                    Modele.ajouterArticle(libelleArt.getText(), typeArt.getText(), etatArt.getText());
+                    messageLabel.setForeground(Color.GREEN);
+                    messageLabel.setText("Article ajout√© avec succ√®s sans catalogue.");
+                } else {
+                    //ajouter l'article avec catalogue
+                    Modele.ajouterArticle(libelleArt.getText(), typeArt.getText(), etatArt.getText(), cateArt.getText());
+                    messageLabel.setForeground(Color.GREEN);
+                    messageLabel.setText("Article ajout√© avec succ√®s.");
+                }
 
-       
-        frame.setVisible(true);
+                //r√©initialiser les champs de texte
+                libelleArt.setText("");
+                typeArt.setText("");
+                etatArt.setText("");
+                cateArt.setText("");
+
+            } else {
+                //afficher un message d'erreur
+                messageLabel.setForeground(Color.RED);
+                messageLabel.setText("Veuillez remplir tous les champs requis.");
+            }
+        }
     }
 }
