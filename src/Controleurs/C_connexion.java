@@ -19,6 +19,7 @@ public class C_connexion implements ActionListener {
     // ------------------------------ Constructeur ------------------------------
     public C_connexion(C_principal uncPrincipal) {
         this.cPrincipal = uncPrincipal;
+        this.cPmaire = new C_pmaire(uncPrincipal);
         this.cPBenevole = new C_pbenevole(cPrincipal);
         this.cPSecretaire = new C_psecretaire(cPrincipal);
         this.vConnex = new V_connexion(this, cPBenevole, cPSecretaire, cPrincipal);
@@ -45,7 +46,8 @@ public class C_connexion implements ActionListener {
                         cPrincipal.affichervPrincipal();
                         break;
                     case "maire":
-                        System.out.println("maire");
+                    	cPmaire.affichervMaire();
+                    	cPrincipal.affichervPrincipal();
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "L'utilisateur n'a aucun rôle attribué.");

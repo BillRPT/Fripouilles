@@ -12,7 +12,6 @@ import Vues.V_principal;
 import Vues.Secretaire.Benevole.V_ajouterunBenevole;
 import Vues.Secretaire.Benevole.V_rechercherBenevole;
 import Vues.Secretaire.Benevole.V_supprimerBenevole;
-import Vues.Secretaire.Consulter.V_consultercatalogue;
 import Vues.Secretaire.Consulter.V_consultercatalogueXml;
 import Vues.Secretaire.Consulter.V_consultervente;
 import Vues.Secretaire.Vente.V_ajoutervente;
@@ -84,11 +83,10 @@ public class V_menusecretaire extends JMenuBar{
 		
 		//Section des Consultations
 		menuConsulter = new JMenu("Consulter");
-		consulterCatalogue = new JMenuItem("Consulter les Catalogues");
 		consulterVente = new JMenuItem("Consulter les Ventes");
-		consulterCatalogueXml = new JMenuItem("Consulter les Catalogues XML");
-		consulterCatalogueJson = new JMenuItem("Consulter les Catalogues JSON");
-		consulterCatalogueCsv = new JMenuItem("Consulter les Catalogues Csv");
+		consulterCatalogueXml = new JMenuItem("Consulter les histo Catalogues XML");
+		consulterCatalogueJson = new JMenuItem("Consulter les histo Catalogues JSON");
+		consulterCatalogueCsv = new JMenuItem("Consulter les histo Catalogues Csv");
 		consulterVenteXml = new JMenuItem("Consulter les Ventes Xml");
 		consulterVenteJson = new JMenuItem("Consulter les Ventes Json");
 		consulterVenteCsv = new JMenuItem("Consulter les Ventes Csv");
@@ -97,12 +95,10 @@ public class V_menusecretaire extends JMenuBar{
 		consulterVenteCsv.addActionListener(new consulterVenteCsv());
 		consulterVenteJson.addActionListener(new consulterventeJson());
 		consulterVenteXml.addActionListener(new consulterventeXml());
-		consulterCatalogue.addActionListener(new consulterCatalogue());
 		consulterVente.addActionListener(new consulterVente());
 		consulterCatalogueXml.addActionListener(new consultercatalogueXml());
 		consulterCatalogueJson.addActionListener(new consultercatalogueJson());
 		consulterCatalogueCsv.addActionListener(new consultercatalogueCsv());
-		menuConsulter.add(consulterCatalogue);
 		menuConsulter.add(consulterVente);
 		menuConsulter.add(consulterCatalogueXml);
 		menuConsulter.add(consulterCatalogueJson);
@@ -194,22 +190,6 @@ public class V_menusecretaire extends JMenuBar{
             //Refresh tout
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();
-		}
-		
-	}
-	
-	class consulterCatalogue implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
-
-            // Ajoute le panel de ventee avec cette m�thode pour refresh le JTable
-            unevuePrincipal.add(uncontroleurSecretaire.refreshtableCatalogue());  
-
-            unevuePrincipal.revalidate();
-            unevuePrincipal.repaint();
-			
 		}
 		
 	}
