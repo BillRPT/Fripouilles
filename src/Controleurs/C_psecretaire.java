@@ -47,6 +47,7 @@ public class C_psecretaire {
 	private V_consulterventeCsv V_consulterlesventeCsv;
 	private V_consulterhistoriquecatalogue V_consulterleshistoriquecatalogue;
 	
+	//Constructeur
 	public C_psecretaire(C_principal lecPrincipal) {
 		this.uncPrincipal = lecPrincipal;
 	}
