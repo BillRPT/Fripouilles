@@ -52,7 +52,7 @@ public class V_menumaire extends JMenuBar{
 			
 			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
 
-            // Ajoute le panel de ventee avec cette m�thode pour refresh le JTable
+
             unevuePrincipal.add(uncontroleurMaire.refreshtableCatalogue());  
 
             unevuePrincipal.revalidate();
@@ -68,7 +68,6 @@ public class V_menumaire extends JMenuBar{
 			
 			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
 
-            // Ajoute le panel de ventee avec cette m�thode pour refresh le JTable
             unevuePrincipal.add(uncontroleurMaire.refreshcatalogueCsv());  
 
             unevuePrincipal.revalidate();
@@ -84,7 +83,7 @@ public class V_menumaire extends JMenuBar{
 			
 			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
 
-            // Ajoute le panel de ventee avec cette m�thode pour refresh le JTable
+
             unevuePrincipal.add(uncontroleurMaire.refreshcatalogueXml());  
 
             unevuePrincipal.revalidate();
@@ -100,7 +99,6 @@ public class V_menumaire extends JMenuBar{
 			
 			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
 
-            // Ajoute le panel de ventee avec cette m�thode pour refresh le JTable
             unevuePrincipal.add(uncontroleurMaire.refreshcatalogueJson());  
 
             unevuePrincipal.revalidate();
