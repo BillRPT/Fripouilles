@@ -16,9 +16,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "root";
+	private static String host = "172.16.203.212";
+	private static String user = "sio";
+	private static String mdp = "Azerty123!";
 
 
 	
@@ -464,7 +464,7 @@ public class Modele {
 	
 	
 	/**
-	 * Methode pour le role Benevole;
+	 * Methode pour le role secretaire;
 	 * Consulter les historiques des catalogues (peu importe son etat)
 	 * @return historiqueCat collection de historiqueCatalogue
 	 */
@@ -474,9 +474,10 @@ public class Modele {
 		String idVenteEph;
 		String libelleCatalogue;
 		String dateCatalogue;
+		String etatCat;
 		
 		try {
-			String sql = "SELECT idCat, idVenteEph, libelleCat, dateCat, etatCat FROM Catalogue WHERE etatCat = 'nonDisponible'";
+			String sql = "SELECT idCat, idVenteEph, libelleCat, dateCat, etatCat FROM Catalogue";
 			
 			rs = st.executeQuery(sql);
 			
@@ -485,8 +486,9 @@ public class Modele {
 				idVenteEph = rs.getString("idVenteEph");
 				libelleCatalogue = rs.getString("libelleCat");
 				dateCatalogue = rs.getString("dateCat");
+				etatCat = rs.getString("etatCat");
 				
-				Catalogue unCatalogue = new Catalogue(libelleCatalogue, dateCatalogue, idCat, idVenteEph);
+				Catalogue unCatalogue = new Catalogue(libelleCatalogue, dateCatalogue, idCat, idVenteEph, etatCat);
 				
 				//Ajouter un catalogue non disponible a l'historique des catalogues
 				historiqueCat.add(unCatalogue);

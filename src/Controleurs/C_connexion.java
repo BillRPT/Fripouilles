@@ -14,6 +14,7 @@ public class C_connexion implements ActionListener {
     private C_pbenevole cPBenevole;
     private C_psecretaire cPSecretaire;
     private C_principal cPrincipal;
+    private C_pmaire cPmaire;
 
     // ------------------------------ Constructeur ------------------------------
     public C_connexion(C_principal uncPrincipal) {

@@ -20,7 +20,7 @@ public class V_consultercatalogueCsv extends JPanel{
 	
 	public V_consultercatalogueCsv(ArrayList<Catalogue> lesCatalogue) {
 		
-		rep = "<HTML><pre>";
+		rep = "<HTML>";
 		
 		setLayout(new GridBagLayout());
 	    this.gbc = new GridBagConstraints();
@@ -32,7 +32,7 @@ public class V_consultercatalogueCsv extends JPanel{
 	        rep = rep + unCatalogue.toCSV() + "<br>";
 	    }
 
-	    rep = rep + "</pre></HTML>";
+	    rep = rep + "</HTML>";
 
 	    this.monLabel = new JLabel(rep);
 
