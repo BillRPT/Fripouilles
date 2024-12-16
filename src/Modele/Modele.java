@@ -72,7 +72,7 @@ public class Modele {
 		int count = 0;
 		
 		try {
-			String sql = "SELECT COUNT(*) AS nbCo FROM utilisateur WHERE loginUser = ? AND mdpUser = ?";
+			String sql = "SELECT COUNT(*) AS nbCo FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
 			pst.setString(1, login);
@@ -106,7 +106,7 @@ public class Modele {
 		int count = 0;
 		
 		try {
-			String sql = "SELECT roleUser FROM utilisateur WHERE loginUser = ? AND mdpUser = ?";
+			String sql = "SELECT roleUser FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
 			pst.setString(1, login);
@@ -174,7 +174,7 @@ public class Modele {
 	    
 	    try {
 	        //vérif si la catégorie existe
-	        String checkCatSql = "SELECT idCat FROM catalogue WHERE libelleCat = ?";
+	        String checkCatSql = "SELECT idCat FROM Catalogue WHERE libelleCat = ?";
 	        pst = connexion.prepareStatement(checkCatSql);
 	        pst.setString(1, uncateArt);
 	        ResultSet rs = pst.executeQuery();
