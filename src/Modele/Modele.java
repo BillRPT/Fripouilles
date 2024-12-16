@@ -20,7 +20,6 @@ public class Modele {
 	private static String user = "root";
 	private static String mdp = "";
 
-
 	
 	/**
 	* Procedure qui permet de se connecter a la bdd
@@ -310,7 +309,7 @@ public class Modele {
 		boolean rep = false;
 		
 		try {
-			String sql = "INSERT INTO catalogue (libelleCat, dateCat) VALUES (?,?)";
+			String sql = "INSERT INTO catalogue (libelleCat, dateCat, etatCat) VALUES (?,?, 'Disponible')";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -420,10 +419,128 @@ public class Modele {
 			}
 		}
 		catch(Exception erreur) {
-			System.out.println("Erreur de recuperation0 catalogue " + erreur);
+			System.out.println("Erreur de recuperation catalogue " + erreur);
 		}
 		
 		return catalogue;
+	}
+	
+	/**
+	 * Méthode pour ajouter un article dans un catalogue, bénévole
+	 * @param article
+	 * @param catalogue
+	 * @return
+	 */
+	
+	public static boolean ajouterArtCat(String article, String catalogue) {
+		boolean rep = false;
+		
+		if (rechercherCatalogue(catalogue)) {
+		    try {
+		        //récup l'id du catalogue
+		        String getIdCatSql = "SELECT idCat FROM Catalogue WHERE libelleCat = ?";
+		        pst = connexion.prepareStatement(getIdCatSql);
+		        pst.setString(1, catalogue);
+		        ResultSet rs = pst.executeQuery();
+
+		        if (rs.next()) {
+		            int idCat = rs.getInt("idCat");
+
+		            if (rechercherArticle(article)) {
+		                //recup l'id de l'article
+		                String getIdArticleSql = "SELECT idArt FROM Article WHERE libelleArt = ?";
+		                pst = connexion.prepareStatement(getIdArticleSql);
+		                pst.setString(1, article);
+		                ResultSet rss = pst.executeQuery();
+
+		                if (rss.next()) {
+		                    int idArt = rss.getInt("idArt");
+
+		                    //ajouter l'article au catalogue
+		                    String addArticleSql = "INSERT INTO article_catalogue VALUES (?, ?)";
+		                    pst = connexion.prepareStatement(addArticleSql);
+		                    pst.setInt(1, idArt);
+		                    pst.setInt(2, idCat);
+		                    pst.executeUpdate();
+
+		                    rep = true;
+		                } else {
+		                    System.out.println("Aucun article trouvé pour le libellé : " + article);
+		                }
+		            } else {
+		                System.out.println("Article non présent dans la base pour : " + article);
+		            }
+		        } else {
+		            System.out.println("Catalogue non trouvé pour le libellé : " + catalogue);
+		        }
+		    } catch (SQLException sqlErreur) {
+		        System.out.println("Erreur SQL : " + sqlErreur.getMessage());
+		    } catch (Exception erreur) {
+		        System.out.println("Erreur inattendue : " + erreur.getMessage());
+		    }
+		} else {
+		    System.out.println("Le catalogue " + catalogue + " n'existe pas.");
+		}
+
+		return rep;
+	}
+	
+	/**
+	 * Méthode pour rechercher un article d'un catalogue, bénévole
+	 * @param article
+	 * @param catalogue
+	 * @return
+	 */
+	
+	public static boolean rechercherArtCat(String article, String catalogue) {
+	    boolean rep = false;
+
+	    String sql = "SELECT COUNT(*) AS nb FROM Article_Catalogue ac "
+	    		+ "JOIN Article a ON ac.idArt = a.idArt JOIN Catalogue c "
+	    		+ "ON ac.idCat = c.idCat WHERE a.libelleArt = ? AND c.libelleCat = ?";
+
+	    try (PreparedStatement pst = connexion.prepareStatement(sql)) {
+	        pst.setString(1, article);
+	        pst.setString(2, catalogue);
+
+	        try (ResultSet rs = pst.executeQuery()) {
+	            if (rs.next()) {
+	                int count = rs.getInt("nb");
+	                rep = count > 0;
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Erreur SQL : " + e.getMessage());
+	    }
+
+	    return rep;
+	}
+	
+	/**
+	 * Méthode pour suprimer un article d'un catalogue, pour bénévole
+	 * @param article
+	 * @param catalogue
+	 * @return
+	 */
+	
+	public static boolean supprimerArtCat(String article, String catalogue) {
+	    boolean rep = false;
+
+	    String sql = "DELETE FROM Article_Catalogue "
+	    		+ "WHERE idArt = (SELECT idArt FROM Article WHERE libelleArt = ?)"
+	    		+ "AND idCat = (SELECT idCat FROM Catalogue WHERE libelleCat = ?)";
+
+	    try (PreparedStatement pst = connexion.prepareStatement(sql)) {
+	        pst.setString(1, article);
+	        pst.setString(2, catalogue);
+
+	        int rowsAffected = pst.executeUpdate();
+	        rep = rowsAffected > 0; 
+	    } catch (SQLException e) {
+	        System.out.println("Erreur SQL : " + e.getMessage());
+	    }
+
+	    return rep;
 	}
 	
 	/**

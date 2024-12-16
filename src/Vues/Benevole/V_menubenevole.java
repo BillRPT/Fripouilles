@@ -4,6 +4,9 @@ import javax.swing.*;
 
 import Controleurs.C_pbenevole;
 import Vues.V_principal;
+import Vues.Benevole.ArtCat.V_ajouterartcat;
+import Vues.Benevole.ArtCat.V_rechercherartcat;
+import Vues.Benevole.ArtCat.V_supprimerartcat;
 import Vues.Benevole.Article.V_ajouterarticle;
 import Vues.Benevole.Article.V_rechercherarticle;
 import Vues.Benevole.Article.V_supprimerarticle;
@@ -26,6 +29,10 @@ public class V_menubenevole extends JMenuBar {
 	private V_recherchercatalogue vRechercherCatalogue;
 	private V_supprimercatalogue vSupprimerCatalogue;
 	
+	private V_ajouterartcat vAjouterArtCat;
+	private V_rechercherartcat vRechercherArtCat;
+	private V_supprimerartcat VSupprimerArtCat;
+	
 	//attributs du menu
     private JMenu menuConsulter;
     private JMenuItem itemConsulterArticle;
@@ -35,6 +42,7 @@ public class V_menubenevole extends JMenuBar {
     private JMenu menuCreer;
     private JMenuItem itemCreerArticle;
     private JMenuItem itemCreerCatalogue;
+    private JMenuItem itemAjtArtCat;
 
     private JMenu menuRechercher;
     private JMenuItem itemRechercherArticle;
@@ -63,9 +71,10 @@ public class V_menubenevole extends JMenuBar {
         itemConsulterCatalogues = new JMenuItem("Consulter les catalogues");
         itemConsulterArtCatalogues = new JMenuItem("Consulter les articles d'un catalogue");
 
-        menuCreer = new JMenu("Creer");
-        itemCreerArticle = new JMenuItem("Creer un article");
+        menuCreer = new JMenu("Ajouter");
+        itemCreerArticle = new JMenuItem("Ajouter un article");
         itemCreerCatalogue = new JMenuItem("Creer un catalogue");
+        itemAjtArtCat = new JMenuItem("Ajouter un article dans un catalogue");
 
         menuRechercher = new JMenu("Rechercher");
         itemRechercherArticle = new JMenuItem("Rechercher un article");
@@ -84,6 +93,7 @@ public class V_menubenevole extends JMenuBar {
 
         menuCreer.add(itemCreerArticle);
         menuCreer.add(itemCreerCatalogue);
+        menuCreer.add(itemAjtArtCat);
 
         menuRechercher.add(itemRechercherArticle);
         menuRechercher.add(itemRechercherCatalogue);
@@ -106,6 +116,7 @@ public class V_menubenevole extends JMenuBar {
 
         itemCreerArticle.addActionListener(new CreerArticleListener());
         itemCreerCatalogue.addActionListener(new CreerCatalogueListener());
+        itemAjtArtCat.addActionListener(new CreerArtCat());
 
         itemRechercherArticle.addActionListener(new RechercherArticleListener());
         itemRechercherCatalogue.addActionListener(new RechercherCatalogueListener());
@@ -167,6 +178,23 @@ public class V_menubenevole extends JMenuBar {
             vPrincipal.repaint();
             }
     }
+    
+    class CreerArtCat implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Action : Ajt article categ");
+            
+            vPrincipal.getContentPane().removeAll();
+
+            vAjouterArtCat = new V_ajouterartcat();
+            vPrincipal.add(vAjouterArtCat);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+		}
+    	
+    }
 
     class RechercherArticleListener implements ActionListener {
         @Override
@@ -202,6 +230,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Rechercher un article dans un catalogue");
+            
+            vPrincipal.getContentPane().removeAll();
+
+            vRechercherArtCat = new V_rechercherartcat();
+            vPrincipal.add(vRechercherArtCat);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 
@@ -240,6 +276,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Supprimer un article d'un catalogue");
+            
+            vPrincipal.getContentPane().removeAll();
+
+            VSupprimerArtCat = new V_supprimerartcat();
+            vPrincipal.add(VSupprimerArtCat);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 }
