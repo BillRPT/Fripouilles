@@ -16,6 +16,7 @@ import Vues.Secretaire.Benevole.V_supprimerBenevole;
 import Vues.Secretaire.Consulter.V_consultercatalogue;
 import Vues.Secretaire.Consulter.V_consultercatalogueCsv;
 import Vues.Secretaire.Consulter.V_consultercatalogueXml;
+import Vues.Secretaire.Consulter.V_consulterhistoriquecatalogue;
 import Vues.Secretaire.Consulter.V_consultervente;
 import Vues.Secretaire.Consulter.V_consulterventeCsv;
 import Vues.Secretaire.Consulter.V_consulterventeXml;
@@ -46,6 +47,7 @@ public class C_psecretaire {
 	private V_consulterventeXml V_consulterlesventesXml;
 	private V_consulterventeJson V_consulterlesventesJson;
 	private V_consulterventeCsv V_consulterlesventeCsv;
+	private V_consulterhistoriquecatalogue V_consulterleshistoriquecatalogue;
 	
 	public C_psecretaire(C_principal lecPrincipal) {
 		this.uncPrincipal = lecPrincipal;
@@ -123,6 +125,13 @@ public class C_psecretaire {
 		return V_consulterlesventeCsv;
 	}
 	
+	public JPanel refreshhistoriqueCatalogue() {
+		
+		V_consulterleshistoriquecatalogue = new V_consulterhistoriquecatalogue(this.getlescataloguesHistorique());
+		
+		return V_consulterleshistoriquecatalogue;
+	}
+	
 	/**
 	 * Fonction qui permet de récupérer les ventes pour refresh le JTable
 	 * @return une liste de vente lesVentes
@@ -139,6 +148,17 @@ public class C_psecretaire {
 	 * */
 	private ArrayList<Catalogue> getlesCatalogues() {
 		ArrayList<Catalogue> lesCatalogues = Modele.consulterCatalogue();
+		
+		return lesCatalogues;
+	}
+	
+	
+	/**
+	 * Fonction qui permet de recuperer les historiques des catalogues (c'est a dire les cata dispo et non dispo)
+	 * @return une liste de catalogues lesCatalogues
+	 * */
+	private ArrayList<Catalogue> getlescataloguesHistorique() {
+		ArrayList<Catalogue> lesCatalogues = Modele.historiqueCatalogue();
 		
 		return lesCatalogues;
 	}

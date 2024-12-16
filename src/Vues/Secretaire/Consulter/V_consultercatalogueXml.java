@@ -24,7 +24,7 @@ public class V_consultercatalogueXml extends JPanel{
 	    this.gbc.insets = new Insets(5, 5, 5, 5);
 	    this.gbc.fill = GridBagConstraints.HORIZONTAL;
 	    
-	    monTextArea = new JTextArea(10, 90); 
+	    monTextArea = new JTextArea(10, 80); 
         monTextArea.setEditable(false);  
         monTextArea.setLineWrap(true);   
         monTextArea.setWrapStyleWord(true);

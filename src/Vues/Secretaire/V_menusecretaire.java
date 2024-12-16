@@ -47,6 +47,7 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenuItem consulterVenteXml;
 	private JMenuItem consulterVenteJson;
 	private JMenuItem consulterVenteCsv;
+	private JMenuItem consulterCatalogueHistorique;
 	
 	//Menu avec les items pour les consultations
 	private JMenu menuSupprimer;
@@ -91,6 +92,8 @@ public class V_menusecretaire extends JMenuBar{
 		consulterVenteXml = new JMenuItem("Consulter les Ventes Xml");
 		consulterVenteJson = new JMenuItem("Consulter les Ventes Json");
 		consulterVenteCsv = new JMenuItem("Consulter les Ventes Csv");
+		consulterCatalogueHistorique = new JMenuItem("Consulter les historiques des catalogues");
+		consulterCatalogueHistorique.addActionListener(new consulterhistoriqueCatalogue());
 		consulterVenteCsv.addActionListener(new consulterVenteCsv());
 		consulterVenteJson.addActionListener(new consulterventeJson());
 		consulterVenteXml.addActionListener(new consulterventeXml());
@@ -107,6 +110,7 @@ public class V_menusecretaire extends JMenuBar{
 		menuConsulter.add(consulterVenteXml);
 		menuConsulter.add(consulterVenteJson);
 		menuConsulter.add(consulterVenteCsv);
+		menuConsulter.add(consulterCatalogueHistorique);
 		
 		
 		//Section des suppresions
@@ -338,6 +342,21 @@ public class V_menusecretaire extends JMenuBar{
 
             // Ajoute le panel de ventee
             unevuePrincipal.add(uncontroleurSecretaire.refreshventeCsv());  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+			
+		}
+		
+	}
+	
+	class consulterhistoriqueCatalogue implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(uncontroleurSecretaire.refreshhistoriqueCatalogue());  
 
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();
