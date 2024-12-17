@@ -26,7 +26,6 @@ public class V_menubenevole extends JMenuBar {
 	//les vues
 	private V_principal vPrincipal;
 	
-	private V_consulterarticle vConsulterArticle;
 	private V_ajouterarticle vAjouterArticle;
 	private V_rechercherarticle vRechercherArticle;
 	private V_supprimerarticle vSupprimerArticle;
@@ -34,12 +33,12 @@ public class V_menubenevole extends JMenuBar {
 	private V_ajoutercatalogue vAjouterCatalogue;
 	private V_recherchercatalogue vRechercherCatalogue;
 	private V_supprimercatalogue vSupprimerCatalogue;
-	private V_consultercatalogue vConsulterCatalogue;
 	
 	private V_consulterartcat vConArtCat;
 	private V_ajouterartcat vAjouterArtCat;
 	private V_rechercherartcat vRechercherArtCat;
 	private V_supprimerartcat VSupprimerArtCat;
+	
 	
 	//attributs du menu
     private JMenu menuConsulter;
@@ -110,6 +109,19 @@ public class V_menubenevole extends JMenuBar {
         itemSupprimerArtCat = new JMenuItem("Supprimer un article d'un catalogue");
         
         xml = new JMenu("XML");
+        itemXmlArticle = new JMenuItem("XML Article");
+        itemXmlCatalogue = new JMenuItem("XML Catalogue");
+        itemXmlArtCat = new JMenuItem("XML Article");
+
+        json = new JMenu("JSON");
+        itemJsonArticle = new JMenuItem("JSON Article");
+        itemJsonCatalogue = new JMenuItem("JSON Catalogue");
+        itemJsonArtCat = new JMenuItem("JSON Article");
+
+        csv = new JMenu("CSV");
+        itemCsvArticle = new JMenuItem("CSV Article");
+        itemCsvCatalogue = new JMenuItem("CSV Catalogue");
+        itemCsvArtCat = new JMenuItem("CSV Article");
 
         //Ajout des items aux menus
         menuConsulter.add(itemConsulterArticle);
@@ -127,12 +139,27 @@ public class V_menubenevole extends JMenuBar {
         menuSupprimer.add(itemSupprimerArticle);
         menuSupprimer.add(itemSupprimerCatalogue);
         menuSupprimer.add(itemSupprimerArtCat);
+        
+        json.add(itemJsonArticle);
+        json.add(itemJsonCatalogue);
+        json.add(itemJsonArtCat);
+
+        csv.add(itemCsvArticle);
+        csv.add(itemCsvCatalogue);
+        csv.add(itemCsvArtCat);
+        
+        xml.add(itemXmlArticle);
+        xml.add(itemXmlCatalogue);
+        xml.add(itemXmlArtCat);
 
         //ajout des menus à la barre de menu
         this.add(menuConsulter);
         this.add(menuCreer);
         this.add(menuRechercher);
         this.add(menuSupprimer);
+        this.add(json);
+        this.add(xml);
+        this.add(csv);
 
         //ajout des ActionListeners avec des classes internes
         itemConsulterArticle.addActionListener(new ConsulterArticleListener());
@@ -150,6 +177,18 @@ public class V_menubenevole extends JMenuBar {
         itemSupprimerArticle.addActionListener(new SupprimerArticleListener());
         itemSupprimerCatalogue.addActionListener(new SupprimerCatalogueListener());
         itemSupprimerArtCat.addActionListener(new SupprimerArtCatListener());
+        
+        itemJsonArticle.addActionListener(new JsonArticle());
+        itemJsonCatalogue.addActionListener(new JsonCatalogue());
+        itemJsonArtCat.addActionListener(new JsonArtCat());
+        
+        itemXmlArticle.addActionListener(new XmlArticle());
+        itemXmlCatalogue.addActionListener(new XmlCatalogue());
+        itemXmlArtCat.addActionListener(new XmlArtCat());
+        
+        itemCsvArticle.addActionListener(new CsvArticle());
+        itemCsvCatalogue.addActionListener(new CsvCatalogue());
+        itemCsvArtCat.addActionListener(new CsvArtCat());
     }
 
     //classes internes pour gérer les actions
@@ -329,6 +368,145 @@ public class V_menubenevole extends JMenuBar {
 
             VSupprimerArtCat = new V_supprimerartcat();
             vPrincipal.add(VSupprimerArtCat);  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // JSON Article Listener
+    class JsonArticle implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Action : Exporter article en JSON");
+
+            vPrincipal.getContentPane().removeAll();
+
+            vPrincipal.add(cBenevole.refreshArticlesJson());
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // JSON Catalogue Listener
+    class JsonCatalogue implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	System.out.println("Action : Exporter article en JSON");
+
+            vPrincipal.getContentPane().removeAll();
+
+            vPrincipal.add(cBenevole.refreshCatalogueJson());
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // JSON Article-Catalogue Listener
+    class JsonArtCat implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Action : Exporter articles d'un catalogue en JSON");
+
+            vPrincipal.getContentPane().removeAll();
+
+            vPrincipal.add(cBenevole.refreshCatalogueJson());
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // XML Article Listener
+    class XmlArticle implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Action : Exporter article en XML");
+
+            vPrincipal.getContentPane().removeAll();
+
+            vPrincipal.add(cBenevole.refreshArticlesXml());
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // XML Catalogue Listener
+    class XmlCatalogue implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Action : Exporter catalogue en XML");
+
+            vPrincipal.getContentPane().removeAll();
+
+            vPrincipal.add(cBenevole.refreshCatalogueXml());
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // XML Article-Catalogue Listener
+    class XmlArtCat implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Action : Exporter articles d'un catalogue en XML");
+
+            vPrincipal.getContentPane().removeAll();
+
+            JPanel xmlArtCatView = new JPanel();
+            xmlArtCatView.add(new JLabel("Exportation des articles d'un catalogue en XML..."));
+            vPrincipal.add(xmlArtCatView);
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // CSV Article Listener
+    class CsvArticle implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        	System.out.println("Action : Exporter catalogue en CSV");
+
+            vPrincipal.getContentPane().removeAll();
+
+            vPrincipal.add(cBenevole.refreshArticlesCsv());
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // CSV Catalogue Listener
+    class CsvCatalogue implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Action : Exporter catalogue en CSV");
+
+            vPrincipal.getContentPane().removeAll();
+
+            vPrincipal.add(cBenevole.refreshCatalogueCsv());
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+        }
+    }
+
+    // CSV Article-Catalogue Listener
+    class CsvArtCat implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Action : Exporter articles d'un catalogue en CSV");
+
+            vPrincipal.getContentPane().removeAll();
+
+            JPanel csvArtCatView = new JPanel();
+            csvArtCatView.add(new JLabel("Exportation des articles d'un catalogue en CSV..."));
+            vPrincipal.add(csvArtCatView);
 
             vPrincipal.revalidate();
             vPrincipal.repaint();

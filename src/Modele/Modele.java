@@ -591,49 +591,51 @@ public class Modele {
 	}
 	
 	public static ArrayList<Article> consulterArtCat(String libelleCat) {
+	    ArrayList<Article> lesArticles = new ArrayList<>();
 	    int idCat;
 	    int idArt;
 	    String libelleArt;
 	    String typeArt;
 	    String etatArt;
 
-	    ArrayList<Article> lesArticles = new ArrayList<Article>();
+	    String sqlCat = "SELECT idCat FROM Catalogue WHERE libelleCat = ?";
+	    String sqlArticles = "SELECT a.idArt, a.libelleArt, a.typeArt, a.etatArt " +
+	                         "FROM Article a JOIN Article_Catalogue ac ON a.idArt = ac.idArt " +
+	                         "WHERE ac.idCat = ?";
 
 	    try {
-	        //récupérer l'ID de la catégorie à partir du libellé
-	        String sqlCat = "SELECT idCat FROM Catalogue WHERE libelleCat = ?";
-	        try (PreparedStatement pstCat = connexion.prepareStatement(sqlCat)) {
-	            pstCat.setString(1, libelleCat);
-	            try (ResultSet rsCat = pstCat.executeQuery()) {
-	                if (rsCat.next()) {
-	                    idCat = rsCat.getInt("idCat");
+	        PreparedStatement pstCat = connexion.prepareStatement(sqlCat);
+	        pstCat.setString(1, libelleCat);
+	        ResultSet rsCat = pstCat.executeQuery();
 
-	                    //requête pour récupérer les articles liés à l'ID de la catégorie
-	                    String sqlArticles = "SELECT a.idArt, a.libelleArt, a.typeArt, a.etatArt FROM Article a JOIN Article_Catalogue ac ON a.idArt = ac.idArt WHERE ac.idCat = ?";
-	                    try (PreparedStatement pstArt = connexion.prepareStatement(sqlArticles)) {
-	                        pstArt.setInt(1, idCat);
-	                        try (ResultSet rsArt = pstArt.executeQuery()) {
-	                            while (rsArt.next()) {
-	                                idArt = rsArt.getInt("idArt");
-	                                libelleArt = rsArt.getString("libelleArt");
-	                                typeArt = rsArt.getString("typeArt");
-	                                etatArt = rsArt.getString("etatArt");
+	        if (rsCat.next()) {
+	            idCat = rsCat.getInt("idCat");
 
-	                                //créer un objet Article et l'ajouter à la liste
-	                                Article unArticle = new Article(idArt, libelleArt, typeArt, etatArt);
-	                                lesArticles.add(unArticle);
-	                            }
-	                        }
-	                    }
-	                } else {
-	                    System.out.println("Aucune catégorie trouvée pour le libellé : " + libelleCat);
-	                }
+	            PreparedStatement pstArt = connexion.prepareStatement(sqlArticles);
+	            pstArt.setInt(1, idCat);
+	            ResultSet rsArt = pstArt.executeQuery();
+
+	            while (rsArt.next()) {
+	                idArt = rsArt.getInt("idArt");
+	                libelleArt = rsArt.getString("libelleArt");
+	                typeArt = rsArt.getString("typeArt");
+	                etatArt = rsArt.getString("etatArt");
+
+	                Article unArticle = new Article(idArt, libelleArt, typeArt, etatArt);
+	                lesArticles.add(unArticle);
 	            }
-	        }
-	    } catch (SQLException erreur) {
-	        System.out.println("Erreur lors de la consultation des articles : " + erreur.getMessage());
-	    }
 
+	            rsArt.close();
+	            pstArt.close();
+	        } else {
+	            System.out.println("Aucune catégorie trouvée pour le libellé : " + libelleCat);
+	        }
+	        // Fermeture des ressources liées à la catégorie
+	        rsCat.close();
+	        pstCat.close();
+	    } catch (SQLException e) {
+	        System.out.println("Erreur lors de la consultation des articles : " + e.getMessage());
+	    }
 	    return lesArticles;
 	}
 	/**
