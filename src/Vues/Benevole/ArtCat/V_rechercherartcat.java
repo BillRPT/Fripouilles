@@ -63,36 +63,35 @@ import java.awt.event.ActionListener;
 	        add(messageLabel, gbc);
 
 	        //ajouter ActionListener au bouton
-	        btnValider.addActionListener(new RechercherArtCat());
+	        btnValider.addActionListener(new rechercherCatalogue());
 
 	        this.setVisible(true);
 	    }
-	    class RechercherArtCat implements ActionListener {
+	    class rechercherCatalogue implements ActionListener {
 	        @Override
 	        public void actionPerformed(ActionEvent e) {
-	            //réinitialiser le texte du message
+
 	            messageLabel.setText("");
 
-	            //vérifier que les champs requis sont remplis
-	            if (!libelleArt.getText().isEmpty() && !typeArt.getText().isEmpty()) {
-	            	
-	            		if(Modele.rechercherArtCat(libelleArt.getText(), typeArt.getText())) {
-	            			messageLabel.setForeground(Color.GREEN);
-	            			messageLabel.setText("Article trouvé");
-	            		}
-	            		else {
-	            			messageLabel.setForeground(Color.RED);
-	            			messageLabel.setText("Article non trouvé");
-	            		}
 
-	                //réinitialiser les champs de texte
+	            if (!libelleArt.getText().isEmpty()) {
+	                String libelle = libelleArt.getText();
+	                
+	                boolean articleTrouve = Modele.rechercherCatalogue(libelle);
+
+	                if (articleTrouve) {
+	                    messageLabel.setForeground(java.awt.Color.GREEN);
+	                    messageLabel.setText("Article trouvé : " + libelle);
+	                } else {
+	                    messageLabel.setForeground(java.awt.Color.RED);
+	                    messageLabel.setText("Aucun article trouvé pour le libelle : " + libelle);
+	                }
+	 
 	                libelleArt.setText("");
-	                typeArt.setText("");
-
 	            } else {
 	                //afficher un message d'erreur
-	                messageLabel.setForeground(Color.RED);
-	                messageLabel.setText("Veuillez remplir tous les champs requis.");
+	                messageLabel.setForeground(java.awt.Color.RED);
+	                messageLabel.setText("Veuillez entrer un libelle pour rechercher un article.");
 	            }
 	        }
 	    }
