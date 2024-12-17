@@ -6,7 +6,6 @@ import Vues.Benevole.Article.*;
 import Vues.Benevole.Catalogue.V_ajoutercatalogue;
 import Vues.Maire.Consulter.V_consultercatalogue;
 import Vues.Secretaire.Consulter.*;
-import Vues.Secretaire.Consulter.V_consultervente;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,6 +28,14 @@ public class C_pbenevole {
 		private V_consultercatalogue vConsulterCatalogue;
 		private V_consulterarticle vConsulterArticle;
 		private V_ajoutercatalogue vAjouterCatalogue;
+		
+		private V_consultercatalogueJson vConsulterCatJson;
+		private V_consultercatalogueXml vConsulterCatXml;
+		private V_consultercatalogueCsv vConsulterCatCsv;
+		
+		private V_jsonarticle vJsonArticle;
+		private V_xmlarticle vXmlArticle;
+		private V_csvarticle vCsvArticle;
 
 		private CardLayout cardLayout;
 	    private JPanel cardPanel;
@@ -65,4 +72,56 @@ public class C_pbenevole {
 			
 			return vConsulterCatalogue;
 		}
+		
+		public JPanel refreshArticlesJson() {
+			
+			vJsonArticle = new V_jsonarticle(Modele.afficherArticles());
+			
+			return vJsonArticle;
+		}
+		
+		public JPanel refreshArticlesXml() {
+			
+			vXmlArticle = new V_xmlarticle(Modele.afficherArticles());
+			
+			return vXmlArticle;
+		}
+		
+		public JPanel refreshArticlesCsv() {
+			
+			vCsvArticle = new V_csvarticle(Modele.afficherArticles());
+			
+			return vCsvArticle;
+		}
+		
+		public JPanel refreshCatalogueXml() {
+			
+			vConsulterCatXml = new V_consultercatalogueXml(Modele.historiqueCatalogue());
+			
+			return vConsulterCatXml;
+		}
+		
+		/**
+		 * Fonction qui permet de refresh la vue pour voir les nouvelles donnees qui ont ete add
+		 * @return un JPanel
+		 * */
+		public JPanel refreshCatalogueJson() {
+			
+			vConsulterCatJson = new V_consultercatalogueJson(Modele.historiqueCatalogue());
+			
+			return vConsulterCatJson;
+		}
+		
+		
+		/**
+		 * Fonction qui permet de refresh la vue pour voir les nouvelles donnees qui ont ete add
+		 * @return un JPanel
+		 * */
+		public JPanel refreshCatalogueCsv() {
+			
+			vConsulterCatCsv = new V_consultercatalogueCsv(Modele.historiqueCatalogue());
+			
+			return vConsulterCatCsv;
+		}
+		
 }
