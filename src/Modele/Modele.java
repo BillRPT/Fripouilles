@@ -922,7 +922,7 @@ public class Modele {
 		
 	}*/
 	
-	/*La req a utiliser
+	/*La req a use
 	 * 
 	 * SELECT vente.idVenteEph,dateEph,typeVente, etatCat, COUNT(idArt) AS nbArticlesVendues 
 		FROM vente, article_catalogue, catalogue 
