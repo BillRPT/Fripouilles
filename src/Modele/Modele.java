@@ -839,7 +839,7 @@ public class Modele {
 	public static boolean verifierRole(String user) {
 		boolean rep = false;
 		int chiffre = 0;
-		
+		//test
 		try {
 			String sql = "SELECT COUNT(idUser) as nb FROM utilisateur WHERE loginUser = ? AND roleUser = 'benevole'";
 			
