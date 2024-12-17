@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing. *;
 
-import Class.Catalogue;
+
 import Class.Utilisateur;
 
 public class V_consulterbenevole extends JPanel{
@@ -25,7 +25,7 @@ public class V_consulterbenevole extends JPanel{
         Object data[][] = new Object[10][3];
 	    String[] title = {"Nom", "Prenom", "Login"};
 	    
-	    // Remplir le tableau avec les données des catalogues
+	    // Remplir le tableau avec les donnï¿½es des catalogues
 	    int i = 0;
 	    for (Utilisateur unUtilisateur : lesUtilisateurs) {
 	    	data[i][0] = unUtilisateur.getunNom();

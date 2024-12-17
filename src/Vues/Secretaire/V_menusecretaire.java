@@ -355,7 +355,7 @@ public class V_menusecretaire extends JMenuBar{
 			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
 
             // Ajoute le panel de ventee
-            unevuePrincipal.add(uncontroleurSecretaire.refreshhistoriqueCatalogue());  
+            unevuePrincipal.add(uncontroleurSecretaire.refresheconsulterBenevole());  
 
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();

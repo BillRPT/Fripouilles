@@ -169,9 +169,9 @@ public class C_psecretaire {
 	 * */
 	public JPanel refresheconsulterBenevole() {
 		
-		V_consulterleshistoriquecatalogue = new V_consulterhistoriquecatalogue(this.getlescataloguesHistorique());
+		V_consulterBenevole = new V_consulterbenevole(this.getlesBenevoles());
 		
-		return V_consulterleshistoriquecatalogue;
+		return V_consulterBenevole;
 	}
 	
 	/**

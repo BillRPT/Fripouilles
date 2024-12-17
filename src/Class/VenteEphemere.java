@@ -6,11 +6,29 @@ public class VenteEphemere {
 	private String typeVente;
 	private String nomVente;
 	
+	//Pour les statistiques
+	
+	private int nbCatalogue;
+	private int nbarticleVendu;
+	private String etatVente;
+	
 	public VenteEphemere(String unidVente, String uneDate, String untypeVente, String unNomVente) {
 		this.idVenteEph = unidVente;
 		this.dateEph = uneDate;
 		this.typeVente = untypeVente;
 		this.nomVente = unNomVente;
+	}
+	
+	
+	//Constructeur pour les stats
+	
+	public VenteEphemere(String unidVente, String uneDate, String untypeVente, String unNomVente, int unnbCatalogue, String unetatVente) {
+		this.idVenteEph = unidVente;
+		this.dateEph = uneDate;
+		this.typeVente = untypeVente;
+		this.nomVente = unNomVente;	
+		this.nbCatalogue = unnbCatalogue;
+		this.etatVente = unetatVente;
 	}
 	
 	public String getidVente() {
@@ -28,6 +46,18 @@ public class VenteEphemere {
 	public String getnomVente() {
 		return this.nomVente;
 	}
+	
+	public int getNbCatalogue() {
+        return this.nbCatalogue;
+    }
+
+    public int getNbarticleVendu() {
+        return this.nbarticleVendu;
+    }
+    
+    public String getEtatVente() {
+        return this.etatVente;
+    }
 	
 	/**
 	 * Fonction qui retourne une chaine sous format XML

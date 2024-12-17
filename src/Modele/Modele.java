@@ -18,7 +18,7 @@ public class Modele {
 	//Constante a modifier en fonction de l'�cole ou la maison
 	private static String host = "localhost";
 	private static String user = "root";
-	private static String mdp = "root";
+	private static String mdp = "";
 
 	
 	/**
@@ -915,5 +915,21 @@ public class Modele {
 
 		return lesUtilisateur;
 	}
+	
+	/*public static ArrayList<VenteEphemere> consulterStatistiques() {
+		
+	}*/
+	
+	/*La req a utiliser
+	 * 
+	 * SELECT vente.idVenteEph,dateEph,typeVente, etatCat, COUNT(idArt) AS nbArticlesVendues 
+		FROM vente, article_catalogue, catalogue 
+		WHERE vente.idVenteEph = article_catalogue.idCat 
+		AND article_catalogue.idCat = catalogue.idCat 
+		AND vente.idVenteEph IS NOT NULL 
+		GROUP BY idVenteEph, dateEph, typeVente, etatCat 
+		ORDER BY dateEph;
+	 * 
+	 * */
 	
 }
