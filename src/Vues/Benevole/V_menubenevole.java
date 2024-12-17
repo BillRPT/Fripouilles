@@ -5,6 +5,7 @@ import javax.swing.*;
 import Controleurs.C_pbenevole;
 import Vues.V_principal;
 import Vues.Benevole.ArtCat.V_ajouterartcat;
+import Vues.Benevole.ArtCat.V_consulterartcat;
 import Vues.Benevole.ArtCat.V_rechercherartcat;
 import Vues.Benevole.ArtCat.V_supprimerartcat;
 import Vues.Benevole.Article.V_ajouterarticle;
@@ -21,6 +22,8 @@ public class V_menubenevole extends JMenuBar {
 	private C_pbenevole cBenevole;
 	//les vues
 	private V_principal vPrincipal;
+	
+	private V_ajouterarticle vConsulterArticle;
 	private V_ajouterarticle vAjouterArticle;
 	private V_rechercherarticle vRechercherArticle;
 	private V_supprimerarticle vSupprimerArticle;
@@ -29,6 +32,7 @@ public class V_menubenevole extends JMenuBar {
 	private V_recherchercatalogue vRechercherCatalogue;
 	private V_supprimercatalogue vSupprimerCatalogue;
 	
+	private V_consulterartcat vConArtCat;
 	private V_ajouterartcat vAjouterArtCat;
 	private V_rechercherartcat vRechercherArtCat;
 	private V_supprimerartcat VSupprimerArtCat;
@@ -132,6 +136,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Consulter les articles");
+            
+            vPrincipal.getContentPane().removeAll();
+            
+            vPrincipal.add(cBenevole.refreshArticles());
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
+            
         }
     }
 
@@ -139,6 +151,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Consulter les catalogues");
+            
+            vPrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee avec cette m�thode pour refresh le JTable
+            vPrincipal.add(cBenevole.refreshCatalogue());  
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 
@@ -146,6 +166,14 @@ public class V_menubenevole extends JMenuBar {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Action : Consulter les articles d'un catalogue");
+            
+            vPrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            vConArtCat = new V_consulterartcat(vPrincipal);
+            vPrincipal.add(vConArtCat); 
+
+            vPrincipal.revalidate();
+            vPrincipal.repaint();
         }
     }
 
