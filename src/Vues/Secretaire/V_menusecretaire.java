@@ -47,6 +47,7 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenuItem consulterVenteJson;
 	private JMenuItem consulterVenteCsv;
 	private JMenuItem consulterCatalogueHistorique;
+	private JMenuItem consulterBenevole;
 	
 	//Menu avec les items pour les consultations
 	private JMenu menuSupprimer;
@@ -91,6 +92,7 @@ public class V_menusecretaire extends JMenuBar{
 		consulterVenteJson = new JMenuItem("Consulter les Ventes Json");
 		consulterVenteCsv = new JMenuItem("Consulter les Ventes Csv");
 		consulterCatalogueHistorique = new JMenuItem("Consulter les historiques des catalogues");
+		consulterBenevole = new JMenuItem("Consulter les benevoles");
 		consulterCatalogueHistorique.addActionListener(new consulterhistoriqueCatalogue());
 		consulterVenteCsv.addActionListener(new consulterVenteCsv());
 		consulterVenteJson.addActionListener(new consulterventeJson());
@@ -99,6 +101,7 @@ public class V_menusecretaire extends JMenuBar{
 		consulterCatalogueXml.addActionListener(new consultercatalogueXml());
 		consulterCatalogueJson.addActionListener(new consultercatalogueJson());
 		consulterCatalogueCsv.addActionListener(new consultercatalogueCsv());
+		consulterBenevole.addActionListener(new consulterBenevole());
 		menuConsulter.add(consulterVente);
 		menuConsulter.add(consulterCatalogueXml);
 		menuConsulter.add(consulterCatalogueJson);
@@ -107,6 +110,7 @@ public class V_menusecretaire extends JMenuBar{
 		menuConsulter.add(consulterVenteJson);
 		menuConsulter.add(consulterVenteCsv);
 		menuConsulter.add(consulterCatalogueHistorique);
+		menuConsulter.add(consulterBenevole);
 		
 		
 		//Section des suppresions
@@ -331,6 +335,21 @@ public class V_menusecretaire extends JMenuBar{
 	}
 	
 	class consulterhistoriqueCatalogue implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(uncontroleurSecretaire.refreshhistoriqueCatalogue());  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+			
+		}
+		
+	}
+	
+	class consulterBenevole implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame

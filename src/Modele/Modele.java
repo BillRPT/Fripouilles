@@ -16,9 +16,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.212";
+	private static String user = "sio";
+	private static String mdp = "Azerty123!";
 
 	
 	/**
@@ -794,6 +794,33 @@ public class Modele {
 		}
 		
 		return rep;
+	}
+	
+	public static ArrayList<Utilisateur> consulterBenevole(){
+		ArrayList<Utilisateur> lesUtilisateur = new ArrayList<>();
+		String nom;
+		String prenom;
+		String login;
+		try {
+			String sql = "SELECT nomUser, prenomUser, loginUser FROM Utilisateur";
+			
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				nom = rs.getString("nomUser");
+				prenom = rs.getString("prenomUser");
+				login = rs.getString("loginUser");
+				Utilisateur unUtilisateur = new Utilisateur(nom, prenom, login);
+				
+				//Ajouter un catalogue non disponible a l'historique des catalogues
+				lesUtilisateur.add(unUtilisateur);
+			}
+			
+		}catch(Exception erreur) {
+			System.out.println("Erreur de recuperation historique Catalogue" + erreur);
+		}
+
+		return lesUtilisateur;
 	}
 	
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import Class.Catalogue;
+import Class.Utilisateur;
 import Class.VenteEphemere;
 import Modele.Modele;
 import Vues. *;
@@ -13,6 +14,7 @@ import Vues.Secretaire.V_menusecretaire;
 import Vues.Secretaire.Benevole.V_ajouterunBenevole;
 import Vues.Secretaire.Benevole.V_rechercherBenevole;
 import Vues.Secretaire.Benevole.V_supprimerBenevole;
+import Vues.Secretaire.Consulter.V_consulterbenevole;
 import Vues.Secretaire.Consulter.V_consultercatalogueCsv;
 import Vues.Secretaire.Consulter.V_consultercatalogueXml;
 import Vues.Secretaire.Consulter.V_consulterhistoriquecatalogue;
@@ -46,6 +48,7 @@ public class C_psecretaire {
 	private V_consulterventeJson V_consulterlesventesJson;
 	private V_consulterventeCsv V_consulterlesventeCsv;
 	private V_consulterhistoriquecatalogue V_consulterleshistoriquecatalogue;
+	private V_consulterbenevole V_consulterBenevole;
 	
 	//Constructeur
 	public C_psecretaire(C_principal lecPrincipal) {
@@ -161,6 +164,17 @@ public class C_psecretaire {
 	}
 	
 	/**
+	 * Fonction qui permet de refresh la vue pour voir les nouvelles donnees qui ont ete add
+	 * @return un JPanel
+	 * */
+	public JPanel refresheconsulterBenevole() {
+		
+		V_consulterleshistoriquecatalogue = new V_consulterhistoriquecatalogue(this.getlescataloguesHistorique());
+		
+		return V_consulterleshistoriquecatalogue;
+	}
+	
+	/**
 	 * Fonction qui permet de récupérer les ventes pour refresh le JTable
 	 * @return une liste de vente lesVentes
 	 * */
@@ -180,6 +194,16 @@ public class C_psecretaire {
 		ArrayList<Catalogue> lesCatalogues = Modele.historiqueCatalogue();
 		
 		return lesCatalogues;
+	}
+	
+	/**
+	 * Fonction qui permet de récupérer les ventes pour refresh le JTable
+	 * @return une liste de vente lesVentes
+	 * */
+	private ArrayList<Utilisateur> getlesBenevoles() {
+		ArrayList<Utilisateur> lesUtilisateurs = Modele.consulterBenevole();
+		
+		return lesUtilisateurs;
 	}
 	
 	public void affichermenuSecretaire() {
