@@ -231,7 +231,7 @@ public class Modele {
 		boolean rep = false;
 		
 		try {
-			String sql = "INSERT INTO article (libelleArt, typeArt, etatArt) VALUES (?, ?, ?)";
+			String sql = "INSERT INTO Article (libelleArt, typeArt, etatArt) VALUES (?, ?, ?)";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -344,7 +344,7 @@ public class Modele {
 		boolean rep = false;
 		
 		try {
-			String sql = "INSERT INTO catalogue (libelleCat, dateCat, etatCat) VALUES (?,?, 'Disponible')";
+			String sql = "INSERT INTO Catalogue (libelleCat, dateCat, etatCat) VALUES (?,?, 'Disponible')";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -405,7 +405,7 @@ public class Modele {
 		    if (rechercherCatalogue(libelle)) {
 		        try {
 		            //récupérer l'id du cat
-		            String getIdArticleSql = "SELECT idCat FROM catalogue WHERE libelleCat = ?";
+		            String getIdArticleSql = "SELECT idCat FROM Catalogue WHERE libelleCat = ?";
 		            pst = connexion.prepareStatement(getIdArticleSql);
 		            pst.setString(1, libelle);
 		            ResultSet rs = pst.executeQuery();
@@ -414,13 +414,13 @@ public class Modele {
 		                int idCat = rs.getInt("idCat");
 
 		                //supprimer l(entrée de la table article_catalogue
-		                String deleteFromArticleCatalogueSql = "DELETE FROM article_catalogue WHERE idCat = ?";
+		                String deleteFromArticleCatalogueSql = "DELETE FROM Article_Catalogue WHERE idCat = ?";
 		                pst = connexion.prepareStatement(deleteFromArticleCatalogueSql);
 		                pst.setInt(1, idCat);
 		                pst.executeUpdate();
 
 		                //supprimer l'article de la table Article
-		                String deleteArticleSql = "DELETE FROM catalogue WHERE idCat = ?";
+		                String deleteArticleSql = "DELETE FROM Catalogue WHERE idCat = ?";
 		                pst = connexion.prepareStatement(deleteArticleSql);
 		                pst.setInt(1, idCat);
 		                pst.executeUpdate();
@@ -504,7 +504,7 @@ public class Modele {
 		                    int idArt = rss.getInt("idArt");
 
 		                    //ajouter l'article au catalogue
-		                    String addArticleSql = "INSERT INTO article_catalogue VALUES (?, ?)";
+		                    String addArticleSql = "INSERT INTO Article_Catalogue VALUES (?, ?)";
 		                    pst = connexion.prepareStatement(addArticleSql);
 		                    pst.setInt(1, idArt);
 		                    pst.setInt(2, idCat);
