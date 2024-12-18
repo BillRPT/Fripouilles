@@ -19,6 +19,7 @@ import Vues.Benevole.Article.V_supprimerarticle;
 import Vues.Benevole.Catalogue.*;
 import Vues.Maire.Consulter.V_consultercatalogue;
 
+import java.awt.Color;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -167,6 +168,7 @@ public class V_menubenevole extends JMenuBar {
         this.add(json);
         this.add(xml);
         this.add(csv);
+        this.setBackground(Color.orange);
 
         //ajout des ActionListeners avec des classes internes
         itemConsulterArticle.addActionListener(new ConsulterArticleListener());
