@@ -1,4 +1,5 @@
-package Vues.Benevole.Article;
+package Vues.Benevole.ArtCat;
+
 
 import javax.swing.*;
 import Modele.Modele;
@@ -6,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class V_ajouterarticle extends JPanel {
+public class V_supprimerartcat extends JPanel {
     private JTextField libelleArt;
     private JTextField typeArt;
     private JTextField etatArt;
@@ -14,14 +15,14 @@ public class V_ajouterarticle extends JPanel {
     private JButton btnValider;
     private JLabel messageLabel;
 
-    public V_ajouterarticle() {
+    public V_supprimerartcat() {
     	setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
  
         
-        JLabel titreLabel = new JLabel("Creer un article :");
+        JLabel titreLabel = new JLabel("Supprimer un article d'un catalogue :");
         titreLabel.setFont(new Font("Arial", Font.BOLD, 16));
         titreLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 0;
@@ -38,34 +39,18 @@ public class V_ajouterarticle extends JPanel {
         gbc.gridx = 1;
         add(libelleArt, gbc);
 
-        //type de l'article
+        //libelle du cat
         typeArt = new JTextField(20);
         gbc.gridx = 0;
         gbc.gridy = 2;
-        add(new JLabel("Type de l'article : "), gbc);
+        add(new JLabel("Libelle du catalogue : "), gbc);
         gbc.gridx = 1;
         add(typeArt, gbc);
-
-        //etat de l'article
-        etatArt = new JTextField(20);
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        add(new JLabel("Etat de l'article (En vente, vendu) : "), gbc);
-        gbc.gridx = 1;
-        add(etatArt, gbc);
-
-        //catalogue
-        cateArt = new JTextField(20);
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        add(new JLabel("Integrer l'article dans un catalogue (libelle) : "), gbc);
-        gbc.gridx = 1;
-        add(cateArt, gbc);
 
         //bouton Valider
         btnValider = new JButton("Ajouter l'article");
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 3;
         gbc.gridwidth = 2; // Le bouton prend toute la largeur
         add(btnValider, gbc);
 
@@ -74,41 +59,38 @@ public class V_ajouterarticle extends JPanel {
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setForeground(Color.RED);
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         add(messageLabel, gbc);
 
         //ajouter ActionListener au bouton
-        btnValider.addActionListener(new ajouterArticle());
+        btnValider.addActionListener(new supprimerArtCat());
 
         this.setVisible(true);
     }
 
-    class ajouterArticle implements ActionListener {
+    class supprimerArtCat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             //réinitialiser le texte du message
             messageLabel.setText("");
 
             //vérifier que les champs requis sont remplis
-            if (!libelleArt.getText().isEmpty() && !typeArt.getText().isEmpty() && !etatArt.getText().isEmpty()) {
-                if (cateArt.getText().isEmpty()) {
+            if (!libelleArt.getText().isEmpty() && !typeArt.getText().isEmpty()) {
                     //ajouter l'article sans catalogue
-                    Modele.ajouterArticle(libelleArt.getText(), typeArt.getText(), etatArt.getText());
-                    messageLabel.setForeground(Color.GREEN);
-                    messageLabel.setText("Article ajouté avec succès sans catalogue.");
-                } else {
-                    //ajouter l'article avec catalogue
-                    Modele.ajouterArticle(libelleArt.getText(), typeArt.getText(), etatArt.getText(), cateArt.getText());
-                    messageLabel.setForeground(Color.GREEN);
-                    messageLabel.setText("Article ajouté avec succès.");
-                }
-
-                //réinitialiser les champs de texte
-                libelleArt.setText("");
-                typeArt.setText("");
-                etatArt.setText("");
-                cateArt.setText("");
+                    if(Modele.supprimerArtCat(libelleArt.getText(), typeArt.getText())) {
+                        messageLabel.setForeground(Color.GREEN);
+                        messageLabel.setText("Article supprimé avec succès d'un catalogue.");
+                        //réinitialiser les champs de texte
+                        libelleArt.setText("");
+                        typeArt.setText("");
+                    }else {
+                    	 messageLabel.setForeground(Color.RED);
+                         messageLabel.setText("Article non trouvé dans le catalogue.");
+                         //réinitialiser les champs de texte
+                         libelleArt.setText("");
+                         typeArt.setText("");
+                    }
 
             } else {
                 //afficher un message d'erreur
@@ -118,3 +100,4 @@ public class V_ajouterarticle extends JPanel {
         }
     }
 }
+

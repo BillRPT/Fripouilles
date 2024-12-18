@@ -1,4 +1,4 @@
-package Vues.Secretaire.Consulter;
+package Vues.Benevole.Article;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,15 +7,16 @@ import java.util.ArrayList;
 
 import javax.swing. *;
 
+import Class.Article;
 import Class.Catalogue;
 
-public class V_consultercatalogueXml extends JPanel{
+public class V_xmlarticle extends JPanel{
 
 	private GridBagConstraints gbc;
     private JTextArea monTextArea;
     private String rep;
 	
-	public V_consultercatalogueXml(ArrayList<Catalogue> lesCatalogue) {
+	public V_xmlarticle(ArrayList<Article> lesArticles) {
 		rep = "";
 
 	    setLayout(new GridBagLayout());
@@ -29,8 +30,8 @@ public class V_consultercatalogueXml extends JPanel{
         monTextArea.setLineWrap(true);   
         monTextArea.setWrapStyleWord(true);
 
-	    for (Catalogue unCatalogue : lesCatalogue) {
-	    	String xml = unCatalogue.toXML();
+	    for (Article unArticle : lesArticles) {
+	    	String xml = unArticle.toXML();
 
             rep = rep + xml + "\n";
 	    }

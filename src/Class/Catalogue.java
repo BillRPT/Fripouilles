@@ -4,16 +4,26 @@ public class Catalogue {
 	//private int idCat;
 	private String libelleCat;
 	private String Date;
-	private String idCategorie;
+	private String idCatalogue;
 	private String idVenteEphemere;
+	private String etatCat;
 	
 	//Constructeur Catalogue
 	
 	public Catalogue(String unlibelleCat, String uneDate, String unidCate, String unidventeEph) {
 		this.libelleCat = unlibelleCat;
 		this.Date = uneDate;
-		this.idCategorie = unidCate;
+		this.idCatalogue = unidCate;
 		this.idVenteEphemere = unidventeEph;
+	}
+	
+	//Deuxieme constructeur Catalogue
+	public Catalogue(String unlibelleCat, String uneDate, String unidCate, String unidventeEph, String unetatCat) {
+		this.libelleCat = unlibelleCat;
+		this.Date = uneDate;
+		this.idCatalogue = unidCate;
+		this.idVenteEphemere = unidventeEph;
+		this.etatCat = unetatCat;
 	}
 	
 	//Les ascenseur
@@ -27,11 +37,15 @@ public class Catalogue {
 	}
 	
 	public String getunidCategorie() {
-		return this.idCategorie;
+		return this.idCatalogue;
 	}
 	
 	public String getunidventeEphemere() {
 		return this.idVenteEphemere;
+	}
+	
+	public String getunEtat() {
+		return this.etatCat;
 	}
 	
 
