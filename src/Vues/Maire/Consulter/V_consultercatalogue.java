@@ -30,7 +30,7 @@ public class V_consultercatalogue extends JPanel{
         
         this.gbc.insets = new Insets(5, 5, 5, 5);
 	    
-        Object data[][] = new Object[10][4];
+        Object data[][] = new Object[25][4];
 	    String[] title = {"idCategorie", "idVenteEphemere", "Libelle", "Date"};
 	    
 	    // Remplir le tableau avec les donn�es des catalogues

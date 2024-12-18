@@ -22,7 +22,7 @@ public class V_consulterhistoriquecatalogue extends JPanel{
         
         this.gbc.insets = new Insets(5, 5, 5, 5);
 	    
-        Object data[][] = new Object[10][5];
+        Object data[][] = new Object[25][5];
 	    String[] title = {"idCategorie", "idVenteEphemere", "Libelle", "Date", "Etat"};
 	    
 	    // Remplir le tableau avec les données des catalogues

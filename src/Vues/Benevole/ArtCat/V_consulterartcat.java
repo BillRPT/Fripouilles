@@ -39,7 +39,7 @@ public class V_consulterartcat extends JPanel {
         gbc.gridx = 1;
         add(libelleCat, gbc);
 
-        btnValider = new JButton("Ajouter l'article");
+        btnValider = new JButton("Consulter les articles");
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 2;

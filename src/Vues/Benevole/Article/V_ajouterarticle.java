@@ -46,18 +46,10 @@ public class V_ajouterarticle extends JPanel {
         gbc.gridx = 1;
         add(typeArt, gbc);
 
-        //etat de l'article
-        etatArt = new JTextField(20);
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        add(new JLabel("Etat de l'article (En vente, vendu) : "), gbc);
-        gbc.gridx = 1;
-        add(etatArt, gbc);
-
         //catalogue
         cateArt = new JTextField(20);
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         add(new JLabel("Integrer l'article dans un catalogue (libelle) : "), gbc);
         gbc.gridx = 1;
         add(cateArt, gbc);
@@ -65,7 +57,7 @@ public class V_ajouterarticle extends JPanel {
         //bouton Valider
         btnValider = new JButton("Ajouter l'article");
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 4;
         gbc.gridwidth = 2; // Le bouton prend toute la largeur
         add(btnValider, gbc);
 
@@ -74,7 +66,7 @@ public class V_ajouterarticle extends JPanel {
         messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         messageLabel.setForeground(Color.RED);
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 5;
         gbc.gridwidth = 2;
         add(messageLabel, gbc);
 
@@ -94,14 +86,14 @@ public class V_ajouterarticle extends JPanel {
             if (!libelleArt.getText().isEmpty() && !typeArt.getText().isEmpty() && !etatArt.getText().isEmpty()) {
                 if (cateArt.getText().isEmpty()) {
                     //ajouter l'article sans catalogue
-                    Modele.ajouterArticle(libelleArt.getText(), typeArt.getText(), etatArt.getText());
+                    Modele.ajouterArticle(libelleArt.getText(), typeArt.getText());
                     messageLabel.setForeground(Color.GREEN);
-                    messageLabel.setText("Article ajouté avec succès sans catalogue.");
+                    messageLabel.setText("Article ajoute avec succes sans catalogue.");
                 } else {
                     //ajouter l'article avec catalogue
                     Modele.ajouterArticle(libelleArt.getText(), typeArt.getText(), etatArt.getText(), cateArt.getText());
                     messageLabel.setForeground(Color.GREEN);
-                    messageLabel.setText("Article ajouté avec succès.");
+                    messageLabel.setText("Article ajoute avec succes.");
                 }
 
                 //réinitialiser les champs de texte

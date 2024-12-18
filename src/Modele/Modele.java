@@ -183,15 +183,14 @@ public class Modele {
 	            //recup l'id de la catégorie existante
 	            idCatalogue = rs.getInt("idCat");
 	        } else {
-	            throw new Exception("La catégorie spécifiée n'existe pas.");
+	            throw new Exception("La categorie specifiee n'existe pas.");
 	        }
 
 	        //aj l'article
-	        String insertArticleSql = "INSERT INTO Article (libelleArt, typeArt, etatArt) VALUES (?, ?, ?)";
+	        String insertArticleSql = "INSERT INTO Article (libelleArt, typeArt, etatArt) VALUES (?, ?, 'En vente')";
 	        pst = connexion.prepareStatement(insertArticleSql, Statement.RETURN_GENERATED_KEYS);
 	        pst.setString(1, unLibelle);
 	        pst.setString(2, untypeArt);
-	        pst.setString(3, unetatArt);
 	        pst.executeUpdate();
 
 	        //recup l'id de l'article
@@ -227,11 +226,11 @@ public class Modele {
 	 * @return true ou false
 	 */
 	
-	public static boolean ajouterArticle(String unLibelle, String untypeArt, String unetatArt) {
+	public static boolean ajouterArticle(String unLibelle, String untypeArt) {
 		boolean rep = false;
 		
 		try {
-			String sql = "INSERT INTO Article (libelleArt, typeArt, etatArt) VALUES (?, ?, ?)";
+			String sql = "INSERT INTO Article (libelleArt, typeArt, etatArt) VALUES (?, ?, 'En vente')";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -239,8 +238,6 @@ public class Modele {
 			pst.setString(1, unLibelle);
 			//Remplacer le ? par untypeArt
 			pst.setString(2, untypeArt);
-			//Remplacer le ? par untypeArt
-			pst.setString(3, unetatArt);
 			// Ex�cute la requ�te d'insertion
 			pst.executeUpdate();
 			
