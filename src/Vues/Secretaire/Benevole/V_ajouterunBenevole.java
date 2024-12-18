@@ -89,7 +89,7 @@ public class V_ajouterunBenevole extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if (!nomBenevole.getText().isEmpty() && !prenomBenevole.getText().isEmpty() && !loginBenevole.getText().isEmpty() && mdpBenevole.getPassword().length != 0) {
 				
-				if (Modele.rechercherUtilisateur(nomBenevole.getText()) == true) {
+				if (Modele.rechercherUtilisateur(loginBenevole.getText()) == true) {
 					JOptionPane.showMessageDialog(null, "Cette utilisateur existe deja");
 				}
 				else {

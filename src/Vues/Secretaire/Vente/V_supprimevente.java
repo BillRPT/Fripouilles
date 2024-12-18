@@ -56,8 +56,12 @@ public class V_supprimevente extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (!nomVente.getText().isEmpty()) {
-				if (Modele.supprimerVente(nomVente.getText()) == true) {
-					JOptionPane.showMessageDialog(null, "La vente a ete supprimer");
+				//Supprimer les catalogues
+				if (Modele.supprimerCatalogue(Modele.getlibelleCat(Modele.getidVente(nomVente.getText()))) == true) {
+					//Après la suppresion des catalogues et des id cat dans article catalogue supprime les ventes
+					if (Modele.supprimerVente(nomVente.getText()) == true) {
+						JOptionPane.showMessageDialog(null, "La vente a ete supprimer");
+					}
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "La vente n'a pas etait supprimer");

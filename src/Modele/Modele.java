@@ -984,6 +984,53 @@ public class Modele {
 		
 		return lesStats;
 	}
+	
+	
+	public static int getidVente(String unNomVente) {
+		int chiffre = 0;
+		
+		try {
+			String sql = "SELECT COUNT(idVenteEph) AS nb FROM Vente WHERE nomVente = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, unNomVente);
+			
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	chiffre = rs.getInt("nb");
+	         }
+			
+		}
+		catch(Exception erreur) {
+			
+		}
+		
+		return chiffre;
+	}
+	
+	
+	public static String getlibelleCat(int unidVente) {
+		String libelle = "";
+		
+		try {
+			String sql = "SELECT libelleCat FROM Catalogue WHERE idVenteEph = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setInt(1, unidVente);
+			
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	libelle = rs.getString("libelleCat");
+	         }
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de récupération de libelleCategorie" + erreur);
+		}
+		
+		return libelle;
+	}
 
 	
 }
