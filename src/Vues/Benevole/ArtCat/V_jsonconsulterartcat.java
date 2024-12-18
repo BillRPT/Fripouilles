@@ -27,6 +27,7 @@ public class V_jsonconsulterartcat extends JPanel {
     private V_principal vPrincipal;
  
     public V_jsonconsulterartcat(V_principal vPrincipal) { 
+    	this.vPrincipal = vPrincipal;
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

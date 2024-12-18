@@ -28,6 +28,7 @@ public class V_xmlconsulterartcat extends JPanel {
     private V_principal vPrincipal;
  
     public V_xmlconsulterartcat(V_principal vPrincipal) {
+    	this.vPrincipal = vPrincipal;
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

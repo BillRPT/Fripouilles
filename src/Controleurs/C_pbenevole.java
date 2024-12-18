@@ -51,7 +51,7 @@ public class C_pbenevole {
 			
 			
 			vLogo = new V_logo();
-			vMenuBenevole = new V_menubenevole(this, uncPrincipal.getvPrincipal(), vAjouterArticle, vRechercherArticle, vSupprimerArticle, vAjouterCatalogue);
+			vMenuBenevole = new V_menubenevole(this, this.uncPrincipal.getvPrincipal(), vAjouterArticle, vRechercherArticle, vSupprimerArticle, vAjouterCatalogue);
 			//Ajouter le logo � la vue principale
 			uncPrincipal.getvPrincipal().getContentPane().add(vLogo, BorderLayout.NORTH);
 			//ajouter le menu
