@@ -35,7 +35,7 @@ class ModeleTest {
 	@Test
 	public void testajouterArticle() {
 		//Ajouter un article
-		Modele.ajouterArticle("test", "test", "test", "test");
+		Modele.ajouterArticle("test", "test", "test");
 		Assert.assertEquals("L'article n'a pas été ajouté", true, Modele.rechercherArticle("test"));
 		//Après avoir tester le supprimer
 		Modele.supprimerArticle("test");
@@ -43,7 +43,7 @@ class ModeleTest {
 	
 	@Test
 	public void testsupprimerArticle() {
-		Modele.ajouterArticle("test", "test", "test", "test");
+		Modele.ajouterArticle("test", "test");
 		Modele.supprimerArticle("test");
 		Assert.assertEquals("L'article n'a pas été supprimé", false, Modele.rechercherArticle("test"));
 	}

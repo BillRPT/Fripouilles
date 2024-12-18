@@ -7,8 +7,11 @@ import Modele.Modele;
 import Vues.V_principal;
 import Vues.Benevole.ArtCat.V_ajouterartcat;
 import Vues.Benevole.ArtCat.V_consulterartcat;
+import Vues.Benevole.ArtCat.V_csvconsulterartcat;
+import Vues.Benevole.ArtCat.V_jsonconsulterartcat;
 import Vues.Benevole.ArtCat.V_rechercherartcat;
 import Vues.Benevole.ArtCat.V_supprimerartcat;
+import Vues.Benevole.ArtCat.V_xmlconsulterartcat;
 import Vues.Benevole.Article.V_ajouterarticle;
 import Vues.Benevole.Article.V_consulterarticle;
 import Vues.Benevole.Article.V_rechercherarticle;
@@ -38,6 +41,10 @@ public class V_menubenevole extends JMenuBar {
 	private V_ajouterartcat vAjouterArtCat;
 	private V_rechercherartcat vRechercherArtCat;
 	private V_supprimerartcat VSupprimerArtCat;
+	
+	private V_jsonconsulterartcat jsonArtCat;
+	private V_xmlconsulterartcat xmlArtCat;
+	private V_csvconsulterartcat csvArtCat;
 	
 	
 	//attributs du menu
@@ -111,17 +118,17 @@ public class V_menubenevole extends JMenuBar {
         xml = new JMenu("XML");
         itemXmlArticle = new JMenuItem("XML Article");
         itemXmlCatalogue = new JMenuItem("XML Catalogue");
-        itemXmlArtCat = new JMenuItem("XML Article");
+        itemXmlArtCat = new JMenuItem("XML ArtCat");
 
         json = new JMenu("JSON");
         itemJsonArticle = new JMenuItem("JSON Article");
         itemJsonCatalogue = new JMenuItem("JSON Catalogue");
-        itemJsonArtCat = new JMenuItem("JSON Article");
+        itemJsonArtCat = new JMenuItem("JSON ArtCat");
 
         csv = new JMenu("CSV");
         itemCsvArticle = new JMenuItem("CSV Article");
         itemCsvCatalogue = new JMenuItem("CSV Catalogue");
-        itemCsvArtCat = new JMenuItem("CSV Article");
+        itemCsvArtCat = new JMenuItem("CSV ArtCat");
 
         //Ajout des items aux menus
         menuConsulter.add(itemConsulterArticle);
@@ -191,7 +198,8 @@ public class V_menubenevole extends JMenuBar {
         itemCsvArtCat.addActionListener(new CsvArtCat());
     }
 
-    //classes internes pour gÃ©rer les actions
+    //-----------------------------------------------classes internes pour gerer les actions-----------------------------------------------------
+    //Consulter les articles
     class ConsulterArticleListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -207,6 +215,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //Consulter les catalogues
     class ConsulterCataloguesListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -221,6 +230,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //consulter les articles d'un catalogue
     class ConsulterArtCataloguesListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -236,6 +246,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //créer un article
     class CreerArticleListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -251,6 +262,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //creer un catalogue
     class CreerCatalogueListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -266,6 +278,7 @@ public class V_menubenevole extends JMenuBar {
             }
     }
     
+    //mettre un article dans un catalogue
     class CreerArtCat implements ActionListener{
 
 		@Override
@@ -283,6 +296,7 @@ public class V_menubenevole extends JMenuBar {
     	
     }
 
+    //Rechercher un article
     class RechercherArticleListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -298,6 +312,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //rechercher un catalogue
     class RechercherCatalogueListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -313,6 +328,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //Rechercher un article dans un catalogue
     class RechercherArtCatListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -328,6 +344,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //supprimer un article
     class SupprimerArticleListener implements ActionListener {
     	
         @Override
@@ -344,6 +361,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //supprimer un catalogue
     class SupprimerCatalogueListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -359,6 +377,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
+    //surpprimer un article d'un catalogue
     class SupprimerArtCatListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -374,7 +393,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
-    // JSON Article Listener
+    //JSON Article
     class JsonArticle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -389,7 +408,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
-    // JSON Catalogue Listener
+    //JSON Catalogue
     class JsonCatalogue implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -404,7 +423,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
-    // JSON Article-Catalogue Listener
+    //JSON Article-Catalogue
     class JsonArtCat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -412,14 +431,15 @@ public class V_menubenevole extends JMenuBar {
 
             vPrincipal.getContentPane().removeAll();
 
-            vPrincipal.add(cBenevole.refreshCatalogueJson());
+            jsonArtCat = new V_jsonconsulterartcat(vPrincipal);
+            vPrincipal.add(jsonArtCat); 
 
             vPrincipal.revalidate();
             vPrincipal.repaint();
         }
     }
 
-    // XML Article Listener
+    //XML Article
     class XmlArticle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -434,7 +454,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
-    // XML Catalogue Listener
+    //XML Catalogue
     class XmlCatalogue implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -449,7 +469,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
-    // XML Article-Catalogue Listener
+    //XML Article-Catalogue
     class XmlArtCat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -457,16 +477,15 @@ public class V_menubenevole extends JMenuBar {
 
             vPrincipal.getContentPane().removeAll();
 
-            JPanel xmlArtCatView = new JPanel();
-            xmlArtCatView.add(new JLabel("Exportation des articles d'un catalogue en XML..."));
-            vPrincipal.add(xmlArtCatView);
+            xmlArtCat = new V_xmlconsulterartcat(vPrincipal);
+            vPrincipal.add(xmlArtCat); 
 
             vPrincipal.revalidate();
             vPrincipal.repaint();
         }
     }
 
-    // CSV Article Listener
+    //CSV Article
     class CsvArticle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -481,7 +500,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
-    // CSV Catalogue Listener
+    //CSV Catalogue
     class CsvCatalogue implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -496,7 +515,7 @@ public class V_menubenevole extends JMenuBar {
         }
     }
 
-    // CSV Article-Catalogue Listener
+    //CSV Article-Catalogue
     class CsvArtCat implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -504,9 +523,8 @@ public class V_menubenevole extends JMenuBar {
 
             vPrincipal.getContentPane().removeAll();
 
-            JPanel csvArtCatView = new JPanel();
-            csvArtCatView.add(new JLabel("Exportation des articles d'un catalogue en CSV..."));
-            vPrincipal.add(csvArtCatView);
+            csvArtCat = new V_csvconsulterartcat(vPrincipal);
+            vPrincipal.add(csvArtCat); 
 
             vPrincipal.revalidate();
             vPrincipal.repaint();
