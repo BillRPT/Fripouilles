@@ -9,9 +9,12 @@ import javax.swing. *;
 
 import Controleurs.C_psecretaire;
 import Vues.V_principal;
+import Vues.Benevole.Catalogue.V_ajoutercatalogue;
 import Vues.Secretaire.Benevole.V_ajouterunBenevole;
 import Vues.Secretaire.Benevole.V_rechercherBenevole;
 import Vues.Secretaire.Benevole.V_supprimerBenevole;
+import Vues.Secretaire.Catalogue.V_ajoutecataVente;
+import Vues.Secretaire.Catalogue.V_supprimercataVente;
 import Vues.Secretaire.Consulter.V_consultercatalogueXml;
 import Vues.Secretaire.Consulter.V_consultervente;
 import Vues.Secretaire.Vente.V_ajoutervente;
@@ -27,6 +30,8 @@ public class V_menusecretaire extends JMenuBar{
 	private V_supprimerBenevole V_supprimerunBenevole;
 	private V_recherchervente V_rechercheruneVente;
 	private V_rechercherBenevole V_rechercherunBenevole;
+	private V_ajoutecataVente V_ajoutcataVente;
+	private V_supprimercataVente V_suppCataVente;
 	
 	//Controleur secretaire
 	private C_psecretaire uncontroleurSecretaire;
@@ -35,10 +40,10 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenu menuAjouter;
 	private JMenuItem nouvelleVente;
 	private JMenuItem nouveauBenevole;
+	private JMenuItem ajoutercataloguedansuneVente;
 	
 	//Menu avec les items pour les consultations
 	private JMenu menuConsulter;
-	private JMenuItem consulterCatalogue;
 	private JMenuItem consulterVente;
 	private JMenuItem consulterCatalogueXml;
 	private JMenuItem consulterCatalogueJson;
@@ -53,13 +58,14 @@ public class V_menusecretaire extends JMenuBar{
 	private JMenu menuSupprimer;
 	private JMenuItem supprimerVente;
 	private JMenuItem supprimerBenevole;
+	private JMenuItem cataVente;
 	
 	private JMenu menuRechercher;
 	private JMenuItem rechercherVente;
 	private JMenuItem rechercherBenevole;
 	
 	
-	public V_menusecretaire(C_psecretaire lecontroleurSecretaire, V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole, V_recherchervente V_rechercherVente, V_rechercherBenevole V_rechercherleBenevole,V_principal lavuePrincipal) {
+	public V_menusecretaire(C_psecretaire lecontroleurSecretaire, V_supprimercataVente V_suppCatauneVente, V_ajoutecataVente V_ajoutcatadansVente,V_ajoutervente unpanelajoutVente, V_supprimevente unpanelsupprimerVente, V_ajouterunBenevole unpanelajouterBenevole, V_supprimerBenevole  unpanelsupprimerBenevole, V_recherchervente V_rechercherVente, V_rechercherBenevole V_rechercherleBenevole,V_principal lavuePrincipal) {
 		
 		this.V_ajouteruneVente = unpanelajoutVente;
 		this.V_supprimeuneVente = unpanelsupprimerVente;
@@ -69,17 +75,22 @@ public class V_menusecretaire extends JMenuBar{
 		this.V_rechercheruneVente = V_rechercherVente;
 		this.uncontroleurSecretaire = lecontroleurSecretaire;
 		this.V_rechercherunBenevole = V_rechercherleBenevole;
+		this.V_ajoutcataVente = V_ajoutcatadansVente;
+		this.V_suppCataVente = V_suppCatauneVente;
 		
 		
 		//Section des Ajouts
 		menuAjouter = new JMenu("Ajouter");
 		nouvelleVente = new JMenuItem("Ajouter une Vente");
 		nouveauBenevole = new JMenuItem("Ajouter un Benevole");
+		ajoutercataloguedansuneVente = new JMenuItem("Ajouter un cata dans une vente");
 		//Ecouter les diff�rents boutton
 		nouvelleVente.addActionListener(new ajouterVente());
 		nouveauBenevole.addActionListener(new ajouterBenevole());
+		ajoutercataloguedansuneVente.addActionListener(new ajouterCata());
 		menuAjouter.add(nouvelleVente);
 		menuAjouter.add(nouveauBenevole);
+		menuAjouter.add(ajoutercataloguedansuneVente);
 		
 		
 		//Section des Consultations
@@ -117,10 +128,13 @@ public class V_menusecretaire extends JMenuBar{
 		menuSupprimer = new JMenu("Supprimer");
 		supprimerVente = new JMenuItem("Supprimer une vente");
 		supprimerBenevole = new JMenuItem("Supprimer un benevole");
+		cataVente = new JMenuItem("Supprimer un catalogue d'une vente");
+		cataVente.addActionListener(new suppcatadeVente());
 		supprimerVente.addActionListener(new supprimerVente());
 		supprimerBenevole.addActionListener(new supprimerBenevole());
 		menuSupprimer.add(supprimerVente);
 		menuSupprimer.add(supprimerBenevole);
+		menuSupprimer.add(cataVente);
 		
 		menuRechercher = new JMenu("Rechercher");
 		rechercherVente = new JMenuItem("Rechercher une vente");
@@ -356,6 +370,36 @@ public class V_menusecretaire extends JMenuBar{
 
             // Ajoute le panel de ventee
             unevuePrincipal.add(uncontroleurSecretaire.refresheconsulterBenevole());  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+			
+		}
+		
+	}
+	
+	class ajouterCata implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(V_ajoutcataVente);  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+			
+		}
+		
+	}
+	
+	class suppcatadeVente implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            // Ajoute le panel de ventee
+            unevuePrincipal.add(V_suppCataVente);  
 
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();

@@ -10,10 +10,13 @@ import Class.Utilisateur;
 import Class.VenteEphemere;
 import Modele.Modele;
 import Vues. *;
+import Vues.Benevole.Catalogue.V_ajoutercatalogue;
 import Vues.Secretaire.V_menusecretaire;
 import Vues.Secretaire.Benevole.V_ajouterunBenevole;
 import Vues.Secretaire.Benevole.V_rechercherBenevole;
 import Vues.Secretaire.Benevole.V_supprimerBenevole;
+import Vues.Secretaire.Catalogue.V_ajoutecataVente;
+import Vues.Secretaire.Catalogue.V_supprimercataVente;
 import Vues.Secretaire.Consulter.V_consulterbenevole;
 import Vues.Secretaire.Consulter.V_consultercatalogueCsv;
 import Vues.Secretaire.Consulter.V_consultercatalogueXml;
@@ -49,6 +52,8 @@ public class C_psecretaire {
 	private V_consulterventeCsv V_consulterlesventeCsv;
 	private V_consulterhistoriquecatalogue V_consulterleshistoriquecatalogue;
 	private V_consulterbenevole V_consulterBenevole;
+	private V_ajoutecataVente V_ajoutcataVente;
+	private V_supprimercataVente V_suppCataVente;
 	
 	//Constructeur
 	public C_psecretaire(C_principal lecPrincipal) {
@@ -64,7 +69,9 @@ public class C_psecretaire {
 		V_supprimerunBenevole = new V_supprimerBenevole();
 		V_rechercheruneVente = new V_recherchervente();
 		V_rechercherunBenevole = new V_rechercherBenevole();
-		vMenuSecretaire = new V_menusecretaire(this, V_ajouteruneVente, V_supprimeuneVente, V_ajtunBenevole, V_supprimerunBenevole, V_rechercheruneVente, V_rechercherunBenevole, uncPrincipal.getvPrincipal());
+		V_ajoutcataVente = new V_ajoutecataVente();
+		V_suppCataVente = new V_supprimercataVente();
+		vMenuSecretaire = new V_menusecretaire(this, V_suppCataVente, V_ajoutcataVente, V_ajouteruneVente, V_supprimeuneVente, V_ajtunBenevole, V_supprimerunBenevole, V_rechercheruneVente, V_rechercherunBenevole, uncPrincipal.getvPrincipal());
 		
 		uncPrincipal.getvPrincipal().setJMenuBar(vMenuSecretaire);
 		

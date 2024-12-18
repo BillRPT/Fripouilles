@@ -16,9 +16,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'ï¿½cole ou la maison
-	private static String host = "172.16.203.206";
-	private static String user = "sio";
-	private static String mdp = "Vanille2010";
+	private static String host = "localhost";
+	private static String user = "root";
+	private static String mdp = "";
 
 	
 	/**
@@ -990,7 +990,7 @@ public class Modele {
 		int chiffre = 0;
 		
 		try {
-			String sql = "SELECT COUNT(idVenteEph) AS nb FROM Vente WHERE nomVente = ?";
+			String sql = "SELECT idVenteEph FROM Vente WHERE nomVente = ?";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -998,12 +998,12 @@ public class Modele {
 			
 			ResultSet rs = pst.executeQuery();
 	        if (rs.next()) {
-	        	chiffre = rs.getInt("nb");
+	        	chiffre = rs.getInt("idVenteEph");
 	         }
 			
 		}
 		catch(Exception erreur) {
-			
+			System.out.println("erreur de recuperation de id vente " + erreur);
 		}
 		
 		return chiffre;
@@ -1026,10 +1026,101 @@ public class Modele {
 	         }
 		}
 		catch(Exception erreur) {
-			System.out.println("Erreur de récupération de libelleCategorie" + erreur);
+			System.out.println("Erreur de rï¿½cupï¿½ration de libelleCategorie" + erreur);
 		}
 		
 		return libelle;
+	}
+	
+	public static boolean verifCatalogue(String unlibelle) {
+		int chiffre = 0;
+		
+		boolean rep = false;
+		
+		try {
+			String sql = "SELECT COUNT(idVenteEph) as nb FROM Catalogue WHERE libelleCat = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, unlibelle);
+			
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	chiffre = rs.getInt("nb");
+	         }
+	        
+	        if (chiffre == 1) {
+	        	rep = true;
+	        }
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de verification id Catalogue" + erreur);
+		}
+		
+		return rep;
+	}
+	
+	public static void ajoutercatalogueaVente(String unlibelleCatalogue, int unidVente) {
+		boolean rep = false;
+		
+		try {
+			String sql = "UPDATE catalogue SET idVenteEph = ? WHERE libelleCat = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setInt(1, unidVente);
+			pst.setString(2, unlibelleCatalogue);
+			
+			
+			pst.executeUpdate();
+			
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de ajout de catalogue dans une vente" + erreur);
+		}
+	}
+	
+	public static boolean verifVente(int idVente) {
+		int chiffre = 0;
+		
+		boolean rep = false;
+		
+		try {
+			String sql = "SELECT COUNT(idVenteEph) AS nb FROM catalogue WHERE idVenteEph = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setInt(1, idVente);
+			
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	chiffre = rs.getInt("nb");
+	         }
+	        
+	        if (chiffre == 1) {
+	        	rep = true;
+	        }
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de verification id vente" + erreur);
+		}
+		
+		return rep;
+	}
+	
+	public static void suppirmercatadeVente(String uncatalogue) {
+		try {
+			String sql = "UPDATE Catalogue SET idVenteEph = NULL WHERE libelleCat = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, uncatalogue);
+
+			pst.executeUpdate();
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de supression de catalogue d'une vente");
+		}
 	}
 
 	

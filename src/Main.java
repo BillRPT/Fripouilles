@@ -20,7 +20,6 @@ public class Main {
 		cPrincipal = new C_principal();
 		cConnex = new C_connexion(cPrincipal);
 		
-		
 
 	}
 
