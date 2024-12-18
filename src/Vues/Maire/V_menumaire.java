@@ -33,6 +33,7 @@ public class V_menumaire extends JMenuBar{
 		consulterCatalogueXml = new JMenuItem("Consulter les catalogues Xml");
 		consulterCatalogueJson = new JMenuItem("Consulter les catalogues Json");
 		consulterStatistique = new JMenuItem("Consulter les statistiques");
+		consulterStatistique.addActionListener(new consulterStatistique());
 		consulterCatalogue.addActionListener(new consulterCatalogue());
 		consulterCatalogueCsv.addActionListener(new consulterCatalogueCsv());
 		consulterCatalogueXml.addActionListener(new consulterCatalogueXml());
@@ -100,6 +101,21 @@ public class V_menumaire extends JMenuBar{
 			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
 
             unevuePrincipal.add(uncontroleurMaire.refreshcatalogueJson());  
+
+            unevuePrincipal.revalidate();
+            unevuePrincipal.repaint();
+			
+		}
+		
+	}
+	
+	class consulterStatistique implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			unevuePrincipal.getContentPane().removeAll();  // Retire tous les composants du JFrame
+
+            unevuePrincipal.add(uncontroleurMaire.refreshStat());  
 
             unevuePrincipal.revalidate();
             unevuePrincipal.repaint();

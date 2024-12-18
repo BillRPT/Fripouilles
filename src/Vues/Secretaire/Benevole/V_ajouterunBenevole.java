@@ -88,8 +88,14 @@ public class V_ajouterunBenevole extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (!nomBenevole.getText().isEmpty() && !prenomBenevole.getText().isEmpty() && !loginBenevole.getText().isEmpty() && mdpBenevole.getPassword().length != 0) {
-				Modele.ajouterBenevole(nomBenevole.getText(), prenomBenevole.getText(), loginBenevole.getText(), mdpBenevole.getPassword());
-				JOptionPane.showMessageDialog(null, "Le benevole a ete ajoute");
+				
+				if (Modele.rechercherUtilisateur(nomBenevole.getText()) == true) {
+					JOptionPane.showMessageDialog(null, "Cette utilisateur existe deja");
+				}
+				else {
+					Modele.ajouterBenevole(nomBenevole.getText(), prenomBenevole.getText(), loginBenevole.getText(), mdpBenevole.getPassword());
+					JOptionPane.showMessageDialog(null, "Le benevole a ete ajoute");
+				}
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Des champs sont vides");

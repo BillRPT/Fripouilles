@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import Class.Catalogue;
+import Class.VenteEphemere;
 import Modele.Modele;
 import Vues.V_logo;
 import Vues.Maire.V_menumaire;
 import Vues.Maire.Consulter.V_consultercatalogue;
+import Vues.Maire.Consulter.V_consulterstatistique;
 import Vues.Secretaire.Consulter.V_consultercatalogueCsv;
 import Vues.Secretaire.Consulter.V_consultercatalogueJson;
 import Vues.Secretaire.Consulter.V_consultercatalogueXml;
@@ -26,6 +28,8 @@ public class C_pmaire {
 	private V_consultercatalogueXml V_cataXml;
 	
 	private V_consultercatalogue V_consulterlesCatalogues;
+	
+	private V_consulterstatistique V_consulterlesstatistique;
 	
 	public C_pmaire(C_principal lecPrincipal) {
 		this.uncPrincipal = lecPrincipal;
@@ -82,6 +86,20 @@ public class C_pmaire {
 		
 		return V_consultercataloguecsv;
 	}
+	
+	public JPanel refreshStat() {
+		V_consulterlesstatistique = new V_consulterstatistique(this.getlesStatistique());
+		
+		return V_consulterlesstatistique;
+	}
+	
+	
+	private ArrayList<VenteEphemere> getlesStatistique() {
+		ArrayList<VenteEphemere> lesStats = Modele.consulterStatistiques();
+		
+		return lesStats;
+	}
+	
 	
 	private ArrayList<Catalogue> getlesCatalogues() {
 		ArrayList<Catalogue> lesCatalogues = Modele.consulterCatalogue();

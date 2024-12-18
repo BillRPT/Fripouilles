@@ -16,9 +16,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "172.16.203.206";
+	private static String host = "172.16.203.212";
 	private static String user = "sio";
-	private static String mdp = "Vanille2010";
+	private static String mdp = "Azerty123!";
 
 	
 	/**
@@ -642,7 +642,7 @@ public class Modele {
 	 */
 	
 	public static ArrayList<VenteEphemere> consulterlesVentes() {
-		String idVenteEph;
+		int idVenteEph;
 		String dateEph;
 		String typeVente;
 		String nomVente;
@@ -655,7 +655,7 @@ public class Modele {
 			rs = st.executeQuery(sql);
 			
 			while(rs.next()) {
-				idVenteEph = rs.getString("idVenteEph");
+				idVenteEph = rs.getInt("idVenteEph");
 				dateEph = rs.getString("dateEph");
 				typeVente = rs.getString("typeVente");
 				nomVente = rs.getString("nomVente");
@@ -839,7 +839,7 @@ public class Modele {
 		int chiffre = 0;
 		//test
 		try {
-			String sql = "SELECT COUNT(idUser) as nb FROM utilisateur WHERE loginUser = ? AND roleUser = 'benevole'";
+			String sql = "SELECT COUNT(idUser) as nb FROM Utilisateur WHERE loginUser = ? AND roleUser = 'benevole'";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -894,7 +894,7 @@ public class Modele {
 		String prenom;
 		String login;
 		try {
-			String sql = "SELECT nomUser, prenomUser, loginUser FROM Utilisateur";
+			String sql = "SELECT nomUser, prenomUser, loginUser FROM Utilisateur WHERE roleUser = 'benevole'";
 			
 			rs = st.executeQuery(sql);
 			
@@ -915,20 +915,75 @@ public class Modele {
 		return lesUtilisateur;
 	}
 	
-	/*public static ArrayList<VenteEphemere> consulterStatistiques() {
+	public static boolean rechercherUtilisateur(String user) {
+		boolean rep = false;
+		int chiffre = 0;
 		
-	}*/
+		try {
+			String sql = "SELECT COUNT(idUser) AS nb FROM Utilisateur Where loginUser = ?";
+			
+			pst = connexion.prepareStatement(sql);
+			
+			pst.setString(1, user);
+			
+			ResultSet rs = pst.executeQuery();
+	        if (rs.next()) {
+	        	chiffre = rs.getInt("nb");
+	         }
+	        
+	        if (chiffre == 1) {
+	        	rep = true;
+	        }
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur rechercher utilisateur " + erreur);
+		}
+		
+		return rep;
+	}
 	
-	/*La req a use
-	 * 
-	 * SELECT vente.idVenteEph,dateEph,typeVente, etatCat, COUNT(idArt) AS nbArticlesVendues 
-		FROM vente, article_catalogue, catalogue 
-		WHERE vente.idVenteEph = article_catalogue.idCat 
-		AND article_catalogue.idCat = catalogue.idCat 
-		AND vente.idVenteEph IS NOT NULL 
-		GROUP BY idVenteEph, dateEph, typeVente, etatCat 
-		ORDER BY dateEph;
-	 * 
-	 * */
+	public static ArrayList<VenteEphemere> consulterStatistiques() {
+		
+		ArrayList<VenteEphemere> lesStats = new ArrayList<VenteEphemere>();
+		
+		int idVenteEph;
+		String unNom;
+		String dateEph;
+		String typeVente;
+		String etatCat;
+		int nbArticlesVendues;
+		
+		try {
+			String sql = "SELECT Vente.nomVente, Vente.idVenteEph,dateEph,typeVente, etatCat, COUNT(idArt) AS nbArticlesVendues \r\n" + 
+					"FROM Vente, Article_Catalogue, Catalogue \r\n" + 
+					"WHERE Vente.idVenteEph = Article_Catalogue.idCat \r\n" + 
+					"AND Article_Catalogue.idCat = Catalogue.idCat \r\n" + 
+					"AND Vente.idVenteEph IS NOT NULL \r\n" + 
+					"GROUP BY idVenteEph, dateEph, typeVente, etatCat \r\n" + 
+					"ORDER BY dateEph;";
+			
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				idVenteEph = rs.getInt("idVenteEph");
+				dateEph = rs.getString("dateEph");
+				typeVente = rs.getString("typeVente");
+				etatCat = rs.getString("etatCat");
+				nbArticlesVendues = rs.getInt("nbArticlesVendues");
+				unNom = rs.getString("nomVente");
+				
+				VenteEphemere uneVente = new VenteEphemere(idVenteEph, dateEph, typeVente, unNom, etatCat, nbArticlesVendues);
+				
+				lesStats.add(uneVente);
+				
+			}
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de statistique " + erreur);
+		}
+		
+		return lesStats;
+	}
+
 	
 }

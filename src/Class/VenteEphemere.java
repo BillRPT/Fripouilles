@@ -1,7 +1,7 @@
 package Class;
 
 public class VenteEphemere {
-	private String idVenteEph;
+	private int idVenteEph;
 	private String dateEph;
 	private String typeVente;
 	private String nomVente;
@@ -12,7 +12,7 @@ public class VenteEphemere {
 	private int nbarticleVendu;
 	private String etatVente;
 	
-	public VenteEphemere(String unidVente, String uneDate, String untypeVente, String unNomVente) {
+	public VenteEphemere(int unidVente, String uneDate, String untypeVente, String unNomVente) {
 		this.idVenteEph = unidVente;
 		this.dateEph = uneDate;
 		this.typeVente = untypeVente;
@@ -22,16 +22,16 @@ public class VenteEphemere {
 	
 	//Constructeur pour les stats
 	
-	public VenteEphemere(String unidVente, String uneDate, String untypeVente, String unNomVente, int unnbCatalogue, String unetatVente) {
+	public VenteEphemere(int unidVente, String uneDate, String untypeVente, String unNomVente,String unetatVente, int nbarticleVendu) {
 		this.idVenteEph = unidVente;
 		this.dateEph = uneDate;
 		this.typeVente = untypeVente;
-		this.nomVente = unNomVente;	
-		this.nbCatalogue = unnbCatalogue;
+		this.nomVente = unNomVente;
 		this.etatVente = unetatVente;
+		this.nbarticleVendu = nbarticleVendu;
 	}
 	
-	public String getidVente() {
+	public int getidVente() {
 		return this.idVenteEph;
 	}
 	
