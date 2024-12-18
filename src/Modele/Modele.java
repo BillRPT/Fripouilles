@@ -16,9 +16,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "172.16.203.212";
+	private static String host = "172.16.203.206";
 	private static String user = "sio";
-	private static String mdp = "Azerty123!";
+	private static String mdp = "Vanille2010";
 
 	
 	/**
@@ -520,7 +520,7 @@ public class Modele {
 		    } catch (SQLException sqlErreur) {
 		        System.out.println("Erreur SQL : " + sqlErreur.getMessage());
 		    } catch (Exception erreur) {
-		        System.out.println("Erreur inattendue : " + erreur.getMessage());
+		        System.out.println("autre erreur : " + erreur.getMessage());
 		    }
 		} else {
 		    System.out.println("Le catalogue " + catalogue + " n'existe pas.");
