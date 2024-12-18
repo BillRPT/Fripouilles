@@ -14,9 +14,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'�cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.206";
+	private static String user = "sio";
+	private static String mdp = "Vanille2010";
 
 
 	
@@ -70,7 +70,7 @@ public class Modele {
 		int count = 0;
 		
 		try {
-			String sql = "SELECT COUNT(*) AS nbCo FROM utilisateur WHERE loginUser = ? AND mdpUser = ?";
+			String sql = "SELECT COUNT(*) AS nbCo FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
 			pst.setString(1, login);
@@ -104,7 +104,7 @@ public class Modele {
 		int count = 0;
 		
 		try {
-			String sql = "SELECT roleUser FROM utilisateur WHERE loginUser = ? AND mdpUser = ?";
+			String sql = "SELECT roleUser FROM Utilisateur WHERE loginUser = ? AND mdpUser = ?";
 			pst = connexion.prepareStatement(sql);
 			//Remplacer le ? par nom
 			pst.setString(1, login);
@@ -172,7 +172,7 @@ public class Modele {
 	    
 	    try {
 	        //vérif si la catégorie existe
-	        String checkCatSql = "SELECT idCat FROM catalogue WHERE libelleCat = ?";
+	        String checkCatSql = "SELECT idCat FROM Catalogue WHERE libelleCat = ?";
 	        pst = connexion.prepareStatement(checkCatSql);
 	        pst.setString(1, uncateArt);
 	        ResultSet rs = pst.executeQuery();
@@ -266,7 +266,7 @@ public class Modele {
 	    if (rechercherArticle(unArticle)) {
 	        try {
 	            //récupérer l'id de l'article à partir de son libellé
-	            String getIdArticleSql = "SELECT idArt FROM article WHERE libelleArt = ?";
+	            String getIdArticleSql = "SELECT idArt FROM Article WHERE libelleArt = ?";
 	            pst = connexion.prepareStatement(getIdArticleSql);
 	            pst.setString(1, unArticle);
 	            ResultSet rs = pst.executeQuery();
@@ -275,7 +275,7 @@ public class Modele {
 	                int idArticle = rs.getInt("idArt");
 
 	                //supprimer l(entrée de la table article_catalogue
-	                String deleteFromArticleCatalogueSql = "DELETE FROM article_catalogue WHERE idArt = ?";
+	                String deleteFromArticleCatalogueSql = "DELETE FROM Article_Catalogue WHERE idArt = ?";
 	                pst = connexion.prepareStatement(deleteFromArticleCatalogueSql);
 	                pst.setInt(1, idArticle);
 	                pst.executeUpdate();
@@ -412,7 +412,7 @@ public class Modele {
 	public static void ajouterBenevole(String nomUser, String prenomUser, String loginUser, char[] mdpUser) {
 		
 		try {
-			String sql = "INSERT INTO utilisateur (nomUser, prenomUser, mdpUser, loginUser, roleUser) VALUES (?, ?, ?, ?, 'benevole')";
+			String sql = "INSERT INTO Utilisateur (nomUser, prenomUser, mdpUser, loginUser, roleUser) VALUES (?, ?, ?, ?, 'benevole')";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -513,7 +513,7 @@ public class Modele {
 	public static boolean supprimerBenevole(String unBenevole) {
 		boolean rep = false;
 		try {
-			String sql = "DELETE FROM utilisateur WHERE loginUser = ?";
+			String sql = "DELETE FROM Utilisateur WHERE loginUser = ?";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -564,7 +564,7 @@ public class Modele {
 		int chiffre = 0;
 		
 		try {
-			String sql = "SELECT COUNT(idUser) AS nb FROM utilisateur Where loginUser = ? AND roleUser = 'benevole'";
+			String sql = "SELECT COUNT(idUser) AS nb FROM Utilisateur Where loginUser = ? AND roleUser = 'benevole'";
 			
 			pst = connexion.prepareStatement(sql);
 			
