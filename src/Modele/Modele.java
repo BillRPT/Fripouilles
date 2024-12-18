@@ -135,7 +135,7 @@ public class Modele {
 		boolean rep = false;
 		try {
 			
-			String sql = "SELECT COUNT(*) AS NB FROM Article WHERE libelleArt = ?";
+			String sql = "SELECT COUNT(*) AS nb FROM Article WHERE libelleArt = ?";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -147,7 +147,7 @@ public class Modele {
 	        	chiffre = rs.getInt("nb");
 	         }
 	        
-	        if (chiffre == 1) {
+	        if (chiffre != 0) {
 	        	rep = true;
 	        }
 			
@@ -168,7 +168,7 @@ public class Modele {
 	 * @param uncateArt
 	 * @return true ou false
 	 */
-	public static boolean ajouterArticle(String unLibelle, String untypeArt, String unetatArt, String uncateArt) {
+	public static boolean ajouterArticle(String unLibelle, String untypeArt, String uncateArt) {
 	    boolean rep = false;
 	    
 	    try {

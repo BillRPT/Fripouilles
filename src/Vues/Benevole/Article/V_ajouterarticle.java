@@ -83,7 +83,7 @@ public class V_ajouterarticle extends JPanel {
             messageLabel.setText("");
 
             //vérifier que les champs requis sont remplis
-            if (!libelleArt.getText().isEmpty() && !typeArt.getText().isEmpty() && !etatArt.getText().isEmpty()) {
+            if (!libelleArt.getText().isEmpty() && !typeArt.getText().isEmpty()) {
                 if (cateArt.getText().isEmpty()) {
                     //ajouter l'article sans catalogue
                     Modele.ajouterArticle(libelleArt.getText(), typeArt.getText());
@@ -91,7 +91,7 @@ public class V_ajouterarticle extends JPanel {
                     messageLabel.setText("Article ajoute avec succes sans catalogue.");
                 } else {
                     //ajouter l'article avec catalogue
-                    Modele.ajouterArticle(libelleArt.getText(), typeArt.getText(), etatArt.getText(), cateArt.getText());
+                    Modele.ajouterArticle(libelleArt.getText(), typeArt.getText(), cateArt.getText());
                     messageLabel.setForeground(Color.GREEN);
                     messageLabel.setText("Article ajoute avec succes.");
                 }
@@ -99,7 +99,6 @@ public class V_ajouterarticle extends JPanel {
                 //réinitialiser les champs de texte
                 libelleArt.setText("");
                 typeArt.setText("");
-                etatArt.setText("");
                 cateArt.setText("");
 
             } else {
