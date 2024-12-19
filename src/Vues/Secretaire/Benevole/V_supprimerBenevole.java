@@ -21,39 +21,52 @@ public class V_supprimerBenevole extends JPanel{
 	
 	private JButton btnSupprimerBenevole;
 	
+	private JLabel messageLabel;
+	
 	public V_supprimerBenevole() {
 		setLayout(new GridBagLayout());
-        
-        // Gestionnaire de rÃ©partition (pour ordonner les champs et boutons)
+
+        // Gestionnaire de répartition (pour ordonner les champs et boutons)
         this.gbc = new GridBagConstraints();
-        
+
         // Marges entre les composants
-        this.gbc.insets = new Insets(5, 5, 5, 5);
-        
+        this.gbc.insets = new Insets(10, 10, 10, 10);
+        this.gbc.fill = GridBagConstraints.HORIZONTAL;
+
         // Champs de texte et labels
         this.textloginUser = new JTextField(20);
-        this.labelloginUser = new JLabel("Login");
-        
-        // Bouton pour supprimer un bÃ©nÃ©vole
-        this.btnSupprimerBenevole = new JButton("Supprimer le benevole");
-        
+        this.labelloginUser = new JLabel("Login :");
+
+        // Bouton pour supprimer un bénévole
+        this.btnSupprimerBenevole = new JButton("Supprimer le bénévole");
         this.btnSupprimerBenevole.addActionListener(new supprimerBenevole());
-        
+
+        // Label pour afficher les messages
+        this.messageLabel = new JLabel();
+        this.messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
         // Placement des composants
-        
+
         // Label "Login"
-        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         this.add(labelloginUser, gbc);
-        
+
         // Champ de texte pour le login
-        gbc.gridx = 1; gbc.gridy = 0;
+        gbc.gridx = 1;
         this.add(textloginUser, gbc);
-        
+
         // Bouton pour supprimer
-        gbc.gridx = 0; gbc.gridy = 1;
-        gbc.gridwidth = 2;  // Le bouton doit occuper les deux colonnes
-        gbc.fill = GridBagConstraints.CENTER;  // Centrer le bouton
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2; // Le bouton doit occuper les deux colonnes
+        gbc.anchor = GridBagConstraints.CENTER;
         this.add(btnSupprimerBenevole, gbc);
+
+        // Message d'erreur ou de confirmation
+        gbc.gridy = 2; // En dessous du bouton
+        gbc.gridwidth = 2; // S'étend sur deux colonnes
+        this.add(messageLabel, gbc);
 		
 	}
 	
@@ -64,14 +77,17 @@ public class V_supprimerBenevole extends JPanel{
 			if (!textloginUser.getText().isEmpty()) {
 				if (Modele.verifierRole(textloginUser.getText()) == true) {
 					Modele.supprimerBenevole(textloginUser.getText());
-					JOptionPane.showMessageDialog(null, "Le benevole a ete supprimer");
+					 messageLabel.setForeground(Color.GREEN);
+	                 messageLabel.setText("Le bénévole a été supprimé.");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Le benevole n'existe pas ou il n'est pas un benevole");
+					messageLabel.setForeground(Color.RED);
+                    messageLabel.setText("Le bénévole n'existe pas ou n'est pas un bénévole.");
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Des champs sont vides");
+				messageLabel.setForeground(Color.RED);
+                messageLabel.setText("Des champs sont vides");
 			}
 		}
 		

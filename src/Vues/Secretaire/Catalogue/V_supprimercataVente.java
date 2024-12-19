@@ -1,5 +1,6 @@
 package Vues.Secretaire.Catalogue;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -12,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import Modele.Modele;
 
@@ -26,35 +28,42 @@ public class V_supprimercataVente extends JPanel {
 	
 	private JButton supprimerVente;
 	
+	private JLabel messageLabel;
+	
 	public V_supprimercataVente() {
 		setLayout(new GridBagLayout());
         this.gbc = new GridBagConstraints();
 
-        this.gbc.insets = new Insets(5, 5, 5, 5); 
-        this.gbc.fill = GridBagConstraints.HORIZONTAL; 
+        // Espacement uniforme
+        this.gbc.insets = new Insets(10, 10, 10, 10);
+        this.gbc.fill = GridBagConstraints.HORIZONTAL;
 
-
+        // Champs de saisie et étiquettes
         this.nomCata = new JTextField(20);
-        this.nomdelaCata = new JLabel("Nom du catalogue a supp de sa vente");
+        this.nomdelaCata = new JLabel("Nom du catalogue à supprimer de sa vente :");
 
-
-        this.supprimerVente = new JButton("Supprimer une cata de sa vente");
+        // Bouton pour supprimer
+        this.supprimerVente = new JButton("Supprimer le catalogue de la vente");
         this.supprimerVente.addActionListener(new supprimercataVente());
 
-        gbc.gridx = 0; 
-        gbc.gridy = 0; 
+        // Label pour afficher les messages
+        this.messageLabel = new JLabel();
+        this.messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Ajout des composants au panel
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         gbc.gridwidth = 2;
         this.add(nomdelaCata, gbc);
 
-        gbc.gridx = 0; 
-        gbc.gridy = 1; 
-        gbc.gridwidth = 2; 
+        gbc.gridy = 1;
         this.add(nomCata, gbc);
 
-        gbc.gridx = 0; 
-        gbc.gridy = 2; 
-        gbc.gridwidth = 2; 
+        gbc.gridy = 2;
         this.add(supprimerVente, gbc);
+
+        gbc.gridy = 3;
+        this.add(messageLabel, gbc);
 	}
 	
 	class supprimercataVente implements ActionListener{
@@ -64,18 +73,22 @@ public class V_supprimercataVente extends JPanel {
 				 if (Modele.rechercherCatalogue(nomCata.getText()) == true) {
 					 if (Modele.verifCatalogue(nomCata.getText()) == true) {
 							Modele.suppirmercatadeVente(nomCata.getText());
-							JOptionPane.showMessageDialog(null, "Le catalogue a ete supp de sa vente");
+							messageLabel.setForeground(Color.GREEN);
+							messageLabel.setText("Le catalogue a ete supp de sa vente");
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "Le catalogue est dans aucune vente");
+							messageLabel.setForeground(Color.RED);
+							messageLabel.setText("Le catalogue a ete supp de sa vente");
 						}
 				 }
 				 else {
-					 JOptionPane.showMessageDialog(null, "Le catalogue n'existe pas");
+					 messageLabel.setForeground(Color.RED);
+					 messageLabel.setText("Le catalogue n'existe pas");
 				 }
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Des champs sont vides");
+				messageLabel.setForeground(Color.RED);
+				messageLabel.setText("Des champs sont vides");
 			}
 		}
 		

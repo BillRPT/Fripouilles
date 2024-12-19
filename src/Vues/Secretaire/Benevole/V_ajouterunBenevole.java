@@ -1,5 +1,6 @@
 package Vues.Secretaire.Benevole;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -26,61 +27,71 @@ public class V_ajouterunBenevole extends JPanel{
 	
 	private JButton btnAjouterBenevole;
 	
+	private JLabel messageLabel;
+	
 	public V_ajouterunBenevole() {
 		setLayout(new GridBagLayout());
-		// Gestionnaire de répartition (pour ordonner les champs et boutons)
-		this.gbc = new GridBagConstraints();
-		
-		this.gbc.insets = new Insets(5, 5, 5, 5); 
-		this.gbc.fill = GridBagConstraints.HORIZONTAL;
-		
-		// Champs de saisie
-		this.nomBenevole = new JTextField(20);
-		this.prenomBenevole = new JTextField(20);
-		this.loginBenevole = new JTextField(20);
-		this.mdpBenevole = new JPasswordField(20);
-		
-		this.nomduBenevole = new JLabel("Nom");
-		this.prenomduBenevole = new JLabel("Prenom");
-		this.loginduBenevole = new JLabel("Login");
-		this.mdpduBenevole = new JLabel("Mot de passe");
-		
-		this.btnAjouterBenevole = new JButton("Ajouter un benevole");
-		
-		this.btnAjouterBenevole.addActionListener(new ajouterunBenevole());
-		
-		gbc.gridx = 0; gbc.gridy = 0;
-	    this.add(nomduBenevole, gbc);
-	    
-	    gbc.gridx = 1; 
-	    this.add(nomBenevole, gbc);
-	    
-	    // Prénom
-	    gbc.gridx = 0; gbc.gridy = 1;
-	    this.add(prenomduBenevole, gbc);
-	    
-	    gbc.gridx = 1; 
-	    this.add(prenomBenevole, gbc); 
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10); // Marges autour des composants
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-	    // Login
-	    gbc.gridx = 0; gbc.gridy = 2;
-	    this.add(loginduBenevole, gbc); 
-	    
-	    gbc.gridx = 1; 
-	    this.add(loginBenevole, gbc); 
+        // Champs de saisie
+        nomBenevole = new JTextField(20);
+        prenomBenevole = new JTextField(20);
+        loginBenevole = new JTextField(20);
+        mdpBenevole = new JPasswordField(20);
 
-	    // Mot de passe
-	    gbc.gridx = 0; gbc.gridy = 3;
-	    this.add(mdpduBenevole, gbc); 
-	    
-	    gbc.gridx = 1; 
-	    this.add(mdpBenevole, gbc); 
+        // Labels
+        nomduBenevole = new JLabel("Nom :");
+        prenomduBenevole = new JLabel("Prenom :");
+        loginduBenevole = new JLabel("Login :");
+        mdpduBenevole = new JLabel("Mot de passe :");
 
-	    // Bouton Ajouter
-	    gbc.gridx = 0; gbc.gridy = 4; 
-	    gbc.gridwidth = 2;  // Le bouton doit occuper les deux colonnes
-	    gbc.fill = GridBagConstraints.CENTER;  // Centrer le bouton
-	    this.add(btnAjouterBenevole, gbc);
+        // Bouton Ajouter
+        btnAjouterBenevole = new JButton("Ajouter un benevole");
+        btnAjouterBenevole.addActionListener(new ajouterunBenevole());
+
+        // Message
+        messageLabel = new JLabel();
+        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Ajout des composants � la grille
+        gbc.gridx = 0; 
+        gbc.gridy = 0;
+        add(nomduBenevole, gbc);
+
+        gbc.gridx = 1;
+        add(nomBenevole, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 1;
+        add(prenomduBenevole, gbc);
+
+        gbc.gridx = 1;
+        add(prenomBenevole, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 2;
+        add(loginduBenevole, gbc);
+
+        gbc.gridx = 1;
+        add(loginBenevole, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 3;
+        add(mdpduBenevole, gbc);
+
+        gbc.gridx = 1;
+        add(mdpBenevole, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 4;
+        gbc.gridwidth = 2; // Le bouton occupe toute la ligne
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(btnAjouterBenevole, gbc);
+
+        gbc.gridy = 5; // Message sous le bouton
+        add(messageLabel, gbc);
 	}
 	
 	class ajouterunBenevole implements ActionListener{
@@ -90,15 +101,18 @@ public class V_ajouterunBenevole extends JPanel{
 			if (!nomBenevole.getText().isEmpty() && !prenomBenevole.getText().isEmpty() && !loginBenevole.getText().isEmpty() && mdpBenevole.getPassword().length != 0) {
 				
 				if (Modele.rechercherUtilisateur(loginBenevole.getText()) == true) {
-					JOptionPane.showMessageDialog(null, "Cette utilisateur existe deja");
+					messageLabel.setForeground(Color.RED);
+					messageLabel.setText("Cette utilisateur existe deja");
 				}
 				else {
 					Modele.ajouterBenevole(nomBenevole.getText(), prenomBenevole.getText(), loginBenevole.getText(), mdpBenevole.getPassword());
-					JOptionPane.showMessageDialog(null, "Le benevole a ete ajoute");
+					messageLabel.setForeground(Color.GREEN);
+					messageLabel.setText("Le benevole a ete ajoute");
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Des champs sont vides");
+				messageLabel.setForeground(Color.RED);
+				messageLabel.setText("Des champs sont vides");
 			}
 		}
 		

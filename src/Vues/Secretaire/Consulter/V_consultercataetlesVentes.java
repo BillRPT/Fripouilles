@@ -5,18 +5,19 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 
-import javax.swing. *;
-import Class.Catalogue;
-import Class.VenteEphemere;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
-public class V_consultervente extends JPanel{
+import Class.Catalogue;
+
+public class V_consultercataetlesVentes extends JPanel{
 	
-	private JPanel monPanel;
 	private JTable lesVentestable;
 	private  JScrollPane scrollPane;
 	private GridBagConstraints gbc;
 	
-	public V_consultervente(ArrayList<VenteEphemere> lesVentes) {
+	public V_consultercataetlesVentes(ArrayList<Catalogue> lesCatalogue) {
 		setLayout(new GridBagLayout());
         
         // Gestionnaire de rÃ©partition (pour ordonner les champs et boutons)
@@ -25,16 +26,16 @@ public class V_consultervente extends JPanel{
         this.gbc.insets = new Insets(5, 5, 5, 5);
 	    
         Object data[][] = new Object[10][5];
-	    String[] title = {"idVenteEphemere", "nomVente", "Type vente", "Date", "sa Vente"};
+	    String[] title = {"idCategorie", "LibelleVente", "dateCat", "etat" ,"sa Vente"};
 	    
 	    // Remplir le tableau avec les données des catalogues
 	    int i = 0;
-	    for (VenteEphemere uneVente : lesVentes) {
-	    	data[i][0] = uneVente.getidVente();
-	    	data[i][1] = uneVente.getnomVente();
-	        data[i][2] = uneVente.gettypeVente();
-	        data[i][3] = uneVente.getdateEph();
-	        data[i][4] = uneVente.getdateEph();
+	    for (Catalogue leCatalogue : lesCatalogue) {
+	    	data[i][0] = leCatalogue.getunidCategorie();
+	    	data[i][1] = leCatalogue.getunLibelle();
+	        data[i][2] = leCatalogue.getuneDate();
+	        data[i][3] = leCatalogue.getunEtat();
+	        data[i][4] = leCatalogue.getsaVente().getnomVente();
 	        i++;
 	    }
 	    

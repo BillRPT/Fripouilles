@@ -1,5 +1,6 @@
 package Vues.Secretaire.Benevole;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,6 +21,8 @@ public class V_rechercherBenevole extends JPanel{
 	
 	private JButton rechercherVente;
 	
+	private JLabel messageLabel;
+	
 	public V_rechercherBenevole() {
 		setLayout(new GridBagLayout());
         this.gbc = new GridBagConstraints();
@@ -35,6 +38,15 @@ public class V_rechercherBenevole extends JPanel{
         this.rechercherVente = new JButton("Rechercher un benevole");
         this.rechercherVente.addActionListener(new rechercherBenevole());
 
+        
+        messageLabel = new JLabel();
+        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        messageLabel.setForeground(Color.RED);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        add(messageLabel, gbc);
+        
         gbc.gridx = 0; 
         gbc.gridy = 0; 
         gbc.gridwidth = 2;
@@ -54,16 +66,20 @@ public class V_rechercherBenevole extends JPanel{
 	class rechercherBenevole implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			messageLabel.setText("");
 			if (!nomVente.getText().isEmpty()) {
 				if (Modele.rechercherBenevole(nomVente.getText()) == true) {
-					JOptionPane.showMessageDialog(null, "Le benevole existe");
+					messageLabel.setForeground(Color.GREEN);
+					messageLabel.setText("Le benevole exist");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "La benevole existe pas");
+					messageLabel.setForeground(Color.RED);
+					messageLabel.setText("Le benevole existe pas");
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Des champs sont vides");
+				messageLabel.setForeground(Color.RED);
+				messageLabel.setText("Des champs sont vides");
 			}
 		}
 		

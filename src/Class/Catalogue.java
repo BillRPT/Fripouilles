@@ -7,6 +7,7 @@ public class Catalogue {
 	private String idCatalogue;
 	private String idVenteEphemere;
 	private String etatCat;
+	private VenteEphemere saVente;
 	
 	//Constructeur Catalogue
 	
@@ -25,6 +26,15 @@ public class Catalogue {
 		this.idVenteEphemere = unidventeEph;
 		this.etatCat = unetatCat;
 	}
+	
+	//troisieme constructeur Catalogue pour consulter les catalogue et voir a quel vente il appartient
+		public Catalogue(String unlibelleCat, String uneDate, String unidCate, String unetatCat, VenteEphemere lavente) {
+			this.libelleCat = unlibelleCat;
+			this.Date = uneDate;
+			this.idCatalogue = unidCate;
+			this.etatCat = unetatCat;
+			this.saVente = lavente;
+		}
 	
 	//Les ascenseur
 	
@@ -46,6 +56,10 @@ public class Catalogue {
 	
 	public String getunEtat() {
 		return this.etatCat;
+	}
+	
+	public VenteEphemere getsaVente() {
+		return this.saVente;
 	}
 	
 

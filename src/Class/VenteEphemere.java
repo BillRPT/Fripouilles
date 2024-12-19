@@ -31,6 +31,10 @@ public class VenteEphemere {
 		this.nbarticleVendu = nbarticleVendu;
 	}
 	
+	public VenteEphemere(String unNomVente) {
+		this.nomVente = unNomVente;
+	}
+	
 	public int getidVente() {
 		return this.idVenteEph;
 	}

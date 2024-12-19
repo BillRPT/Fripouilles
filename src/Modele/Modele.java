@@ -16,9 +16,9 @@ public class Modele {
 	private static PreparedStatement pst;
 	
 	//Constante a modifier en fonction de l'ï¿½cole ou la maison
-	private static String host = "localhost";
-	private static String user = "root";
-	private static String mdp = "";
+	private static String host = "172.16.203.212";
+	private static String user = "sio";
+	private static String mdp = "Azerty123!";
 
 	
 	/**
@@ -954,13 +954,14 @@ public class Modele {
 		int nbArticlesVendues;
 		
 		try {
-			String sql = "SELECT Vente.nomVente, Vente.idVenteEph,dateEph,typeVente, etatCat, COUNT(idArt) AS nbArticlesVendues \r\n" + 
-					"FROM Vente, Article_Catalogue, Catalogue \r\n" + 
-					"WHERE Vente.idVenteEph = Article_Catalogue.idCat \r\n" + 
-					"AND Article_Catalogue.idCat = Catalogue.idCat \r\n" + 
-					"AND Vente.idVenteEph IS NOT NULL \r\n" + 
-					"GROUP BY idVenteEph, dateEph, typeVente, etatCat \r\n" + 
-					"ORDER BY dateEph;";
+			String sql = "SELECT Vente.nomVente, Vente.idVenteEph, Vente.dateEph, Vente.typeVente, Catalogue.etatCat,COUNT(Article_Catalogue.idArt) AS nbArticlesVendus\r\n" + 
+					"FROM Vente, Article_Catalogue, Catalogue, Article\r\n" + 
+					"WHERE Vente.idVenteEph = Catalogue.idVenteEph\r\n" + 
+					"AND Article_Catalogue.idCat = Catalogue.idCat\r\n" + 
+					"AND Article_Catalogue.idArt = Article.idArt\r\n" + 
+					"AND Article.etatArt = 'Vendu'\r\n" + 
+					"GROUP BY Vente.idVenteEph, Vente.dateEph, Vente.typeVente, Catalogue.etatCat\r\n" + 
+					"ORDER BY Vente.dateEph";
 			
 			rs = st.executeQuery(sql);
 			
@@ -1064,7 +1065,7 @@ public class Modele {
 		boolean rep = false;
 		
 		try {
-			String sql = "UPDATE catalogue SET idVenteEph = ? WHERE libelleCat = ?";
+			String sql = "UPDATE Catalogue SET idVenteEph = ? WHERE libelleCat = ?";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -1086,7 +1087,7 @@ public class Modele {
 		boolean rep = false;
 		
 		try {
-			String sql = "SELECT COUNT(idVenteEph) AS nb FROM catalogue WHERE idVenteEph = ?";
+			String sql = "SELECT COUNT(idVenteEph) AS nb FROM Catalogue WHERE idVenteEph = ?";
 			
 			pst = connexion.prepareStatement(sql);
 			
@@ -1121,6 +1122,45 @@ public class Modele {
 		catch(Exception erreur) {
 			System.out.println("Erreur de supression de catalogue d'une vente");
 		}
+	}
+	
+	public static ArrayList<Catalogue> getcataetlesVentes() {
+		ArrayList<Catalogue> lescateetVente = new ArrayList<Catalogue>();
+		
+		String idCat;
+		String idVenteEph;
+		String libelleCatalogue;
+		String dateCatalogue;
+		String etatCat;
+		String nomVente;
+		
+		try {
+			String sql = "SELECT idCat, libelleCat, dateCat, etatCat, Vente.nomVente\r\n" + 
+					"FROM Catalogue, Vente\r\n" + 
+					"WHERE Catalogue.idVenteEph = Vente.idVenteEph";
+			
+			rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				idCat = rs.getString("idCat");
+				libelleCatalogue = rs.getString("libelleCat");
+				etatCat = rs.getString("etatCat");
+				dateCatalogue = rs.getString("dateCat");
+				nomVente = rs.getString("nomVente");
+				
+				VenteEphemere uneVente = new VenteEphemere(nomVente);
+				
+				Catalogue unCatalogue = new Catalogue(libelleCatalogue, dateCatalogue, idCat, etatCat, uneVente);
+				
+				
+				lescateetVente.add(unCatalogue);
+			}
+		}
+		catch(Exception erreur) {
+			System.out.println("Erreur de récupérations des catalogues et sa vente" + erreur);
+		}
+		
+		return lescateetVente;
 	}
 
 	

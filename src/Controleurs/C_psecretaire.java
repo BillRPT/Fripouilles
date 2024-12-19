@@ -18,6 +18,7 @@ import Vues.Secretaire.Benevole.V_supprimerBenevole;
 import Vues.Secretaire.Catalogue.V_ajoutecataVente;
 import Vues.Secretaire.Catalogue.V_supprimercataVente;
 import Vues.Secretaire.Consulter.V_consulterbenevole;
+import Vues.Secretaire.Consulter.V_consultercataetlesVentes;
 import Vues.Secretaire.Consulter.V_consultercatalogueCsv;
 import Vues.Secretaire.Consulter.V_consultercatalogueXml;
 import Vues.Secretaire.Consulter.V_consulterhistoriquecatalogue;
@@ -54,6 +55,8 @@ public class C_psecretaire {
 	private V_consulterbenevole V_consulterBenevole;
 	private V_ajoutecataVente V_ajoutcataVente;
 	private V_supprimercataVente V_suppCataVente;
+	
+	private V_consultercataetlesVentes V_consultercataetsaVente;
 	
 	//Constructeur
 	public C_psecretaire(C_principal lecPrincipal) {
@@ -182,6 +185,17 @@ public class C_psecretaire {
 	}
 	
 	/**
+	 * Fonction qui permet de refresh la vue pour voir les nouvelles donnees qui ont ete add
+	 * @return un JPanel
+	 * */
+	public JPanel refresheconsultercataetlesVentes() {
+		
+		V_consultercataetsaVente = new V_consultercataetlesVentes(this.getcataetsaVente());
+		
+		return V_consultercataetsaVente;
+	}
+	
+	/**
 	 * Fonction qui permet de récupérer les ventes pour refresh le JTable
 	 * @return une liste de vente lesVentes
 	 * */
@@ -205,12 +219,22 @@ public class C_psecretaire {
 	
 	/**
 	 * Fonction qui permet de récupérer les ventes pour refresh le JTable
-	 * @return une liste de vente lesVentes
+	 * @return lesUtilisateurs
 	 * */
 	private ArrayList<Utilisateur> getlesBenevoles() {
 		ArrayList<Utilisateur> lesUtilisateurs = Modele.consulterBenevole();
 		
 		return lesUtilisateurs;
+	}
+	
+	/**
+	 * Fonction qui permet de recuperer les catalogue et sa vente pour refresh le JTable
+	 * @return cataetsaVente
+	 * */
+	private ArrayList<Catalogue> getcataetsaVente() {
+		ArrayList<Catalogue> cataetsaVente = Modele.getcataetlesVentes();
+		
+		return cataetsaVente;
 	}
 	
 	public void affichermenuSecretaire() {

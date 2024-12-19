@@ -1,5 +1,6 @@
 package Vues.Secretaire.Vente;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -20,20 +21,26 @@ public class V_recherchervente extends JPanel{
 	
 	private JButton rechercherVente;
 	
+	private JLabel messageLabel;
+	
 	public V_recherchervente() {
 		setLayout(new GridBagLayout());
         this.gbc = new GridBagConstraints();
 
-        this.gbc.insets = new Insets(5, 5, 5, 5); 
-        this.gbc.fill = GridBagConstraints.HORIZONTAL; 
+        this.gbc.insets = new Insets(5, 5, 5, 5);
+        this.gbc.fill = GridBagConstraints.HORIZONTAL;
 
-
+        // Champs de saisie
         this.nomVente = new JTextField(20);
-        this.nomdelaVente = new JLabel("Nom de la vente");
+        this.nomdelaVente = new JLabel("Nom de la vente :");
 
-
+        // Bouton
         this.rechercherVente = new JButton("Rechercher une Vente");
         this.rechercherVente.addActionListener(new rechercherVente());
+
+        // Message
+        this.messageLabel = new JLabel();
+        this.messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         gbc.gridx = 0; 
         gbc.gridy = 0; 
@@ -49,6 +56,9 @@ public class V_recherchervente extends JPanel{
         gbc.gridy = 2; 
         gbc.gridwidth = 2; 
         this.add(rechercherVente, gbc);
+
+        gbc.gridy = 3;
+        this.add(messageLabel, gbc);
 	}
 	
 	class rechercherVente implements ActionListener{
@@ -56,14 +66,17 @@ public class V_recherchervente extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if (!nomVente.getText().isEmpty()) {
 				if (Modele.rechercherVente(nomVente.getText()) == true) {
-					JOptionPane.showMessageDialog(null, "La vente existe");
+					messageLabel.setForeground(Color.GREEN);
+					messageLabel.setText("La vente existe");
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "La vente existe pas");
+					messageLabel.setForeground(Color.RED);
+					messageLabel.setText("La vente existe pas");
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Des champs sont vides");
+				messageLabel.setForeground(Color.RED);
+				messageLabel.setText("Des champs sont vides");
 			}
 		}
 		
