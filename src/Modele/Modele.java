@@ -1009,7 +1009,7 @@ public class Modele {
 				dateEph = rs.getString("dateEph");
 				typeVente = rs.getString("typeVente");
 				etatCat = rs.getString("etatCat");
-				nbArticlesVendues = rs.getInt("nbArticlesVendues");
+				nbArticlesVendues = rs.getInt("nbArticlesVendus");
 				unNom = rs.getString("nomVente");
 				
 				VenteEphemere uneVente = new VenteEphemere(idVenteEph, dateEph, typeVente, unNom, etatCat, nbArticlesVendues);
