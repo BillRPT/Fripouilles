@@ -711,6 +711,15 @@ public class Modele {
 	}
 	
 	
+	
+	
+	/**
+	 * Ajouter un benevole
+	 * @param nomUser
+	 * @param prenomUser
+	 * @param loginUser
+	 * @param mdpUser
+	 */
 	public static void ajouterBenevole(String nomUser, String prenomUser, String loginUser, char[] mdpUser) {
 		
 		try {
@@ -735,6 +744,10 @@ public class Modele {
 		}
 	}
 	
+	/**
+	 * @param uneVente
+	 * @return
+	 */
 	public static boolean rechercherVente(String uneVente) {
 		boolean rep = false;
 		int chiffre = 0;
@@ -790,6 +803,10 @@ public class Modele {
 		}
 	}
 	
+	/**
+	 * @param unnomVente
+	 * @return
+	 */
 	public static boolean supprimerVente(String unnomVente) {
 		boolean rep = false;
 		try {
@@ -812,6 +829,10 @@ public class Modele {
 		return rep;
 	}
 	
+	/**
+	 * @param unBenevole
+	 * @return
+	 */
 	public static boolean supprimerBenevole(String unBenevole) {
 		boolean rep = false;
 		try {
@@ -834,6 +855,10 @@ public class Modele {
 		return rep;
 	}
 	
+	/**
+	 * @param user
+	 * @return
+	 */
 	public static boolean verifierRole(String user) {
 		boolean rep = false;
 		int chiffre = 0;
@@ -861,6 +886,10 @@ public class Modele {
 		return rep;
 	}
 	
+	/**
+	 * @param user
+	 * @return
+	 */
 	public static boolean rechercherBenevole(String user) {
 		boolean rep = false;
 		int chiffre = 0;
@@ -888,6 +917,9 @@ public class Modele {
 		return rep;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ArrayList<Utilisateur> consulterBenevole(){
 		ArrayList<Utilisateur> lesUtilisateur = new ArrayList<>();
 		String nom;
@@ -915,6 +947,10 @@ public class Modele {
 		return lesUtilisateur;
 	}
 	
+	/**
+	 * @param user
+	 * @return
+	 */
 	public static boolean rechercherUtilisateur(String user) {
 		boolean rep = false;
 		int chiffre = 0;
@@ -942,6 +978,9 @@ public class Modele {
 		return rep;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static ArrayList<VenteEphemere> consulterStatistiques() {
 		
 		ArrayList<VenteEphemere> lesStats = new ArrayList<VenteEphemere>();
@@ -987,6 +1026,10 @@ public class Modele {
 	}
 	
 	
+	/**
+	 * @param unNomVente
+	 * @return
+	 */
 	public static int getidVente(String unNomVente) {
 		int chiffre = 0;
 		
@@ -1011,6 +1054,10 @@ public class Modele {
 	}
 	
 	
+	/**
+	 * @param unidVente
+	 * @return
+	 */
 	public static String getlibelleCat(int unidVente) {
 		String libelle = "";
 		
@@ -1033,6 +1080,10 @@ public class Modele {
 		return libelle;
 	}
 	
+	/**
+	 * @param unlibelle
+	 * @return
+	 */
 	public static boolean verifCatalogue(String unlibelle) {
 		int chiffre = 0;
 		
@@ -1061,6 +1112,10 @@ public class Modele {
 		return rep;
 	}
 	
+	/**
+	 * @param unlibelleCatalogue
+	 * @param unidVente
+	 */
 	public static void ajoutercatalogueaVente(String unlibelleCatalogue, int unidVente) {
 		boolean rep = false;
 		
@@ -1081,6 +1136,10 @@ public class Modele {
 		}
 	}
 	
+	/**
+	 * @param idVente
+	 * @return
+	 */
 	public static boolean verifVente(int idVente) {
 		int chiffre = 0;
 		
@@ -1109,6 +1168,9 @@ public class Modele {
 		return rep;
 	}
 	
+	/**
+	 * @param uncatalogue
+	 */
 	public static void suppirmercatadeVente(String uncatalogue) {
 		try {
 			String sql = "UPDATE Catalogue SET idVenteEph = NULL WHERE libelleCat = ?";
@@ -1124,6 +1186,10 @@ public class Modele {
 		}
 	}
 	
+	/**
+	 * Obtenir les ventes de chaque cata
+	 * @return liste de catalogue Catalogue
+	 */
 	public static ArrayList<Catalogue> getcataetlesVentes() {
 		ArrayList<Catalogue> lescateetVente = new ArrayList<Catalogue>();
 		

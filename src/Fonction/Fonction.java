@@ -80,6 +80,18 @@ public class Fonction {
 	public static String charTostring(char[] chaine) {
 	    return new String(chaine);
 	}
+	
+	
+	public static boolean checkPassword(char[] chaine) {
+	    boolean rep = true;
+		
+		String password = charTostring(chaine);
+
+	    if (password.length() < 12 || !password.matches(".*[A-Z].*") || !password.matches(".*\\d.*") || !password.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+	    	rep = false; 
+	    }
+	    return rep;
+	}
 
 	
 }

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing. *;
 
+import Fonction.Fonction;
 import Modele.Modele;
 public class V_ajouterunBenevole extends JPanel{
 	
@@ -100,14 +101,20 @@ public class V_ajouterunBenevole extends JPanel{
 		public void actionPerformed(ActionEvent e) {
 			if (!nomBenevole.getText().isEmpty() && !prenomBenevole.getText().isEmpty() && !loginBenevole.getText().isEmpty() && mdpBenevole.getPassword().length != 0) {
 				
-				if (Modele.rechercherUtilisateur(loginBenevole.getText()) == true) {
-					messageLabel.setForeground(Color.RED);
-					messageLabel.setText("Cette utilisateur existe deja");
+				if (Fonction.checkPassword(mdpBenevole.getPassword())) {
+					if (Modele.rechercherUtilisateur(loginBenevole.getText()) == true) {
+						messageLabel.setForeground(Color.RED);
+						messageLabel.setText("Cette utilisateur existe deja");
+					}
+					else {
+						Modele.ajouterBenevole(nomBenevole.getText(), prenomBenevole.getText(), loginBenevole.getText(), mdpBenevole.getPassword());
+						messageLabel.setForeground(Color.GREEN);
+						messageLabel.setText("Le benevole a ete ajoute");
+					}
 				}
 				else {
-					Modele.ajouterBenevole(nomBenevole.getText(), prenomBenevole.getText(), loginBenevole.getText(), mdpBenevole.getPassword());
-					messageLabel.setForeground(Color.GREEN);
-					messageLabel.setText("Le benevole a ete ajoute");
+					messageLabel.setForeground(Color.RED);
+					messageLabel.setText("Mot de passe trop faible !");
 				}
 			}
 			else {
